@@ -301,42 +301,42 @@ def detect_markers(
 
 
 def solve_square_marker_pose(
-    image_corners: np.ndarray,
-    object_points: np.ndarray,
-    calibration: CameraCalibration,
-) -> MarkerPose | None:
+    image_corners: np.ndarray,  #     ArUco 检测得到的 Marker 四个角点的 2D 像素坐标
+    object_points: np.ndarray,  #     Marker 四个角点在 Marker 自身坐标系中的 3D 坐标
+    calibration: CameraCalibration, #     相机标定参数，包括相机内参矩阵 K 和畸变参数
+) -> MarkerPose | None: #     MarkerPose，里面包含旋转向量、平移向量、重投影误差
     """Solve both planar candidates and keep the best positive-depth pose."""
 
-    result = cv2.solvePnPGeneric(
-        objectPoints=object_points,
-        imagePoints=np.asarray(image_corners, dtype=np.float64).reshape(4, 2),
-        cameraMatrix=calibration.camera_matrix,
-        distCoeffs=calibration.distortion_coefficients,
-        flags=cv2.SOLVEPNP_IPPE_SQUARE,
+    result = cv2.solvePnPGeneric(  # 调用 OpenCV 的 PnP 求解函数。
+        objectPoints=object_points, # Marker 四个角点的 3D 坐标。
+        imagePoints=np.asarray(image_corners, dtype=np.float64).reshape(4, 2),  # Marker 在摄像头图像中检测到的四个角点。
+        cameraMatrix=calibration.camera_matrix, # 相机内参矩阵 K。
+        distCoeffs=calibration.distortion_coefficients,  # 相机镜头畸变参数。
+        flags=cv2.SOLVEPNP_IPPE_SQUARE,  # 指定 PnP 使用的具体求解算法：IPPE_SQUARE
     )
-    success, rotation_vectors, translation_vectors = result[:3]
+    success, rotation_vectors, translation_vectors = result[:3]# solvePnPGeneric 会返回多个数据，只取前三个。
     if not success:
         return None
 
-    candidates: list[MarkerPose] = []
-    for rotation_vector, translation_vector in zip(rotation_vectors, translation_vectors):
-        rotation_vector = np.asarray(rotation_vector, dtype=np.float64).reshape(3)
-        translation_vector = np.asarray(translation_vector, dtype=np.float64).reshape(3)
-        rotation, _ = cv2.Rodrigues(rotation_vector)
-        camera_points = (rotation @ object_points.T).T + translation_vector
-        if np.any(camera_points[:, 2] <= 0.0):
+    candidates: list[MarkerPose] = [] # 创建一个列表用来保存所有“有效的 PnP 候选姿态”。
+    for rotation_vector, translation_vector in zip(rotation_vectors, translation_vectors):# rvec + tvec
+        rotation_vector = np.asarray(rotation_vector, dtype=np.float64).reshape(3)# 将旋转向量转换为长度为 3 的数组， [rx, ry, rz]。
+        translation_vector = np.asarray(translation_vector, dtype=np.float64).reshape(3) # 将平移向量整理成：[tx, ty, tz]表示 Marker 原点相对于摄像头的位置。
+        rotation, _ = cv2.Rodrigues(rotation_vector)# Rodrigues 变换：把 PnP 输出的旋转向量 rvec，转换成 3×3 旋转矩阵 R。
+        camera_points = (rotation @ object_points.T).T + translation_vector # Pc = R × Pw + t
+        if np.any(camera_points[:, 2] <= 0.0):# 检查所有 Marker 角点的 Z 坐标是否<=0。
             continue
-        projected, _ = cv2.projectPoints(
+        projected, _ = cv2.projectPoints( # 这里进行“重投影”。
             object_points,
             rotation_vector,
             translation_vector,
             calibration.camera_matrix,
             calibration.distortion_coefficients,
         )
-        residuals = projected.reshape(4, 2) - np.asarray(image_corners).reshape(4, 2)
-        rmse = float(np.sqrt(np.mean(np.sum(np.square(residuals), axis=1))))
-        candidates.append(MarkerPose(rotation_vector, translation_vector, rmse))
-    return min(candidates, key=lambda pose: pose.reprojection_rmse_px, default=None)
+        residuals = projected.reshape(4, 2) - np.asarray(image_corners).reshape(4, 2)# 计算“重投影残差”。
+        rmse = float(np.sqrt(np.mean(np.sum(np.square(residuals), axis=1))))  # 均方根误差
+        candidates.append(MarkerPose(rotation_vector, translation_vector, rmse))# 将当前这个有效候选解保存起来。
+    return min(candidates, key=lambda pose: pose.reprojection_rmse_px, default=None)# 找到 reprojection_rmse_px 最小的那个。
 
 
 def rotation_matrix_to_rpy_degrees(rotation: np.ndarray) -> np.ndarray:

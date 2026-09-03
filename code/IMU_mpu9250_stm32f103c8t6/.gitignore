@@ -1,0 +1,3 @@
+__pycache__/
+*.pyc
+mag_calibration.json

@@ -1,0 +1,164 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-09-03T07:56:46.128412+00:00",
+  "source": "mag_calibration/data/magnetometer_data.csv",
+  "model": "robust_positive_definite_full_3x3_ellipsoid",
+  "convention": {
+    "vector": "column",
+    "formula": "calibrated = soft_iron_matrix @ (raw - hard_iron_offset)",
+    "input_unit": "AK8963 factory-adjusted LSB",
+    "output_unit": "AK8963 factory-adjusted LSB"
+  },
+  "hard_iron_offset": [
+    6.389686822457833,
+    352.70758499463386,
+    172.80082358723797
+  ],
+  "soft_iron_matrix": [
+    [
+      0.987382968682389,
+      -0.01495382133783959,
+      0.015126533027567123
+    ],
+    [
+      -0.01495382133783959,
+      0.9649973779905713,
+      0.06048621729785644
+    ],
+    [
+      0.015126533027567123,
+      0.06048621729785644,
+      1.0538130570439912
+    ]
+  ],
+  "target_radius": 296.53001444764647,
+  "ellipsoid": {
+    "semi_axes": [
+      319.6972101920718,
+      298.39865983570417,
+      273.31927588847003
+    ],
+    "principal_axes_columns": [
+      [
+        0.3207926622092844,
+        0.9444935372361938,
+        0.07088036393629883
+      ],
+      [
+        0.8386708107107044,
+        -0.31803124510446174,
+        0.44213956891365863
+      ],
+      [
+        -0.44014013579146594,
+        0.08238983709395245,
+        0.8941412503676934
+      ]
+    ],
+    "quadratic_form": [
+      [
+        1.1092653325180786e-05,
+        -3.2162611410990987e-07,
+        3.4085866200738143e-07
+      ],
+      [
+        -3.2162611410990987e-07,
+        1.0634614041939935e-05,
+        1.3861473742060948e-06
+      ],
+      [
+        3.4085866200738143e-07,
+        1.3861473742060948e-06,
+        1.2673816976326478e-05
+      ]
+    ]
+  },
+  "robust_fit": {
+    "ignored_input_rows": 0,
+    "inlier_mask_rule": "abs(radial residual - median) <= max(4.5*MAD_sigma, 2.5%)"
+  },
+  "quality": {
+    "sample_count": 8927,
+    "inlier_count": 8822,
+    "rejected_count": 105,
+    "inlier_ratio": 0.9882379298756581,
+    "raw_radius_mean": 299.2818146473163,
+    "raw_radius_std": 17.717741793840638,
+    "raw_radius_cv": 0.05920086328907026,
+    "calibrated_radius_mean": 296.971644926805,
+    "calibrated_radius_std": 12.884343784828408,
+    "calibrated_radius_cv": 0.04338577101529013,
+    "relative_rms_error": 0.04347590366264589,
+    "relative_p95_abs_error": 0.0881747370048209,
+    "axis_ratio": 1.1696840962015669,
+    "matrix_condition_number": 1.1696840962015667,
+    "occupied_octants": 8,
+    "direction_coverage_condition": 1.8689290327452828,
+    "optimizer_cost": 3.0155168181606022,
+    "optimizer_evaluations": 15,
+    "checks": {
+      "enough_samples": true,
+      "enough_inliers": true,
+      "all_octants_covered": true,
+      "direction_coverage_reasonable": true,
+      "radius_cv_below_5_percent": true,
+      "p95_error_below_10_percent": true,
+      "matrix_condition_below_5": true
+    },
+    "passed": true
+  },
+  "offset_hard_iron": [
+    6.389686822457833,
+    352.70758499463386,
+    172.80082358723797
+  ],
+  "calibration_matrix": [
+    [
+      0.987382968682389,
+      -0.01495382133783959,
+      0.015126533027567123
+    ],
+    [
+      -0.01495382133783959,
+      0.9649973779905713,
+      0.06048621729785644
+    ],
+    [
+      0.015126533027567123,
+      0.06048621729785644,
+      1.0538130570439912
+    ]
+  ],
+  "bias": [
+    6.389686822457833,
+    352.70758499463386,
+    172.80082358723797
+  ],
+  "rotation_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "ellipsoid_center": [
+    6.389686822457833,
+    352.70758499463386,
+    172.80082358723797
+  ],
+  "ellipsoid_radii": [
+    319.6972101920718,
+    298.39865983570417,
+    273.31927588847003
+  ]
+}
