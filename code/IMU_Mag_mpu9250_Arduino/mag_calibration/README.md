@@ -12,22 +12,24 @@ Three-axis_Mag_Calibration/
 
 ```text
 mag_calibration/
-├─ calibrate_magnetometer.py              正式校准程序
+├─ calibrate_magnetometer.py              校准核心及离线重算程序
 ├─ simple_calibrate_magnetometer.py       早期简单对角校准，仅供算法对照
 ├─ interactive_calibration_visualization.py
 │                                          交互式显示原始/校准后点云
 ├─ paths.py                                正式校准程序的统一路径配置
 ├─ requirements.txt                       Python 依赖列表
 ├─ README.md                              本说明
-├─ tools/
-│  ├─ capture_magnetometer.py             从 Arduino 串口采集三轴磁力计数据
-│  └─ realtime_imu_3d.py                  Mahony 九轴融合和实时 3D 姿态显示
+├─ magnetometer_calibration_learning_notes.md
+│                                          磁力计校准原理、实验和结果学习记录
+├─ capture_magnetometer.py             正式可视化采集与校准入口
+├─ realtime_imu_3d.py                  Mahony 九轴融合和实时 3D 姿态显示
 └─ data/
    ├─ magnetometer_data.csv               椭球校准输入数据
    ├─ calibration_matrix.json             正式校准参数和质量指标
    ├─ calibration_quality_report.md       人类可读质量报告
    ├─ mag_calibration.h                   生成的 Arduino 校准头文件
    ├─ magnetometer_data_calibrated.csv    校准后数据及内点标记
+   ├─ calibration_runs/                   独立保存每次实时校准试验及成功率
    └─ calibration_interactive.html        交互式校准效果页面
 ```
 
@@ -43,9 +45,9 @@ arduino/
    └─ mag_calibration.h                   自动同步的校准头文件
 ```
 
-### 正式程序与简单程序的区别
+### 完整校准与简单程序的区别
 
-日常只使用 `calibrate_magnetometer.py`。它拟合正定完整 `3×3` 椭球矩阵，包含轴间耦合修正、稳健异常点处理、质量报告和 Arduino 头文件同步。
+日常重新校准从 `capture_magnetometer.py` 进入，它使用 `calibrate_magnetometer.py` 中的核心算法，完成实时覆盖显示、正定完整 `3×3` 椭球拟合、稳健异常点处理和质量检查。`calibrate_magnetometer.py` 仍保留为已有 CSV 的离线重算工具。
 
 `simple_calibrate_magnetometer.py` 只计算三个轴的独立缩放，属于早期对照程序。它也会写入 `data/calibration_matrix.json`，因此不要对正式数据运行它，否则会覆盖完整 `3×3` JSON，并造成 JSON 与 Arduino 头文件不一致。
 
@@ -86,7 +88,7 @@ arduino/mpu6500_ak8963_imu_stream/mpu6500_ak8963_imu_stream.ino
 关闭 Arduino IDE 串口监视器。COM6 可以直接运行：
 
 ```powershell
-python .\mag_calibration\tools\realtime_imu_3d.py COM6
+python .\mag_calibration\realtime_imu_3d.py COM6
 ```
 
 程序开始后的前三秒保持设备静止并尽量平放，用于估算陀螺仪零偏和初始姿态。随后窗口显示三维板体以及 Roll、Pitch、Yaw。
@@ -94,7 +96,7 @@ python .\mag_calibration\tools\realtime_imu_3d.py COM6
 同时保存融合日志：
 
 ```powershell
-python .\mag_calibration\tools\realtime_imu_3d.py COM6 `
+python .\mag_calibration\realtime_imu_3d.py COM6 `
   --log .\mag_calibration\data\imu_fused_log.csv
 ```
 
@@ -112,13 +114,7 @@ python .\mag_calibration\tools\realtime_imu_3d.py COM6 `
 arduino/mpu9250_ak8963_raw/mpu9250_ak8963_raw.ino
 ```
 
-把：
-
-```cpp
-constexpr bool APPLY_MAG_CALIBRATION = true;
-```
-
-临时改为：
+确认下列开关为：
 
 ```cpp
 constexpr bool APPLY_MAG_CALIBRATION = false;
@@ -126,69 +122,62 @@ constexpr bool APPLY_MAG_CALIBRATION = false;
 
 然后烧录。此时输出仍包含 AK8963 厂家灵敏度修正，但不包含硬铁/软铁校准，适合作为椭球拟合输入。
 
-### 2. 采集完整球面数据
+### 2. 可视化采集并生成试验校准
 
 关闭串口监视器并运行：
 
 ```powershell
-python .\mag_calibration\tools\capture_magnetometer.py COM6
+python .\mag_calibration\capture_magnetometer.py COM6
 ```
 
-缓慢转动整套设备，尽量覆盖所有空间方向，建议采集数千点。按 `Ctrl+C` 结束。
+窗口左侧显示原始三维点云，右侧显示72个方向格的覆盖情况。绿色表示该方向至少已有3个样本，黄色表示只有1～2个样本，红色表示尚未覆盖。
 
-默认输出：
+当前的结束规则为：
+
+- 少于100个有效样本时，`Finish` 不会结束采集；
+- 达到100个样本后可以手动点击 `Finish`；
+- 500个样本和8/8八分体是界面建议及最终质量检查标准；
+- 即使72/72个方向格全部覆盖，程序也不会自动结束，仍需点击 `Finish`。
+
+原始 CSV 在采集过程中持续写入。点击 `Finish` 后，程序会停止串口采集，自动执行完整 `3×3` 稳健椭球拟合，并生成 JSON、质量报告、Arduino 头文件、校准后 CSV 和交互式 HTML。
+
+每次采集都创建独立时间戳目录，不覆盖以前的试验数据，例如：
 
 ```text
-mag_calibration/data/magnetometer_data.csv
+mag_calibration/data/calibration_runs/20260907_153058/
 ```
 
-注意：再次采集会覆盖该文件。不要在 `APPLY_MAG_CALIBRATION = true` 时采集校准输入，否则会形成二次校准。
+不要在 `APPLY_MAG_CALIBRATION = true` 时采集校准输入，否则会形成二次校准。
 
-### 3. 运行正式完整 3×3 校准
+### 3. 检查试验质量
 
-```powershell
-python .\mag_calibration\calibrate_magnetometer.py
-```
-
-程序采用统一公式：
+打开本次试验目录中的：
 
 ```text
-calibrated = soft_iron_matrix @ (raw - hard_iron_offset)
+calibration_quality_report.md
 ```
 
-成功后会：
+首先确认“总体结论”为 `PASS`。同时关注内点比例、校准后半径 CV、P95 相对误差、方向覆盖和矩阵条件数。
 
-1. 写入 `data/calibration_matrix.json`；
-2. 写入 `data/calibration_quality_report.md`；
-3. 写入 `data/mag_calibration.h`；
-4. 写入 `data/magnetometer_data_calibrated.csv`；
-5. 将同一头文件同步到两个 Arduino 草图目录。
+如果椭球拟合成功但质量检查为 `FAIL`，报告和可视化仍会保留，但不应将该参数用于 Arduino。如果拟合本身报错，则保留原始 CSV 和错误记录。
 
-### 4. 检查质量报告
+### 4. 将 PASS 校准用于九轴草图
 
-打开：
+当确认某次试验为 `PASS` 后，将该试验的：
 
 ```text
-mag_calibration/data/calibration_quality_report.md
+mag_calibration/data/calibration_runs/<run_id>/mag_calibration.h
 ```
 
-首先确认“总体结论”为 `PASS`。同时关注内点比例、校准后半径 CV、P95 相对误差、方向覆盖和矩阵条件数。如果结论为 `FAIL`，不要立即烧录参数，应重新检查采集覆盖和环境磁干扰。
-
-### 5. 查看交互式校准效果
-
-```powershell
-python .\mag_calibration\interactive_calibration_visualization.py
-```
-
-生成：
+复制到：
 
 ```text
-mag_calibration/data/calibration_interactive.html
+arduino/mpu6500_ak8963_imu_stream/mag_calibration.h
 ```
 
-使用浏览器打开即可旋转、缩放并比较原始椭球和校准后球面。
+实时采集程序无论 PASS 还是 FAIL，都不会自动覆盖 Arduino 目录中的头文件。
 
-### 6. 烧录九轴草图并运行
+### 5. 烧录九轴草图并运行
 
 重新烧录：
 
@@ -199,7 +188,7 @@ arduino/mpu6500_ak8963_imu_stream/mpu6500_ak8963_imu_stream.ino
 然后运行：
 
 ```powershell
-python .\mag_calibration\tools\realtime_imu_3d.py COM6
+python .\mag_calibration\realtime_imu_3d.py COM6
 ```
 
 ## 常用参数
@@ -208,14 +197,14 @@ python .\mag_calibration\tools\realtime_imu_3d.py COM6
 
 ```powershell
 python .\mag_calibration\calibrate_magnetometer.py --help
-python .\mag_calibration\tools\capture_magnetometer.py --help
-python .\mag_calibration\tools\realtime_imu_3d.py --help
+python .\mag_calibration\capture_magnetometer.py --help
+python .\mag_calibration\realtime_imu_3d.py --help
 ```
 
 临时覆盖磁力计默认轴映射：
 
 ```powershell
-python .\mag_calibration\tools\realtime_imu_3d.py COM6 --mag-map x,y,z
+python .\mag_calibration\realtime_imu_3d.py COM6 --mag-map x,y,z
 ```
 
 映射中的三项分别指定输出轴来自哪个输入轴，每个映射必须且只能使用一次 `x`、`y`、`z`。如果俯仰或横滚方向不正确，调整 `--ag-map`；如果它们正常但 Yaw 不正确，只调整 `--mag-map`。
@@ -232,7 +221,9 @@ python .\mag_calibration\tools\realtime_imu_3d.py COM6 --mag-map x,y,z
 ## 常见问题
 
 - **串口打不开**：关闭 Arduino IDE 串口监视器，并确认 COM 端口没有被其他程序占用。
-- **启动后姿态跳动**：重新启动，前三秒不要移动设备。
-- **Yaw 方向不正确**：当前默认是 `--mag-map y,-x,-z`；其他硬件方向可显式覆盖。
-- **校准质量失败**：远离磁铁、电机和大电流导线，重新缓慢覆盖完整球面。
+- **启动后姿态跳动或持续漂移**：通常是启动零偏估计不准。重新启动，并在前三秒将设备平稳放置、完全静止。
+- **Yaw 方向或航向不正确**：先确认磁力计已经完成椭球校准，再检查默认轴映射 `--mag-map y,-x,-z` 是否符合当前安装方向。
+- **磁力计校准质量失败**：确认采集的是未校准数据，远离磁铁、电机、金属结构和大电流导线，然后缓慢转动设备并覆盖完整球面。
+- **快速转动后回正较慢**：快速动作时加速度不再只表示重力，融合器会暂时降低加速度计的可信度；陀螺仪量程不足、积分项累积，以及磁力计低通或纠偏带宽较低也会延长恢复时间。早期 `±500 °/s` 日志中三个陀螺轴均出现削顶，当前已改为 `±2000 °/s`。
+- **调整 `Kp/Ki`**：`Kp`太小会使回正较慢，太大容易抖动；`Ki`太小会使长期零偏修正不足，太大可能累积错误并引起振荡或持续漂移。
 - **更换硬件后结果异常**：每颗磁力计和每块 PCB 都应独立重新校准。

@@ -1,0 +1,4 @@
+<launch>
+ <rosparam file="$(find imu_761_ros1)/cfg/param.yaml" command="load" />
+ <node name="imu_761_node" pkg="imu_761_ros1" type="imu_761_node" output="screen" />
+</launch>

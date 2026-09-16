@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>LRA 触觉控制台</title>
+  <link rel="stylesheet" href="style.css?v=20260916-5">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">GLOVITY · HAPTIC LAB</p>
+        <h1>LRA 触觉控制台</h1>
+      </div>
+      <button id="connectButton" class="connect-button" type="button">
+        <span class="status-dot"></span>
+        <span id="connectLabel">连接设备</span>
+      </button>
+    </header>
+
+    <section class="hero-grid">
+      <article class="control-card">
+        <div class="card-heading">
+          <div>
+            <p class="section-label">连续强度控制</p>
+            <h2 id="controlModeTitle">摩擦 · 50—170 Hz / 最大 AMP 35</h2>
+          </div>
+          <div id="holdBadge" class="hold-badge">待机</div>
+        </div>
+
+        <div id="controlPad" class="control-pad" tabindex="0" role="slider"
+             aria-label="振动强度" aria-valuemin="0" aria-valuemax="100"
+             aria-valuenow="50">
+          <canvas id="traceCanvas"></canvas>
+          <div class="pressure-scale" aria-hidden="true">
+            <div class="pressure-band collision-band"><strong>6.0—10.0 N</strong></div>
+            <div class="pressure-band friction-band"><strong>4.0—5.9 N</strong></div>
+            <div class="pressure-band saw-band"><strong>2.0—3.9 N</strong></div>
+            <div class="pressure-band tap-band"><strong>0—1.9 N</strong></div>
+          </div>
+          <div id="cursorLine" class="cursor-line">
+            <span></span>
+          </div>
+          <div class="gesture-hint">
+            <span class="mouse-icon"></span>
+            <span id="gestureHintText">摩擦：最下 50 Hz，最上 170 Hz；只由上下位置决定</span>
+          </div>
+        </div>
+
+        <div class="meter-row">
+          <div class="metric primary-metric">
+            <span>模拟压力</span>
+            <strong id="forceValue">5.0</strong><small>N</small>
+          </div>
+          <div class="metric">
+            <span>按压时间</span>
+            <strong id="pressTimeValue">0</strong><small>ms</small>
+          </div>
+          <div class="metric">
+            <span>AMP</span>
+            <strong id="ampValue">30</strong>
+          </div>
+          <div class="metric">
+            <span>输出</span>
+            <strong id="vppValue">2.16</strong><small>Vpp</small>
+          </div>
+          <div class="metric">
+            <span>实时频率</span>
+            <strong id="frequencyValue">110</strong><small>Hz</small>
+          </div>
+        </div>
+
+        <section class="parameter-editor" aria-label="输出参数设置">
+          <div class="parameter-heading">
+            <div>
+              <p class="section-label">输出参数</p>
+              <strong>频率与最大振幅可编辑</strong>
+            </div>
+            <div class="parameter-actions">
+              <button id="detectF0Button" type="button">检测 F0</button>
+              <button id="applyParametersButton" type="button">应用到设备</button>
+            </div>
+          </div>
+          <div class="f0-result" aria-live="polite">
+            <span>马达谐振频率</span>
+            <strong id="f0Result">尚未检测</strong>
+          </div>
+          <div class="parameter-grid">
+            <label class="parameter-control" for="frequencyRange">
+              <span><b>最低频率</b><output><input id="frequencyNumber" type="number" min="20" max="500" step="1" value="50"> Hz</output></span>
+              <input id="frequencyRange" type="range" min="20" max="500" step="1" value="50">
+              <small id="frequencyHelp">最底部 50 Hz，最顶部 170 Hz；只由垂直位置决定</small>
+            </label>
+            <label class="parameter-control" for="amplitudeRange">
+              <span><b>最大振幅</b><output>AMP <input id="amplitudeNumber" type="number" min="25" max="47" step="1" value="35"></output></span>
+              <input id="amplitudeRange" type="range" min="25" max="47" step="1" value="35">
+              <small id="amplitudeVoltageHint">位置越高振幅越大；安全输出上限约 2.48 Vpp</small>
+            </label>
+          </div>
+        </section>
+      </article>
+
+      <aside class="side-panel">
+        <section class="info-card status-card">
+          <p class="section-label">设备状态</p>
+          <div class="device-state">
+            <div id="deviceOrb" class="device-orb"></div>
+            <div>
+              <strong id="deviceState">未连接</strong>
+              <span id="deviceDetail">请选择设备串口</span>
+            </div>
+          </div>
+          <div class="range-block">
+            <div><span>安全范围</span><strong>1.83—3.26 Vpp</strong></div>
+            <div class="range-track"><i id="rangeFill"></i></div>
+          </div>
+        </section>
+
+        <section class="info-card action-card">
+          <p class="section-label">选择振动模式</p>
+          <div class="button-stack">
+            <button id="shortButton" type="button" class="secondary-button" data-effect="SHORT">
+              <span class="effect-copy"><strong>短振</strong><small id="shortParameters">150 Hz · AMP 38 · 60 ms · 横向</small></span><i class="effect-led"></i>
+            </button>
+            <button id="longButton" type="button" class="secondary-button" data-effect="LONG">
+              <span class="effect-copy"><strong>长振</strong><small id="longParameters">130 Hz · AMP 25 · 最短 3 s · 横向</small></span><i class="effect-led"></i>
+            </button>
+            <button id="sawButton" type="button" class="secondary-button" data-effect="SAW">
+              <span class="effect-copy"><strong>锯齿</strong><small id="sawParameters">170 Hz · 五级渐强 × 2</small></span><i class="effect-led"></i>
+            </button>
+            <button id="frictionButton" type="button" class="secondary-button" data-effect="FRICTION">
+              <span class="effect-copy"><strong>摩擦</strong><small id="frictionParameters">50—170 Hz · 最大 AMP 35 · 位置调频</small></span><i class="effect-led"></i>
+            </button>
+            <button id="collisionButton" type="button" class="secondary-button" data-effect="COLLISION">
+              <span class="effect-copy"><strong>碰撞</strong><small id="collisionParameters">≥6 N · 170 Hz · AMP 33 · 横向</small></span><i class="effect-led"></i>
+            </button>
+            <button id="stopButton" type="button" class="stop-button">立即停止</button>
+          </div>
+        </section>
+
+        <section class="info-card log-card">
+          <div class="log-heading">
+            <p class="section-label">串口日志</p>
+            <button id="clearLogButton" type="button">清空</button>
+          </div>
+          <pre id="serialLog">等待连接…</pre>
+        </section>
+      </aside>
+    </section>
+
+    <footer>
+      <span>USB Serial 115200</span>
+      <span>Arduino → LRA 9600</span>
+      <span>IO1 Active Low</span>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js?v=20260916-5"></script>
+</body>
+</html>

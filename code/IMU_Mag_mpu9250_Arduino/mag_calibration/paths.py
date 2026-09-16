@@ -12,6 +12,7 @@ CALIBRATION_JSON = DATA_DIR / "calibration_matrix.json"
 QUALITY_REPORT = DATA_DIR / "calibration_quality_report.md"
 ARDUINO_HEADER = DATA_DIR / "mag_calibration.h"
 CALIBRATED_CSV = DATA_DIR / "magnetometer_data_calibrated.csv"
+CALIBRATION_RUNS_DIR = DATA_DIR / "calibration_runs"
 
 ARDUINO_STREAM_HEADER = (
     PROJECT_DIR / "arduino" / "mpu6500_ak8963_imu_stream" / "mag_calibration.h"

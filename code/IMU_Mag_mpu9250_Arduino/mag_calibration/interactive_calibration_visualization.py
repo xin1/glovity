@@ -11,11 +11,14 @@ from plotly.subplots import make_subplots
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
 
-def main() -> None:
-    raw = np.loadtxt(DATA_DIR / "magnetometer_data.csv", delimiter=",")
-    params = json.loads((DATA_DIR / "calibration_matrix.json").read_text(encoding="utf-8"))
-    offset = np.asarray(params["hard_iron_offset"])
-    matrix = np.asarray(params["soft_iron_matrix"])
+def write_visualization(
+    raw: np.ndarray,
+    offset: np.ndarray,
+    matrix: np.ndarray,
+    output: Path,
+    title: str = "Magnetometer ellipsoid calibration",
+) -> None:
+    """Write a self-contained interactive raw/calibrated 3-D comparison."""
     calibrated = (raw - offset) @ matrix.T
 
     figure = make_subplots(
@@ -37,10 +40,23 @@ def main() -> None:
             row=1, col=column,
         )
     figure.update_scenes(aspectmode="data")
-    figure.update_layout(title="Magnetometer ellipsoid calibration", height=760, width=1400)
-    output = DATA_DIR / "calibration_interactive.html"
+    figure.update_layout(title=title, height=760, width=1400)
+    output.parent.mkdir(parents=True, exist_ok=True)
     figure.write_html(output, include_plotlyjs=True)
     print(f"已保存：{output}")
+
+
+def main() -> None:
+    raw = np.loadtxt(DATA_DIR / "magnetometer_data.csv", delimiter=",")
+    params = json.loads((DATA_DIR / "calibration_matrix.json").read_text(encoding="utf-8"))
+    offset = np.asarray(params["hard_iron_offset"])
+    matrix = np.asarray(params["soft_iron_matrix"])
+    write_visualization(
+        raw,
+        offset,
+        matrix,
+        DATA_DIR / "calibration_interactive.html",
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,14 @@
+imu_761_node:
+  ros__parameters:
+    port: /dev/ttyUSB0
+    baud_rate: 115200
+    frame_id: imu_link
+    imu_data_show_flag: 0
+
+    imu_enable: true
+    imu_topic: imu/data
+
+    package_enable: true
+    package_topic: imu/package
+
+    use_ros_flu: true

@@ -1,0 +1,173 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-09-07T07:41:13.480635+00:00",
+  "source": "mag_calibration/data/calibration_runs/20260907_154050/magnetometer_data.csv",
+  "model": "robust_positive_definite_full_3x3_ellipsoid",
+  "convention": {
+    "vector": "column",
+    "formula": "calibrated = soft_iron_matrix @ (raw - hard_iron_offset)",
+    "input_unit": "AK8963 factory-adjusted LSB",
+    "output_unit": "AK8963 factory-adjusted LSB"
+  },
+  "hard_iron_offset": [
+    50.461973685038636,
+    106.04198612411876,
+    118.36303298044604
+  ],
+  "soft_iron_matrix": [
+    [
+      0.9860549198841376,
+      0.02048222887135487,
+      0.039051674273221704
+    ],
+    [
+      0.02048222887135487,
+      0.975234644339546,
+      0.08075803459363501
+    ],
+    [
+      0.039051674273221704,
+      0.08075803459363501,
+      1.048452812128118
+    ]
+  ],
+  "target_radius": 283.2335900255664,
+  "ellipsoid": {
+    "semi_axes": [
+      306.9024964638235,
+      291.5627119432355,
+      253.92289981150017
+    ],
+    "principal_axes_columns": [
+      [
+        -0.07514902463755473,
+        -0.9438777064348985,
+        -0.32163255337608343
+      ],
+      [
+        -0.8279092684676753,
+        0.23883853379502062,
+        -0.5074666471404438
+      ],
+      [
+        0.5558047024642223,
+        0.22814694841228933,
+        -0.7993935843180238
+      ]
+    ],
+    "quadratic_form": [
+      [
+        1.2144521051195745e-05,
+        5.400727273383053e-07,
+        1.0110166708183775e-06
+      ],
+      [
+        5.400727273383053e-07,
+        1.1942269611847645e-05,
+        2.0471988797131034e-06
+      ],
+      [
+        1.0110166708183775e-06,
+        2.0471988797131034e-06,
+        1.3803075427826047e-05
+      ]
+    ]
+  },
+  "robust_fit": {
+    "ignored_input_rows": 0,
+    "inlier_mask_rule": "abs(radial residual - median) <= max(4.5*MAD_sigma, 2.5%)"
+  },
+  "quality": {
+    "sample_count": 2060,
+    "inlier_count": 2036,
+    "rejected_count": 24,
+    "inlier_ratio": 0.9883495145631068,
+    "raw_radius_mean": 287.0716386129283,
+    "raw_radius_std": 18.61240652578054,
+    "raw_radius_cv": 0.064835406993571,
+    "calibrated_radius_mean": 282.86588027220847,
+    "calibrated_radius_std": 11.939415930120823,
+    "calibrated_radius_cv": 0.04220875249652324,
+    "relative_rms_error": 0.04217394181119457,
+    "relative_p95_abs_error": 0.08688940887250285,
+    "axis_ratio": 1.2086444219550612,
+    "matrix_condition_number": 1.2086444219550618,
+    "occupied_octants": 8,
+    "direction_coverage_condition": 1.4932176123202996,
+    "optimizer_cost": 0.6868256633894496,
+    "optimizer_evaluations": 10,
+    "checks": {
+      "enough_samples": true,
+      "enough_inliers": true,
+      "all_octants_covered": true,
+      "direction_coverage_reasonable": true,
+      "radius_cv_below_5_percent": true,
+      "p95_error_below_10_percent": true,
+      "matrix_condition_below_5": true
+    },
+    "passed": true
+  },
+  "offset_hard_iron": [
+    50.461973685038636,
+    106.04198612411876,
+    118.36303298044604
+  ],
+  "calibration_matrix": [
+    [
+      0.9860549198841376,
+      0.02048222887135487,
+      0.039051674273221704
+    ],
+    [
+      0.02048222887135487,
+      0.975234644339546,
+      0.08075803459363501
+    ],
+    [
+      0.039051674273221704,
+      0.08075803459363501,
+      1.048452812128118
+    ]
+  ],
+  "bias": [
+    50.461973685038636,
+    106.04198612411876,
+    118.36303298044604
+  ],
+  "rotation_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "ellipsoid_center": [
+    50.461973685038636,
+    106.04198612411876,
+    118.36303298044604
+  ],
+  "ellipsoid_radii": [
+    306.9024964638235,
+    291.5627119432355,
+    253.92289981150017
+  ],
+  "trial": {
+    "run_id": "20260907_154050",
+    "started_at_utc": "2026-09-07T07:40:50.760430+00:00",
+    "finished_at_utc": "2026-09-07T07:41:13.435448+00:00",
+    "port": "COM6",
+    "baud": 115200,
+    "duration_s": 20.617802300024778,
+    "sample_rate_hz": 99.91365568567531
+  }
+}

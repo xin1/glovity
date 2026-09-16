@@ -1,0 +1,173 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-09-08T09:04:24.922972+00:00",
+  "source": "mag_calibration/data/calibration_runs/20260908_170304/magnetometer_data.csv",
+  "model": "robust_positive_definite_full_3x3_ellipsoid",
+  "convention": {
+    "vector": "column",
+    "formula": "calibrated = soft_iron_matrix @ (raw - hard_iron_offset)",
+    "input_unit": "magnetometer counts supplied by the capture source",
+    "output_unit": "same scale as the input magnetometer counts"
+  },
+  "hard_iron_offset": [
+    23.502908344756197,
+    49.20135737744541,
+    5.13047951696981
+  ],
+  "soft_iron_matrix": [
+    [
+      0.9938782768432309,
+      -0.011234107705003174,
+      0.06950331252601824
+    ],
+    [
+      -0.011234107705003174,
+      1.0195979403925903,
+      0.03282989678740046
+    ],
+    [
+      0.06950331252601824,
+      0.03282989678740046,
+      0.9929115951936784
+    ]
+  ],
+  "target_radius": 291.9878364243214,
+  "ellipsoid": {
+    "semi_axes": [
+      319.29242388561477,
+      285.2741677443942,
+      273.30225771598367
+    ],
+    "principal_axes_columns": [
+      [
+        -0.6534722054832107,
+        0.442478805067231,
+        0.6141551788653937
+      ],
+      [
+        -0.2884216099294049,
+        -0.8956977911312397,
+        0.3384352846385073
+      ],
+      [
+        0.6998478774609797,
+        0.04402242643122489,
+        0.7129340603341017
+      ]
+    ],
+    "quadratic_form": [
+      [
+        1.164423036926306e-05,
+        -2.3854753006064323e-07,
+        1.6153492358217319e-06
+      ],
+      [
+        -2.3854753006064323e-07,
+        1.2207622006154938e-05,
+        7.657993103991867e-07
+      ],
+      [
+        1.6153492358217319e-06,
+        7.657993103991867e-07,
+        1.1632864762466562e-05
+      ]
+    ]
+  },
+  "robust_fit": {
+    "ignored_input_rows": 0,
+    "inlier_mask_rule": "abs(radial residual - median) <= max(4.5*MAD_sigma, 2.5%)"
+  },
+  "quality": {
+    "sample_count": 7807,
+    "inlier_count": 7488,
+    "rejected_count": 319,
+    "inlier_ratio": 0.9591392340207506,
+    "raw_radius_mean": 297.88161584300667,
+    "raw_radius_std": 32.35383960217806,
+    "raw_radius_cv": 0.10861307942961337,
+    "calibrated_radius_mean": 291.9722082204921,
+    "calibrated_radius_std": 19.824343119787763,
+    "calibrated_radius_cv": 0.06789804838142943,
+    "relative_rms_error": 0.06789443533908038,
+    "relative_p95_abs_error": 0.14475266234169967,
+    "axis_ratio": 1.168275836994454,
+    "matrix_condition_number": 1.1682758369944541,
+    "occupied_octants": 8,
+    "direction_coverage_condition": 1.5201736711132718,
+    "optimizer_cost": 4.2084583276229655,
+    "optimizer_evaluations": 27,
+    "checks": {
+      "enough_samples": true,
+      "enough_inliers": true,
+      "all_octants_covered": true,
+      "direction_coverage_reasonable": true,
+      "radius_cv_below_5_percent": false,
+      "p95_error_below_10_percent": false,
+      "matrix_condition_below_5": true
+    },
+    "passed": false
+  },
+  "offset_hard_iron": [
+    23.502908344756197,
+    49.20135737744541,
+    5.13047951696981
+  ],
+  "calibration_matrix": [
+    [
+      0.9938782768432309,
+      -0.011234107705003174,
+      0.06950331252601824
+    ],
+    [
+      -0.011234107705003174,
+      1.0195979403925903,
+      0.03282989678740046
+    ],
+    [
+      0.06950331252601824,
+      0.03282989678740046,
+      0.9929115951936784
+    ]
+  ],
+  "bias": [
+    23.502908344756197,
+    49.20135737744541,
+    5.13047951696981
+  ],
+  "rotation_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "ellipsoid_center": [
+    23.502908344756197,
+    49.20135737744541,
+    5.13047951696981
+  ],
+  "ellipsoid_radii": [
+    319.29242388561477,
+    285.2741677443942,
+    273.30225771598367
+  ],
+  "trial": {
+    "run_id": "20260908_170304",
+    "started_at_utc": "2026-09-08T09:03:04.102399+00:00",
+    "finished_at_utc": "2026-09-08T09:04:24.641300+00:00",
+    "port": "COM6",
+    "baud": 115200,
+    "duration_s": 78.4815760999918,
+    "sample_rate_hz": 99.4755761537365
+  }
+}
