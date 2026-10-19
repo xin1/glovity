@@ -1,6 +1,14 @@
 # LRA 可视化强度控制
 
 这个版本使用 Arduino Uno/Nano 作为桥接控制器：浏览器通过 USB 串口向 Arduino 发送强度，Arduino 通过 UART 配置 JW-BLE-DL500，并使用 IO1 的低电平连续触发功能控制启停。
+<img width="715" height="393" alt="3480f3233499edf1575868a2cc63daff" src="https://github.com/user-attachments/assets/8017229f-7491-48ce-bdf0-543afba3e81e" />
+<img width="716" height="392" alt="1098c6645768b19c52ac5e3904ec923e" src="https://github.com/user-attachments/assets/5aba355b-5c10-464d-9e56-05e891a1ce5a" />
+<img width="715" height="389" alt="6ddd1ca49a9c017be1a440654377bb91" src="https://github.com/user-attachments/assets/159ee2cb-c624-404e-a85a-7fed7ac20922" />
+<img width="713" height="398" alt="710d16eaff68dda363db99338823d73f" src="https://github.com/user-attachments/assets/9d4f61f6-608b-4d9f-8cfe-c0119e26571c" />
+<img width="707" height="391" alt="aadca00641900f84c530f009d4ffa300" src="https://github.com/user-attachments/assets/b28da836-23a5-452e-9ba1-e724f839baa0" />
+<img width="716" height="458" alt="cb603dc5ceeea0e2fc517f7e5b379f8c" src="https://github.com/user-attachments/assets/eb8e6b24-8a13-49fc-911e-f2d97e554484" />
+<img width="715" height="457" alt="3fd99c4ca0ced33a9ccd69506820a87a" src="https://github.com/user-attachments/assets/dfc10c32-86bd-449d-ab47-692df7b9b78d" />
+<img width="716" height="453" alt="d42f8e0bbbbcaf5c02a20612368f6ddd" src="https://github.com/user-attachments/assets/1d0c6ce7-f871-4487-9dc7-849fcb3033f8" />
 
 ## 接线
 
