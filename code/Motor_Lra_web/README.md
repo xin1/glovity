@@ -10,6 +10,7 @@
 <img width="716" height="458" alt="cb603dc5ceeea0e2fc517f7e5b379f8c" src="https://github.com/user-attachments/assets/eb8e6b24-8a13-49fc-911e-f2d97e554484" />
 <img width="715" height="457" alt="3fd99c4ca0ced33a9ccd69506820a87a" src="https://github.com/user-attachments/assets/dfc10c32-86bd-449d-ab47-692df7b9b78d" />
 <img width="716" height="453" alt="d42f8e0bbbbcaf5c02a20612368f6ddd" src="https://github.com/user-attachments/assets/1d0c6ce7-f871-4487-9dc7-849fcb3033f8" />
+<img width="953" height="492" alt="image" src="https://github.com/user-attachments/assets/814af23e-30d0-4e5e-8a2c-a11d7314e8e2" />
 
 ## 接线
 
