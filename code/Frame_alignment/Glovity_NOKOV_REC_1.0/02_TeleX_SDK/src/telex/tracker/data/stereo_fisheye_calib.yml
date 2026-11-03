@@ -1,0 +1,50 @@
+%YAML:1.0
+---
+created_at: "2026-07-24T07:00:54.990026+00:00"
+camera_model: "cv2.fisheye"
+source_camchain: "/home/mahaofei/Programs/Glovity/TeleX-Teleop/runs/stereo_ir_001/stereo-camchain.yaml"
+kalibr_models: pinhole-equi pinhole-equi
+image_width: 1280
+image_height: 720
+combined_width: 2560
+combined_height: 720
+left_half_is_left_camera: 1
+baseline_m: 0.11079313855666101
+K_left: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 401.02169653300001, 0., 640.95438638832661, 0.,
+       400.95051114220092, 361.96450629241349, 0., 0., 1. ]
+D_left: !!opencv-matrix
+   rows: 4
+   cols: 1
+   dt: d
+   data: [ -0.066587642423978716, -0.012566905736734994,
+       0.0076321203248400186, -0.002454150796052078 ]
+K_right: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 394.81384116567909, 0., 625.67133868390511, 0.,
+       395.11086160707555, 421.85828280309005, 0., 0., 1. ]
+D_right: !!opencv-matrix
+   rows: 4
+   cols: 1
+   dt: d
+   data: [ -0.074938787121692635, 0.002211707309514587,
+       -0.0015907783337446332, -0.00014442640075361464 ]
+R: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 0.59620116697755521, -0.48941198577426948,
+       -0.6364118765980773, 0.32072409829377002, 0.87189643314926002,
+       -0.37004413606385489, 0.73598928067482627, 0.016508120489107159,
+       0.67679188875877316 ]
+T: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ -0.080025348731638163, -0.057650433127183258,
+       -0.050472672525470191 ]

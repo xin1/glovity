@@ -1,0 +1,58 @@
+# docs
+docs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.o
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+sdist/
+wheels/
+pip-wheel-metadata/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Test / coverage / type checkers
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# Editors / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Docs build
+docs/_build/
+
+# Internal design notes (local only; not published)
+docs/superpowers/
+
+# Local / temp
+*.yml.bak
+*.log
+tmp/
+temp/
+.cache/

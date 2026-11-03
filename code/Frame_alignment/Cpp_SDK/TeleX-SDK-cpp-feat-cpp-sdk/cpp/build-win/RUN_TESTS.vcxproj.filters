@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\CMakeFiles\65c6d4f3115b20b2da2acafebad32f34\RUN_TESTS_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{298AD015-2CAB-3145-8D6C-425C87CAB680}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

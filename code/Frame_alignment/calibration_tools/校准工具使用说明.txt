@@ -1,0 +1,56 @@
+Glovity JY901P 校准工具（Windows x64）
+=====================================
+
+本包无需安装 Python。请先确认没有其他程序占用手套/接收器串口。
+建议先做磁力计校准，再做三步姿态校准。左右手分别操作。
+
+一、磁力计校准
+--------------
+
+1. 在本文件夹空白处按住 Shift 并单击鼠标右键，选择“在此处打开 PowerShell”。
+2. 直连手套时运行：
+
+   .\Glovity_Mag_Calibration.exe --port COM5
+
+3. 通过接收器无线校准左手或右手时运行：
+
+   .\Glovity_Mag_Calibration.exe --port COM5 --side left
+   .\Glovity_Mag_Calibration.exe --port COM5 --side right
+
+请将 COM5 换成实际串口。校准期间远离磁铁、电机、扬声器和大块钢铁，缓慢转动
+整只手套，让 X/Y/Z 三个轴分别完整转一圈。默认45秒后自动退出并保存到全部在线IMU。
+
+二、三步姿态校准
+----------------
+
+左手：
+
+   .\Glovity_ThreeStep_Calibration.exe --port COM5 --side left --output imu_calibration_left.npy
+
+右手：
+
+   .\Glovity_ThreeStep_Calibration.exe --port COM5 --side right --output imu_calibration_right.npy
+
+程序会依次提示三个姿态。每步都要保持手掌和所有手指完全平直，只转动整只手：
+
+1. 基准方向平放。
+2. 从基准方向整体旋转 +90°。
+3. 从基准方向整体旋转 -90°。
+
+每个姿态稳定后按 Enter。成功后会在当前目录生成 .npy 文件。
+
+三、SDK加载
+-----------
+
+   hub.set_calibration(telex::Hand::Left,  "imu_calibration_left.npy");
+   hub.set_calibration(telex::Hand::Right, "imu_calibration_right.npy");
+
+运行时检查 snapshot.calibrated 和 snapshot.joint_local_rotations_valid。
+
+注意
+----
+
+- 磁力计工具要求手套/接收器使用 Glovity_NOKOV_REC_1.0 中的 RemoteCal 固件。
+- 三步姿态工具要求设备输出 Glovity V2 180字节帧，默认波特率921600。
+- 左右手校准文件不能混用。
+- 更换手套、拆装IMU或移动IMU安装位置后，需要重新校准。

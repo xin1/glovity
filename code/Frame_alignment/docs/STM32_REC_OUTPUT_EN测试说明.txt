@@ -1,0 +1,144 @@
+STM32 双手 REC 与 OUTPUT_EN 联调测试说明
+=========================================
+
+文档日期：2026-10-26
+测试状态：通过
+
+一、测试目的
+------------
+
+验证 STM32 对左右手套的 REC 和 OUTPUT_EN 控制是否正常，并确认 TeleX SDK
+能够正确显示左右手 recording 状态及 OUTPUT_EN 停流效果。
+
+
+二、STM32 引脚定义
+------------------
+
+PA0：左手 REC，推挽输出
+PA1：右手 REC，推挽输出
+PB0：左手 OUTPUT_EN，开漏输出
+PB1：右手 OUTPUT_EN，开漏输出
+
+左右手执行相同逻辑命令，但使用相互独立的电气通道。
+
+
+三、手套四针接口定义
+--------------------
+
+Pin 1：GND
+Pin 2：3V3_REF，仅参考/预留，本测试不连接
+Pin 3：OUTPUT_EN
+Pin 4：REC
+
+注意：插头正反面、线色和线束方向可能不同，必须按照 PCB 焊盘编号或万用表
+导通结果确认 Pin 1～Pin 4，不得仅凭插头外观判断。
+
+
+四、接线方法
+------------
+
+左手：
+
+STM32 GND  -> 左手 Pin 1 GND
+STM32 PB0  -> 左手 Pin 3 OUTPUT_EN
+STM32 PA0  -> 左手 Pin 4 REC
+左手 Pin 2 -> 悬空，不连接
+
+右手：
+
+STM32 GND  -> 右手 Pin 1 GND
+STM32 PB1  -> 右手 Pin 3 OUTPUT_EN
+STM32 PA1  -> 右手 Pin 4 REC
+右手 Pin 2 -> 悬空，不连接
+
+STM32 与左右手套必须共地。所有控制信号均为 3.3 V 逻辑，禁止接入 5 V、
+12 V 或 24 V。左右手的 3V3_REF 不得并接，也不得作为 STM32 的供电输入。
+
+
+五、STM32 测试程序
+------------------
+
+工程目录：
+D:\STM32CubeIDE\workspace_1.19.0\REC_Simulator
+
+可烧录文件：
+D:\STM32CubeIDE\workspace_1.19.0\REC_Simulator\Debug\REC_Simulator.hex
+D:\STM32CubeIDE\workspace_1.19.0\REC_Simulator\Debug\REC_Simulator.bin
+D:\STM32CubeIDE\workspace_1.19.0\REC_Simulator\Debug\REC_Simulator.elf
+
+自动循环周期如下：
+
+阶段 1，持续 1 秒：REC=低，OUTPUT_EN=低（无普通数据输出）
+阶段 2，持续 1 秒：REC=高，OUTPUT_EN=低（无普通数据输出）
+阶段 3，持续 1 秒：REC=低，OUTPUT_EN=释放（输出数据，recording=False）
+阶段 4，持续 1 秒：REC=高，OUTPUT_EN=释放（输出数据，recording=True）
+
+完成阶段 4 后自动返回阶段 1，循环执行。
+
+PB0/PB1 为开漏输出：输出低时主动接地；输出高时为高阻释放状态。
+手套固件对 OUTPUT_EN 启用了内部上拉，因此本次测试不需要外接上拉电阻。
+
+
+六、SDK 监视方法
+----------------
+
+打开 PowerShell，执行：
+
+cd D:\Desktop\github\glovity\code\Frame_alignment
+.\.venv\Scripts\python.exe -u TeleX-SDK\examples\monitor_recording.py --port COM53 --baud 2000000
+
+如果接收器串口号发生变化，应将 COM53 替换为设备管理器中实际显示的端口号。
+按 Ctrl+C 停止监视。
+
+监视脚本已调整为每只手最多每秒输出一次；REC 状态发生变化时立即输出，避免
+终端按每帧高速滚动。
+
+
+七、SDK 输出字段说明
+--------------------
+
+hand=left/right：左手或右手
+protocol=v2-180：当前使用 180 字节 V2 协议
+seq：手套本地采集帧序号
+timestamp_us：手套本地微秒时间戳
+recording=False：REC 为低，非录制状态
+recording=True：REC 为高，录制状态
+battery：手套上报的电量百分比
+fail_mask=0：本帧未报告 IMU 失败
+
+
+八、通过判据
+------------
+
+1. 左右手均能解析为 protocol=v2-180。
+2. 左右手 recording 能够随 REC 电平在 False 和 True 之间切换。
+3. OUTPUT_EN 拉低期间，SDK 暂停收到对应手套的普通数据帧。
+4. OUTPUT_EN 释放后，SDK 恢复收到新数据。
+5. 恢复输出后 seq 和 timestamp_us 跳过停流区间，不补发历史帧。
+6. 正常数据帧的 fail_mask 为 0。
+
+
+九、本次实测结果
+----------------
+
+左手 recording 已观察到 False -> True -> False -> True 的循环变化。
+右手 recording 已观察到 False -> True -> False -> True 的循环变化。
+
+OUTPUT_EN 拉低期间数据停止输出；释放后数据恢复。恢复后的 seq 出现符合预期的
+跳号，说明手套在停发期间仍继续采集和计时，但没有向接收器提交普通数据帧。
+
+左右手协议均为 v2-180，实测正常帧 fail_mask=0。
+
+结论：左右手 REC 控制、OUTPUT_EN 门控、独立电气通道、接收器传输及 TeleX SDK
+解析均通过本次自动循环联调测试。
+
+
+十、注意事项
+------------
+
+1. REC 是持续电平，不是脉冲命令；高电平表示录制，低电平表示非录制。
+2. OUTPUT_EN 低电平只禁止普通数据输出，不停止手套内部采集、计时和帧号递增。
+3. OUTPUT_EN 恢复后不会补发停流期间的历史数据。
+4. 左右手 timestamp_us 来自各自手套本地时钟，不能直接相减作为精确同步误差。
+5. battery 字段可能存在瞬时波动，不作为 REC 和 OUTPUT_EN 测试是否通过的判据。
+6. 手套断电时，应避免 STM32 的 REC 高电平通过输入保护结构向手套倒灌供电。

@@ -1,0 +1,16 @@
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/lib/telex_glove.lib
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/bin/telex_glove.dll
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/include/telex_glove.h
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/include/telex_glove.hpp
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/lib/cmake/TelexGlove/TelexGloveTargets.cmake
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/lib/cmake/TelexGlove/TelexGloveTargets-release.cmake
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/lib/cmake/TelexGlove/TelexGloveConfig.cmake
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/lib/cmake/TelexGlove/TelexGloveConfigVersion.cmake
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/docs/Windows_CPP_SDK使用说明.md
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/docs/集成指南.md
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/examples/dump_capture.cpp
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/examples/hw_selftest.cpp
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/examples/minimal_poll.c
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/examples/monitor_hands.cpp
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/tools/npy_to_tgc.py
+D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\dist\telex-glove-1.2.0-windows-x64/share/telex-glove/sample_capture.bin

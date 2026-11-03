@@ -1,0 +1,10 @@
+^D:\DESKTOP\GITHUB\GLOVITY\CODE\FRAME_ALIGNMENT\CPP_SDK\TELEX-SDK-CPP-FEAT-CPP-SDK\CPP\BUILD-WIN\CONSUMER\CMAKELISTS.TXT
+setlocal
+D:\VS2022BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -SD:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/consumer -BD:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/consumer/build --check-stamp-file D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/consumer/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,15 @@
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/telex_glove.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/test_rotation.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/test_protocol.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/test_fk_uncalib.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/test_fk_calib.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/test_npy_loader.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/test_public_api.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/monitor_hands.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/dump_capture.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/hw_selftest.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/minimal_poll_c.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/RUN_TESTS.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/INSTALL.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/ALL_BUILD.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/CMakeFiles/ZERO_CHECK.dir

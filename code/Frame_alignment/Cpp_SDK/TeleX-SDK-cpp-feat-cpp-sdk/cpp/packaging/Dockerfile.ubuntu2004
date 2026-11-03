@@ -1,0 +1,17 @@
+# 发布产物的构建环境。
+# 固定在 Ubuntu 20.04 (glibc 2.31) 以获得最大向上兼容性：
+# 产物可在 20.04 / 22.04 / 24.04 上直接运行，无需额外运行时。
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        cmake \
+        binutils \
+        file \
+        ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work

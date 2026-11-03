@@ -1,0 +1,99 @@
+Start testing: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+----------------------------------------------------------
+1/6 Testing: rotation
+1/6 Test: rotation
+Command: "D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/bin/Release/test_rotation.exe"
+Directory: D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win
+"rotation" start time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] rotation (670 é¡¹æ–­è¨€)
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"rotation" end time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+"rotation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/6 Testing: protocol
+2/6 Test: protocol
+Command: "D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/bin/Release/test_protocol.exe"
+Directory: D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win
+"protocol" start time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] protocol (311 é¡¹æ–­è¨€)
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"protocol" end time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+"protocol" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/6 Testing: fk_uncalib
+3/6 Test: fk_uncalib
+Command: "D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/bin/Release/test_fk_uncalib.exe"
+Directory: D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win
+"fk_uncalib" start time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] fk_uncalib (567 é¡¹æ–­è¨€)
+<end of output>
+Test time =   0.39 sec
+----------------------------------------------------------
+Test Passed.
+"fk_uncalib" end time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+"fk_uncalib" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/6 Testing: fk_calib
+4/6 Test: fk_calib
+Command: "D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/bin/Release/test_fk_calib.exe"
+Directory: D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win
+"fk_calib" start time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] fk_calib (558 é¡¹æ–­è¨€)
+<end of output>
+Test time =   0.22 sec
+----------------------------------------------------------
+Test Passed.
+"fk_calib" end time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+"fk_calib" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/6 Testing: npy_loader
+5/6 Test: npy_loader
+Command: "D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/bin/Release/test_npy_loader.exe"
+Directory: D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win
+"npy_loader" start time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] npy_loader (414 é¡¹æ–­è¨€)
+<end of output>
+Test time =   0.45 sec
+----------------------------------------------------------
+Test Passed.
+"npy_loader" end time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+"npy_loader" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/6 Testing: public_api
+6/6 Test: public_api
+Command: "D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/bin/Release/test_public_api.exe"
+Directory: D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win
+"public_api" start time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] public_api (1006 é¡¹æ–­è¨€)
+<end of output>
+Test time =   2.26 sec
+----------------------------------------------------------
+Test Passed.
+"public_api" end time: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä
+"public_api" time elapsed: 00:00:02
+----------------------------------------------------------
+
+End testing: Nov 02 11:19 ÖÐ¹ú±ê×¼Ê±¼ä

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\consumer\minimal_poll.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\consumer\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6C81DD1D-B5FB-3FA5-B76F-F15A551BF7F0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

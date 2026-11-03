@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.16)
+project(consumer LANGUAGES C CXX)
+find_package(TelexGlove 1.0 REQUIRED)
+# ??????????? UTF-8 ??????????? SetConsoleOutputCP?
+if(MSVC)
+  add_compile_options(/utf-8)
+endif()
+add_executable(monitor_hands monitor_hands.cpp)
+target_link_libraries(monitor_hands PRIVATE TelexGlove::telex_glove)
+add_executable(minimal_poll_c minimal_poll.c)
+target_link_libraries(minimal_poll_c PRIVATE TelexGlove::telex_glove)

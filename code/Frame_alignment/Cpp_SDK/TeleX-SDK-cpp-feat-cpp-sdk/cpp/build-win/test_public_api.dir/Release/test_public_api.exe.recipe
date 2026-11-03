@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\x64\Release\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\telex_glove.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\test_public_api.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

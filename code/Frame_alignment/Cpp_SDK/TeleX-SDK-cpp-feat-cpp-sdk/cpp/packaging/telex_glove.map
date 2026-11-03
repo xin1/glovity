@@ -1,0 +1,10 @@
+/* 只放行公开 C 符号。
+ * 这一条同时是防逆向措施与正确性刚需：静态链入的 libstdc++ 符号
+ * (operator new / std::string ...) 若进入 .dynsym，会与宿主程序的
+ * libstdc++ 发生符号插入，导致跨堆 new/delete 配对而随机崩溃。 */
+TELEX_GLOVE_1.0 {
+  global:
+    telex_glove_*;
+  local:
+    *;
+};

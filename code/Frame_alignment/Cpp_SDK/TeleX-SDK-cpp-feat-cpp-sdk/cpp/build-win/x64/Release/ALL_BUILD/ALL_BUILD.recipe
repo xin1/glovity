@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\x64\Release\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\telex_glove.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\dump_capture.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\hw_selftest.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\minimal_poll_c.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\monitor_hands.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\test_fk_calib.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\test_fk_uncalib.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\test_npy_loader.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\test_protocol.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\test_public_api.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\bin\Release\test_rotation.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Desktop\github\glovity\code\Frame_alignment\Cpp_SDK\TeleX-SDK-cpp-feat-cpp-sdk\cpp\build-win\x64\Release\ALL_BUILD</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

@@ -1,0 +1,4 @@
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/consumer/build/CMakeFiles/monitor_hands.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/consumer/build/CMakeFiles/minimal_poll_c.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/consumer/build/CMakeFiles/ALL_BUILD.dir
+D:/Desktop/github/glovity/code/Frame_alignment/Cpp_SDK/TeleX-SDK-cpp-feat-cpp-sdk/cpp/build-win/consumer/build/CMakeFiles/ZERO_CHECK.dir
