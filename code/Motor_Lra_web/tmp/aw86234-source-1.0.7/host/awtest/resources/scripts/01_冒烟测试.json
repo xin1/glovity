@@ -1,0 +1,238 @@
+{
+  "name": "01 冒烟测试（连接→CHIPID→RAM 播放→F0→快照）",
+  "matrix_ids": [
+    "A2",
+    "A4",
+    "A5"
+  ],
+  "description": "对应 06_验收测试与调试清单.md §2 的冒烟清单里可自动化的部分：总线/通道探测（A2）、RAM 模式播放 175 Hz 正弦（A4）、CONT/F0 检测（A5）、SNAPSHOT 记录。波形库可用空间为 BASE_ADDR(0x0800) 之上的 1024 字节（1+4N+Σlen ≤ 1024），因此 1 秒的 175 Hz 正弦用 12 kHz 采样实现为「12 个周期（828 样本 ≈ 69 ms）× 15 次主循环 ≈ 1.03 s」。无法自动化的项（电流、温升、TRIG 延时）由人工在报告里补填。 【已适配本板：实际贴装 CH4~CH7（掩码 0xF0）】",
+  "channels": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "steps": [
+    {
+      "op": "log",
+      "text": "冒烟测试开始：探测 → CHIPID → RAM 播放 → 停止 → F0 → 快照"
+    },
+    {
+      "op": "ping",
+      "matrix_id": "A2"
+    },
+    {
+      "op": "get_caps",
+      "matrix_id": "A2"
+    },
+    {
+      "op": "get_status",
+      "matrix_id": "A2"
+    },
+    {
+      "op": "bus_probe",
+      "matrix_id": "A2",
+      "bus_sel": 0
+    },
+    {
+      "op": "ch_probe_all",
+      "matrix_id": "A2",
+      "expect_chipid": 9024,
+      "expect_mask": 240,
+      "expect_channels": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "8 路在线状态与 CHIPID（期望 0x2340）"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x57",
+      "expect": "0x23",
+      "matrix_id": "A2",
+      "note": "CHIPID_H"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x69",
+      "expect": "0x40",
+      "matrix_id": "A2",
+      "note": "CHIPID_L"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x04",
+      "mask": 8,
+      "expect": 8,
+      "matrix_id": "A2",
+      "note": "SYSST2 bit3 LDO_OK = 1（A3 的软件侧佐证）"
+    },
+    {
+      "op": "wait",
+      "ms": 50
+    },
+    {
+      "op": "wave_begin",
+      "chan": 4,
+      "rate": 2,
+      "wave_count": 1,
+      "overwrite": true,
+      "matrix_id": "A4",
+      "note": "WAVE_GEN 只能「加入当前会话」，所以必须先 WAVE_BEGIN（协议 §9.8）"
+    },
+    {
+      "op": "wave_gen",
+      "chan": 4,
+      "wave_id": 1,
+      "shape": 0,
+      "freq_hz": 175,
+      "amplitude": 90,
+      "cycles": 12,
+      "rate": 2,
+      "matrix_id": "A4",
+      "note": "12 kHz 下 175 Hz 的整数周期样本数 N=69（实际 173.9 Hz），12 周期 = 828 样本；预算 1+4+828=833 ≤ 1024"
+    },
+    {
+      "op": "wave_commit",
+      "chan": 4,
+      "lib_version": 1,
+      "matrix_id": "A4"
+    },
+    {
+      "op": "wave_get_library",
+      "chan": 4,
+      "matrix_id": "A4"
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "matrix_id": "A4",
+      "params": {
+        "mode": 0,
+        "gain": 128,
+        "brk_en": 1,
+        "stop_mode": 0,
+        "vbat_mode": 0,
+        "vbat_ref": 2,
+        "en_fir": 1,
+        "wavseq": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mainloop": 14,
+        "waitslot": 0,
+        "seq_loop": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "note": "mainloop=14 → 播放 15 次，合计约 1.03 s"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "RAM",
+      "matrix_id": "A4"
+    },
+    {
+      "op": "wave_queue",
+      "chan": 4,
+      "ids": [
+        1
+      ],
+      "matrix_id": "A4"
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 2000,
+      "matrix_id": "A4"
+    },
+    {
+      "op": "wait_play_done",
+      "chan": 4,
+      "timeout_ms": 4000,
+      "expect_reason": 0,
+      "matrix_id": "A4",
+      "note": "期望 EVT_PLAY_DONE(reason=0 自然结束)"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true,
+      "matrix_id": "A4"
+    },
+    {
+      "op": "wait",
+      "ms": 100,
+      "matrix_id": "A4"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x3F",
+      "mask": 15,
+      "expect": 0,
+      "matrix_id": "A4",
+      "note": "GLB_STATE 回到 0 = STANDBY"
+    },
+    {
+      "op": "f0",
+      "chan": 4,
+      "timeout_ms": 1000,
+      "mode": 0,
+      "matrix_id": "A5",
+      "note": "F0 检测（F_LRA_F0，0x24/0x25）：valid=0 时报告里会带明确诊断"
+    },
+    {
+      "op": "det_read",
+      "chan": 4,
+      "seq": 3,
+      "matrix_id": "A5",
+      "note": "LRA 阻抗 RL（A13 的快速核对手段）"
+    },
+    {
+      "op": "det_read",
+      "chan": 4,
+      "seq": 0,
+      "matrix_id": "A5",
+      "note": "电池/供电电压 VDD"
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "expect_standby": true,
+      "matrix_id": "A5"
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "trig_park"
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "expect_standby": true,
+      "note": "STOP_ALL + TRIG_PARK 后的最终快照"
+    },
+    {
+      "op": "log",
+      "text": "冒烟测试结束：若 8 路 CHIPID 正确、RAM 播放收到 EVT_PLAY_DONE(reason=0)、GLB_STATE 回 STANDBY，则冒烟通过"
+    }
+  ]
+}

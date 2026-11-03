@@ -1,0 +1,36 @@
+# 默认配置（idf.py set-target esp32c6 后生效）
+#
+# 关键项说明：
+#   CONFIG_FREERTOS_HZ=1000     —— tick 1 ms。默认 100 Hz 下 vTaskDelay 分辨率是 10 ms，
+#                                  对播放安全超时与 TRIG 周期都太粗。µs 级脉冲仍用忙等。
+#   CONFIG_ESP_CONSOLE_*        —— 本板只有 USB-Serial-JTAG（未引出 UART0）。
+#   CONFIG_LOG_DEFAULT_LEVEL_*  —— 启动期日志走控制台；**进入二进制模式后固件会把
+#                                 ESP_LOG 级别设为 NONE**，用户日志一律走 EVT_LOG 事件帧，
+#                                 绝不允许裸 printf 撕裂协议帧。
+
+CONFIG_IDF_TARGET="esp32c6"
+
+# --- 串口链路 ---
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+CONFIG_ESP_CONSOLE_UART_DEFAULT=n
+CONFIG_ESP_CONSOLE_NONE=n
+
+# --- 日志 ---
+CONFIG_LOG_DEFAULT_LEVEL_WARN=y
+
+# --- FreeRTOS ---
+CONFIG_FREERTOS_HZ=1000
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=4096
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=10
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU0=n
+
+# --- 编译器 ---
+CONFIG_COMPILER_OPTIMIZATION_SIZE=y
+CONFIG_COMPILER_WARN_WRITE_STRINGS=n
+
+# --- 分区表：单 app 足够（不做 OTA） ---
+CONFIG_PARTITION_TABLE_SINGLE_APP=y
+
+# --- 关闭不需要的功能，缩短编译与固件体积 ---
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_BOOTLOADER_LOG_LEVEL_WARN=y

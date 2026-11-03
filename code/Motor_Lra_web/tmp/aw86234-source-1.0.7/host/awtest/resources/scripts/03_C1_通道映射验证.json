@@ -1,0 +1,591 @@
+{
+  "name": "03 C1 通道映射验证",
+  "matrix_ids": [
+    "C1"
+  ],
+  "description": "逐通道下发不同的 F_PRE 与 DRV1_LVL（CH0=150 Hz/40 → CH7=185 Hz/96），每路都自动回读 0x1C 与 0x18 确认参数确实落到了目标通道（验证 TCA9548A 选通与通道号的对应关系），再播放 0.6 s 让人工确认『振动的是哪一个通道、现象是否与通道号一一对应』。人工确认结论会收进报告的『关键实测值』表。所有通道的频率/幅度都不同，便于用振感或示波器区分。 【已适配本板：实际贴装 CH4~CH7（掩码 0xF0）】",
+  "channels": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "steps": [
+    {
+      "op": "log",
+      "text": "C1 通道映射验证开始：逐通道播不同频率/幅度，人工确认现象与通道号一一对应"
+    },
+    {
+      "op": "bus_probe",
+      "bus_sel": 0
+    },
+    {
+      "op": "ch_probe_all",
+      "expect_chipid": 9024,
+      "note": "先确认在线通道与 CHIPID（0x2340）"
+    },
+    {
+      "op": "log",
+      "text": "每路：下发 CONT 参数（不同 F_PRE 与 DRV1_LVL）→ 回读核对 0x1C/0x18 → 播放 → 人工确认 → 停止"
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 40,
+        "drv2_lvl": 40,
+        "f_pre": 160,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH0：F_PRE=160 → F0≈150.0 Hz，DRV1_LVL=40"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 40,
+      "note": "回读 CH0 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH0"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x18",
+      "expect": 160,
+      "note": "回读 CH0 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH0（150 Hz，幅度 40）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH0。填写「正确/错误 + 现象」",
+      "field": "ch0_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "set_profile",
+      "chan": 5,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 48,
+        "drv2_lvl": 48,
+        "f_pre": 155,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH1：F_PRE=155 → F0≈154.8 Hz，DRV1_LVL=48"
+    },
+    {
+      "op": "set_mode",
+      "chan": 5,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 5,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 48,
+      "note": "回读 CH1 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH1"
+    },
+    {
+      "op": "assert_read",
+      "chan": 5,
+      "addr": "0x18",
+      "expect": 155,
+      "note": "回读 CH1 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 5,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH1（155 Hz，幅度 48）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH0。填写「正确/错误 + 现象」",
+      "field": "ch1_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 5,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "set_profile",
+      "chan": 6,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 56,
+        "drv2_lvl": 56,
+        "f_pre": 150,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH2：F_PRE=150 → F0≈160.0 Hz，DRV1_LVL=56"
+    },
+    {
+      "op": "set_mode",
+      "chan": 6,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 6,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 56,
+      "note": "回读 CH2 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH2"
+    },
+    {
+      "op": "assert_read",
+      "chan": 6,
+      "addr": "0x18",
+      "expect": 150,
+      "note": "回读 CH2 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 6,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH2（160 Hz，幅度 56）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH1。填写「正确/错误 + 现象」",
+      "field": "ch2_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 6,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "set_profile",
+      "chan": 7,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 64,
+        "drv2_lvl": 64,
+        "f_pre": 145,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH3：F_PRE=145 → F0≈165.5 Hz，DRV1_LVL=64"
+    },
+    {
+      "op": "set_mode",
+      "chan": 7,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 7,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 64,
+      "note": "回读 CH3 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH3"
+    },
+    {
+      "op": "assert_read",
+      "chan": 7,
+      "addr": "0x18",
+      "expect": 145,
+      "note": "回读 CH3 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 7,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH3（165 Hz，幅度 64）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH2。填写「正确/错误 + 现象」",
+      "field": "ch3_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 7,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 72,
+        "drv2_lvl": 72,
+        "f_pre": 141,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH4：F_PRE=141 → F0≈170.2 Hz，DRV1_LVL=72"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 72,
+      "note": "回读 CH4 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH4"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x18",
+      "expect": 141,
+      "note": "回读 CH4 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH4（170 Hz，幅度 72）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH3。填写「正确/错误 + 现象」",
+      "field": "ch4_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "set_profile",
+      "chan": 5,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 80,
+        "drv2_lvl": 80,
+        "f_pre": 137,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH5：F_PRE=137 → F0≈175.2 Hz，DRV1_LVL=80"
+    },
+    {
+      "op": "set_mode",
+      "chan": 5,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 5,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 80,
+      "note": "回读 CH5 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH5"
+    },
+    {
+      "op": "assert_read",
+      "chan": 5,
+      "addr": "0x18",
+      "expect": 137,
+      "note": "回读 CH5 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 5,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH5（175 Hz，幅度 80）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH4。填写「正确/错误 + 现象」",
+      "field": "ch5_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 5,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "set_profile",
+      "chan": 6,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 88,
+        "drv2_lvl": 88,
+        "f_pre": 133,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH6：F_PRE=133 → F0≈180.5 Hz，DRV1_LVL=88"
+    },
+    {
+      "op": "set_mode",
+      "chan": 6,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 6,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 88,
+      "note": "回读 CH6 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH6"
+    },
+    {
+      "op": "assert_read",
+      "chan": 6,
+      "addr": "0x18",
+      "expect": 133,
+      "note": "回读 CH6 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 6,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH6（180 Hz，幅度 88）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH5。填写「正确/错误 + 现象」",
+      "field": "ch6_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 6,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "set_profile",
+      "chan": 7,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 96,
+        "drv2_lvl": 96,
+        "f_pre": 130,
+        "drv_width": 106,
+        "en_f0_det": 0,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "brk_time": 8,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "track_margin": 17
+      },
+      "note": "CH7：F_PRE=130 → F0≈184.6 Hz，DRV1_LVL=96"
+    },
+    {
+      "op": "set_mode",
+      "chan": 7,
+      "mode": "CONT"
+    },
+    {
+      "op": "assert_read",
+      "chan": 7,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 96,
+      "note": "回读 CH7 的 DRV1_LVL（mask 0x7F 保住 TRACK_EN）；同时验证 TCA 选通切到了 CH7"
+    },
+    {
+      "op": "assert_read",
+      "chan": 7,
+      "addr": "0x18",
+      "expect": 130,
+      "note": "回读 CH7 的 F_PRE（0x18）"
+    },
+    {
+      "op": "play",
+      "chan": 7,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 600
+    },
+    {
+      "op": "prompt",
+      "message": "CH7（185 Hz，幅度 96）：请确认是否只有本通道的马达在振动，且振感明显区别于 CH6。填写「正确/错误 + 现象」",
+      "field": "ch7_映射确认",
+      "unit": ""
+    },
+    {
+      "op": "stop",
+      "chan": 7,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "trig_park"
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "expect_standby": true,
+      "note": "收尾快照"
+    },
+    {
+      "op": "prompt",
+      "message": "总体结论：8 路现象顺序是否与通道号一一对应？有无串扰或不响应的通道？请填写",
+      "field": "C1_总体结论",
+      "unit": ""
+    },
+    {
+      "op": "log",
+      "text": "C1 通道映射验证结束：把 ch0~ch7 的映射确认与总体结论填进报告"
+    }
+  ]
+}

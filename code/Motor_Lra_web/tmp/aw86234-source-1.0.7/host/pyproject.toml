@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "awtest"
+version = "1.0.0"
+description = "AW86234 八路振动测试板 —— PC 串口调试上位机（PySide6）"
+readme = "../README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "aw86234-testbench" }]
+keywords = ["aw86234", "lra", "haptic", "esp32-c6", "serial", "pyside6"]
+
+dependencies = [
+    "pyserial>=3.5",
+    "PySide6>=6.5",
+    "pyqtgraph>=0.13",
+    "numpy>=1.25",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+package = ["pyinstaller>=6.0"]
+
+[project.scripts]
+awtest = "awtest.__main__:main"
+
+[tool.setuptools]
+packages = [
+    "awtest",
+    "awtest.protocol",
+    "awtest.tactile",
+    "awtest.ui",
+    "awtest.ui.widgets",
+    "awtest.waveform",
+    "awtest.script",
+]
+
+[tool.setuptools.package-data]
+awtest = ["resources/*.json", "resources/profiles/*.json", "resources/scripts/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]

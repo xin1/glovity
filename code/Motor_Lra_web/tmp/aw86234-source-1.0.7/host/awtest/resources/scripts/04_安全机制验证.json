@@ -1,0 +1,329 @@
+{
+  "name": "04 安全机制验证（同时满幅限制 / 安全超时 / TRIG 安全位）",
+  "matrix_ids": [
+    "C2"
+  ],
+  "description": "三道安全保险的自动化验证：① 8 路满幅请求必须被拒（ERR_SAFETY_LIMIT）；② 极短播放超时必须触发安全停机（EVT_PLAY_DONE(reason=2 安全超时)）；③ TRIG 模式下 TRG1_STOP / TRG1_BRK 不允许被关闭（协议 §11.1，SET_TRIG_PARAMS 返回 ERR_BAD_PARAM），并回读 0x3A bit2 确认 TRG1_STOP=1。对应 06 文档 §6 验收项 10 与 §11.1。 【已适配本板：实际贴装 CH4~CH7（掩码 0xF0）】",
+  "channels": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "steps": [
+    {
+      "op": "log",
+      "text": "安全机制验证开始（危险项已显式写成 expect_error 断言，不会真的满幅长按）"
+    },
+    {
+      "op": "get_safety",
+      "matrix_id": "C2",
+      "note": "记录 max_simul_full_amp 与 play_timeout_ms"
+    },
+    {
+      "op": "log",
+      "text": "① 故意请求 8 路满幅 → 期望 ERR_SAFETY_LIMIT"
+    },
+    {
+      "op": "log",
+      "text": "先逐通道把 8 路的 Profile 都设成 CONT + DRV1_LVL=127（>96 视为满幅）；SET_MODE/SET_PROFILE 不接受广播通道号，必须逐通道下发"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_mode",
+      "chan": 5,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_mode",
+      "chan": 6,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_mode",
+      "chan": 7,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_mode",
+      "chan": 5,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_mode",
+      "chan": 6,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_mode",
+      "chan": 7,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      },
+      "note": "DRV1_LVL=127 > 96 视为满幅（协议 §11）"
+    },
+    {
+      "op": "set_profile",
+      "chan": 5,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      }
+    },
+    {
+      "op": "set_profile",
+      "chan": 6,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      }
+    },
+    {
+      "op": "set_profile",
+      "chan": 7,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      }
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      }
+    },
+    {
+      "op": "set_profile",
+      "chan": 5,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      }
+    },
+    {
+      "op": "set_profile",
+      "chan": 6,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      }
+    },
+    {
+      "op": "set_profile",
+      "chan": 7,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 127,
+        "drv2_lvl": 127,
+        "f_pre": 141,
+        "drv_width": 106,
+        "brk_time": 8,
+        "en_f0_det": 0
+      }
+    },
+    {
+      "op": "play_multi",
+      "chan_mask": 255,
+      "timeout_ms": 300,
+      "expect_error": "ERR_SAFETY_LIMIT",
+      "note": "掩码含 8 路满幅且未带 override，固件必须拒绝"
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "clear_errors"
+    },
+    {
+      "op": "log",
+      "text": "② 极短安全超时播放 → 期望 EVT_PLAY_DONE(reason=2 安全超时)"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 96,
+        "drv2_lvl": 64
+      }
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 200,
+      "expect_error": true,
+      "note": "若固件把安全超时当作错误应答返回（ERR_SAFETY_TIMEOUT），本步也算通过；正常路径是下面的 EVT_PLAY_DONE"
+    },
+    {
+      "op": "wait_play_done",
+      "chan": 4,
+      "timeout_ms": 6000,
+      "expect_reason": 2,
+      "note": "安全超时必须由固件强制停止并上报 reason=2"
+    },
+    {
+      "op": "get_status",
+      "note": "记录 safety_state 与 last_err（超时后 last_err 应为 ERR_SAFETY_TIMEOUT）"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x3F",
+      "mask": 15,
+      "expect": 0,
+      "note": "GLB_STATE 必须回到 STANDBY（=0），否则说明没停下来"
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "trig_park"
+    },
+    {
+      "op": "log",
+      "text": "③ 写 0x3A / 0x39 的安全位（TRG1_STOP / TRG1_BRK），必须被拒绝"
+    },
+    {
+      "op": "set_trig_params",
+      "chan": 4,
+      "trig1_stop": 0,
+      "expect_error": "ERR_BAD_PARAM",
+      "note": "协议 §11.1：不允许上位机关闭 TRG1_STOP，否则 TRIG 播放无法立即停止"
+    },
+    {
+      "op": "set_trig_params",
+      "chan": 4,
+      "trig1_brk": 0,
+      "expect_error": "ERR_BAD_PARAM",
+      "note": "协议 §11.1：不允许关闭 TRG1_BRK，否则停止后自动刹车不工作"
+    },
+    {
+      "op": "set_trig_params",
+      "chan": 4,
+      "trig1_pos_en": 1,
+      "trig1_seq_p": 1,
+      "trig1_neg_en": 0,
+      "trig1_polar": 0,
+      "trig1_lev": 0,
+      "trig1_brk": 1,
+      "trig1_stop": 1,
+      "trig1_prio": 3,
+      "trg_gain": 128,
+      "trig1_mode": 3,
+      "intn_pin": 0,
+      "start_dly": 8,
+      "expect_error": true,
+      "note": "合法配置：若固件因 0x3A 回读校验失败而拒绝，也算安全行为，故允许错误应答"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x3A",
+      "mask": 4,
+      "expect": 4,
+      "note": "回读确认 TRG1_STOP(0x3A bit2) = 1"
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x39",
+      "mask": 8,
+      "expect": 8,
+      "note": "回读确认 TRG1_BRK(0x39 bit3) = 1"
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "expect_standby": true,
+      "note": "最终快照：应处于 STANDBY，TRIG 已静默"
+    },
+    {
+      "op": "trig_park"
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "log",
+      "text": "安全机制验证结束：三项结论见报告（满幅被拒 / 超时停机 / TRIG 安全位不可关闭）"
+    }
+  ]
+}

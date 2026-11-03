@@ -1,0 +1,1 @@
+Validated firmware 1.0.7 and matching host source, packaged 2026-10-01.

@@ -1,0 +1,15 @@
+{
+  "routes": [
+    {"sensor": "finger", "channel": 4, "force_full_n": 10.0,
+     "baseline": [0.0, 0.0, 0.0], "min_level": 18, "max_level": 40}
+  ],
+  "contact_on_n": 0.4,
+  "contact_off_n": 0.2,
+  "cutoff_hz": 15.0,
+  "gamma": 0.6,
+  "stale_s": 0.15,
+  "slew_per_s": 500.0,
+  "onset_boost": 8.0,
+  "shear_cue": false,
+  "energy_budget": 7200.0
+}

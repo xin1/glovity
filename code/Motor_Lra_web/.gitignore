@@ -1,0 +1,13 @@
+# Local ROS 2/Pixi runtime generated for the LinkerHand Windows setup
+/tools/pixi.exe
+/tools/pixi.zip
+/linkerhand/ros2/.pixi/
+/linkerhand/ros2/.ros/
+/linkerhand/ros2/build/
+/linkerhand/ros2/install/
+/linkerhand/ros2/log/
+/.pixi-cache/
+/.rattler-cache/
+/.pixi-home/
+**/__pycache__/
+*.pyc

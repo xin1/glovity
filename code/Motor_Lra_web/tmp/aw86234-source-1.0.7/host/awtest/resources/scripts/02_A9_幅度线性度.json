@@ -1,0 +1,247 @@
+{
+  "name": "02 A9 幅度线性度",
+  "matrix_ids": [
+    "A9"
+  ],
+  "description": "CONT 模式下逐档改写 DRV1_LVL（16/48/80/112），每档都用 REG_READ 回读 0x1C（mask 0x7F）自动核对下发是否生效，再用 prompt 让人工填写示波器测到的差分 Vpp；最后跑一次 SWEEP_AMP 自动扫描验证固件侧扫描能力。人工读数会汇总到报告的「关键实测值」表里，可直接填进 06 文档 §6 的记录表。 【已适配本板：实际贴装 CH4~CH7（掩码 0xF0）】",
+  "channels": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "steps": [
+    {
+      "op": "log",
+      "text": "A9 幅度线性度开始：逐档 DRV1_LVL + 人工填 Vpp"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "CONT"
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "gain": 128,
+        "brk_en": 1,
+        "stop_mode": 0,
+        "en_f0_det": 0,
+        "sin_mode": 0,
+        "edge_fre": 0,
+        "f_pre": 141,
+        "drv_width": 106,
+        "wait_num": 6,
+        "brk_gain": 8,
+        "track_en": 0,
+        "drv1_time": 4,
+        "drv2_time": 6,
+        "brk_time": 8,
+        "track_margin": 17,
+        "drv1_lvl": 16,
+        "drv2_lvl": 16
+      },
+      "note": "F_PRE=141 → F0≈170.2 Hz；关闭谐振跟踪以得到干净的线性度数据"
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 300
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 16,
+      "note": "回读 DRV1_LVL=16"
+    },
+    {
+      "op": "prompt",
+      "message": "DRV1_LVL=16：请用示波器差分测 TP12–TP13 的 Vpp，填入（单位 V）",
+      "field": "vpp_drv1_016",
+      "unit": "V"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 150
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "drv1_lvl": 48,
+        "drv2_lvl": 48
+      }
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 300
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 48,
+      "note": "回读 DRV1_LVL=48"
+    },
+    {
+      "op": "prompt",
+      "message": "DRV1_LVL=48：请填入示波器测得的 Vpp（单位 V）",
+      "field": "vpp_drv1_048",
+      "unit": "V"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 150
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "drv1_lvl": 80,
+        "drv2_lvl": 80
+      }
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 300
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 80,
+      "note": "回读 DRV1_LVL=80"
+    },
+    {
+      "op": "prompt",
+      "message": "DRV1_LVL=80：请填入示波器测得的 Vpp（单位 V）",
+      "field": "vpp_drv1_080",
+      "unit": "V"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 150
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "drv1_lvl": 112,
+        "drv2_lvl": 112
+      }
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 3000
+    },
+    {
+      "op": "wait",
+      "ms": 300
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x1C",
+      "mask": 127,
+      "expect": 112,
+      "note": "回读 DRV1_LVL=112（>96 判定为满幅档）"
+    },
+    {
+      "op": "prompt",
+      "message": "DRV1_LVL=112：请填入示波器测得的 Vpp（单位 V）",
+      "field": "vpp_drv1_112",
+      "unit": "V"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 150
+    },
+    {
+      "op": "sweep_amp",
+      "chan": 4,
+      "mode": 0,
+      "from": 16,
+      "to": 112,
+      "step": 16,
+      "dwell_ms": 200,
+      "settle_ms": 100,
+      "wait_ms": 10000,
+      "note": "固件侧自动扫描：16→112 步长 16，共 7 档（SWEEP_AMP，对应 A9 的自动化部分）"
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "note": "扫描结束后的快照"
+    },
+    {
+      "op": "prompt",
+      "message": "线性度结论：Vpp 与 DRV1_LVL 是否近似线性？有无削顶？请填写观察结论",
+      "field": "线性度结论",
+      "unit": ""
+    },
+    {
+      "op": "det_read",
+      "chan": 4,
+      "seq": 3,
+      "note": "LRA 阻抗 RL，用于核对马达规格（6~13.6 Ω）"
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "trig_park"
+    },
+    {
+      "op": "log",
+      "text": "A9 幅度线性度结束：请在报告中核对 vpp_drv1_* 与 DRV1_LVL 的比例关系"
+    }
+  ]
+}

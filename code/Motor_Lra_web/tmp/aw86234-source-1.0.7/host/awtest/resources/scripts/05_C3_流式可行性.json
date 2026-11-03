@@ -1,0 +1,317 @@
+{
+  "name": "05 C3 流式可行性（RAM / CONT / RTP 12K / RTP 24K / 48K）",
+  "matrix_ids": [
+    "C3"
+  ],
+  "description": "依次验证四种播放路径的成败并逐个抓 SNAPSHOT 记录 GLB_STATE：RAM（波形库）、CONT（连续驱动）、RTP 12K（主机流式喂数据）、RTP 24K（临界，记录实际成败），最后断言 48K 返回 ERR_UNSUPPORTED。结论直接对应 06 文档 §7 要求的『RTP 12K / 24K 经 TCA9548A 的实际可行性结论』。 【已适配本板：实际贴装 CH4~CH7（掩码 0xF0）】",
+  "channels": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "steps": [
+    {
+      "op": "log",
+      "text": "C3 流式可行性开始：RAM → CONT → RTP 12K → RTP 24K → 48K 断言"
+    },
+    {
+      "op": "log",
+      "text": "① RAM 模式（波形库）"
+    },
+    {
+      "op": "wave_begin",
+      "chan": 4,
+      "rate": 2,
+      "wave_count": 1,
+      "overwrite": true,
+      "note": "WAVE_GEN 只能「加入当前会话」，所以必须先 WAVE_BEGIN（协议 §9.8）"
+    },
+    {
+      "op": "wave_gen",
+      "chan": 4,
+      "wave_id": 1,
+      "shape": 0,
+      "freq_hz": 175,
+      "amplitude": 90,
+      "cycles": 12,
+      "rate": 2,
+      "note": "12 kHz，N=69 样本/周期（实际 173.9 Hz），12 周期 = 828 样本；预算 1+4+828=833 ≤ 1024"
+    },
+    {
+      "op": "wave_commit",
+      "chan": 4,
+      "lib_version": 1
+    },
+    {
+      "op": "wave_queue",
+      "chan": 4,
+      "ids": [
+        1
+      ]
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 0,
+        "gain": 128,
+        "brk_en": 1,
+        "stop_mode": 0,
+        "vbat_mode": 0,
+        "vbat_ref": 2,
+        "en_fir": 1,
+        "wavseq": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mainloop": 0
+      }
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "RAM"
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 1500
+    },
+    {
+      "op": "wait",
+      "ms": 200
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "note": "RAM 播放中：GLB_STATE 应为 7（RAM）"
+    },
+    {
+      "op": "wait_play_done",
+      "chan": 4,
+      "timeout_ms": 4000
+    },
+    {
+      "op": "assert_read",
+      "chan": 4,
+      "addr": "0x3F",
+      "mask": 15,
+      "expect": 0,
+      "note": "RAM 播完后 GLB_STATE 回到 0"
+    },
+    {
+      "op": "log",
+      "text": "② CONT 模式（连续驱动）"
+    },
+    {
+      "op": "set_profile",
+      "chan": 4,
+      "params": {
+        "mode": 2,
+        "track_en": 0,
+        "brk_en": 1,
+        "drv1_lvl": 96,
+        "drv2_lvl": 64,
+        "f_pre": 141
+      },
+      "note": "F_PRE=141 → F0≈170.2 Hz"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "CONT"
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 1000
+    },
+    {
+      "op": "wait",
+      "ms": 300
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "note": "CONT 播放中：GLB_STATE 应为 6（CONT）"
+    },
+    {
+      "op": "det_read",
+      "chan": 4,
+      "seq": 3,
+      "note": "CONT 播放中顺便读 LRA 阻抗"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 150
+    },
+    {
+      "op": "log",
+      "text": "③ RTP 12K（本板唯一确定可用的流式速率）"
+    },
+    {
+      "op": "set_rtp_params",
+      "chan": 4,
+      "wavdat_mode": 2,
+      "auto_dynamic_sin": 0,
+      "base_addr": 2048,
+      "fifo_ae": 512,
+      "fifo_af": 1536
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "RTP"
+    },
+    {
+      "op": "rtp_data",
+      "chan": 4,
+      "offset": 0,
+      "pattern": "sine",
+      "freq_hz": 175,
+      "amplitude": 90,
+      "count": 768,
+      "rate": 2,
+      "note": "768 个样本 / 12 kHz = 64 ms 数据，分 12 片 RTP_DATA 送入（每片 ≤64 字节）"
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 1000
+    },
+    {
+      "op": "wait",
+      "ms": 300
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "note": "RTP 12K 播放中：GLB_STATE 应为 8（RTP）"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "wait",
+      "ms": 150
+    },
+    {
+      "op": "prompt",
+      "message": "RTP 12K：CH0 是否正常起振、有无断续/杂音？请填写现象",
+      "field": "rtp_12k_现象",
+      "unit": ""
+    },
+    {
+      "op": "log",
+      "text": "④ RTP 24K（临界条件，记录实际成败）"
+    },
+    {
+      "op": "set_rtp_params",
+      "chan": 4,
+      "wavdat_mode": 0,
+      "auto_dynamic_sin": 0,
+      "base_addr": 2048,
+      "fifo_ae": 512,
+      "fifo_af": 1536,
+      "expect_error": true,
+      "note": "24K 若被固件拒绝（ERR_UNSUPPORTED / ERR_BAD_PARAM）也照样记录，不算脚本失败"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "RTP"
+    },
+    {
+      "op": "rtp_data",
+      "chan": 4,
+      "offset": 0,
+      "pattern": "sine",
+      "freq_hz": 175,
+      "amplitude": 90,
+      "count": 768,
+      "rate": 0,
+      "expect_error": true
+    },
+    {
+      "op": "play",
+      "chan": 4,
+      "timeout_ms": 1000,
+      "expect_error": true
+    },
+    {
+      "op": "wait",
+      "ms": 300
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "note": "RTP 24K 的实际状态"
+    },
+    {
+      "op": "stop",
+      "chan": 4,
+      "immediate": true
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "prompt",
+      "message": "RTP 24K：是否起振？与 12K 相比有无丢帧/间断？请填写现象",
+      "field": "rtp_24k_现象",
+      "unit": ""
+    },
+    {
+      "op": "log",
+      "text": "⑤ RTP 48K 必须被拒绝（协议 §9.7：本板 I2C 只到 400 kHz）"
+    },
+    {
+      "op": "set_rtp_params",
+      "chan": 4,
+      "wavdat_mode": 1,
+      "base_addr": 2048,
+      "fifo_ae": 512,
+      "fifo_af": 1536,
+      "expect_error": "ERR_UNSUPPORTED",
+      "note": "48K 断言：必须返回 ERR_UNSUPPORTED"
+    },
+    {
+      "op": "set_mode",
+      "chan": 4,
+      "mode": "RAM",
+      "note": "收尾：切回 RAM，避免留在 RTP"
+    },
+    {
+      "op": "stop_all",
+      "immediate": true
+    },
+    {
+      "op": "trig_park"
+    },
+    {
+      "op": "record",
+      "chan": 4,
+      "expect_standby": true,
+      "note": "收尾快照"
+    },
+    {
+      "op": "log",
+      "text": "C3 流式可行性结束：RAM / CONT / RTP12K / RTP24K 的成败与 48K 拒绝结论见报告"
+    }
+  ]
+}

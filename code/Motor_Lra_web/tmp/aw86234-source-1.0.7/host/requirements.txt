@@ -1,0 +1,13 @@
+# AW86234 八路振动测试板 —— 上位机运行期依赖
+# 安装：python -m pip install -r requirements.txt
+#
+# 开发/测试额外需要：
+#   python -m pip install pytest
+# 打包成单文件 exe（可选）：
+#   python -m pip install pyinstaller
+
+pyserial>=3.5
+PySide6>=6.5
+pyqtgraph>=0.13
+numpy>=1.25
+pytest>=7.4
