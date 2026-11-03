@@ -1,2 +1,8 @@
 __pycache__/
 *.py[cod]
+
+# Maintained and published as a separate repository
+/code/Motor_Lra_web/linkerhand-ros2/linkerhand-ros2-sdk/
+
+# Local ROS 2 environment (about 2 GB); keep it out of this repository
+/code/Motor_Lra_web/linkerhand/ros2/
