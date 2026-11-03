@@ -1,0 +1,56 @@
+Command: ninja flash
+[1/5] C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Desktop\github\glovity\code\Motor_Lra_web\firmware\TELEX-Firmware-20261018\TELEX-Firmware-20261018\build\esp32c6 && D:\Espressif\tools\python\v6.0.3\venv\Scripts\python.exe D:/esp/v6.0.3/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/partition_table/partition-table.bin D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/telex_device.bin"
+telex_device.bin binary size 0xd96e0 bytes. Smallest app partition is 0x300000 bytes. 0x226920 bytes (72%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Desktop\github\glovity\code\Motor_Lra_web\firmware\TELEX-Firmware-20261018\TELEX-Firmware-20261018\build\esp32c6\bootloader && D:\Espressif\tools\python\v6.0.3\venv\Scripts\python.exe D:/esp/v6.0.3/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader/bootloader.bin"
+Bootloader binary size 0x4d70 bytes. 0x3290 bytes (40%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] Running utility command for flash
+esptool --chip esp32c6 -p COM54 -b 460800 --before=default-reset --after=hard-reset write-flash --flash-mode dio --flash-freq 40m --flash-size 4MB 0x0 bootloader/bootloader.bin 0x8000 partition_table/partition-table.bin 0x10000 telex_device.bin
+esptool v5.6.0
+Serial port COM54:
+Connecting...
+Connected to ESP32-C6 on COM54:
+Chip type:          ESP32-C6FH4 (QFN32) (revision v0.2)
+Features:           Wi-Fi 6, BT 5 (LE), IEEE802.15.4, Single Core + LP Core, 160MHz, Embedded Flash 4MB
+Crystal frequency:  40MHz
+USB mode:           USB-Serial/JTAG
+MAC:                10:bd:a3:ff:fe:93:be:24
+BASE MAC:           10:bd:a3:93:be:24
+MAC_EXT:            ff:fe
+
+Uploading stub flasher...
+Running stub flasher...
+Stub flasher running.
+Changing baud rate to 460800...
+Changed.
+
+Configuring flash size...
+
+Writing 'bootloader/bootloader.bin' at 0x00000000...
+SHA digest in image updated.
+Flash will be erased from 0x00000000 to 0x00004fff...
+Compressed 19824 bytes to 12749...
+Writing at 0x00004d70 ------------------------------ 100.0% 12.45kB/12.45kB [0s] 
+Wrote 19824 bytes (12749 compressed) at 0x00000000 in 0.2 seconds (1034.3 kbit/s).
+Verifying written data...
+Hash of data verified.
+
+Writing 'partition_table/partition-table.bin' at 0x00008000...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 3072 bytes to 105...
+Writing at 0x00008c00 ------------------------------ 100.0% 105B/105B [0s] 
+Wrote 3072 bytes (105 compressed) at 0x00008000 in 0.0 seconds (3348.5 kbit/s).
+Verifying written data...
+Hash of data verified.
+
+Writing 'telex_device.bin' at 0x00010000...
+Flash will be erased from 0x00010000 to 0x000e9fff...
+Compressed 890592 bytes to 563359...
+Writing at 0x0001c319  -----------------------------   2.9% 16.00kB/550.16kB [0s] Writing at 0x00024fc8 - ----------------------------   5.8% 32.00kB/550.16kB [0s] Writing at 0x0002d30f -- ---------------------------   8.7% 48.00kB/550.16kB [0s] Writing at 0x00033327 --- --------------------------  11.6% 64.00kB/550.16kB [0s] Writing at 0x00039863 ---- -------------------------  14.5% 80.00kB/550.16kB [1s] Writing at 0x0003f39a ----- ------------------------  17.4% 96.00kB/550.16kB [1s] Writing at 0x000452fb ------ -----------------------  20.4% 112.00kB/550.16kB [1s] Writing at 0x0004bf01 ------ -----------------------  23.3% 128.00kB/550.16kB [1s] Writing at 0x00051b8e ------- ----------------------  26.2% 144.00kB/550.16kB [1s] Writing at 0x00057a31 -------- ---------------------  29.1% 160.00kB/550.16kB [1s] Writing at 0x0005d5e3 --------- --------------------  32.0% 176.00kB/550.16kB [1s] Writing at 0x00062e73 ---------- -------------------  34.9% 192.00kB/550.16kB [1s] Writing at 0x00068f7d ----------- ------------------  37.8% 208.00kB/550.16kB [1s] Writing at 0x0006f6c6 ------------ -----------------  40.7% 224.00kB/550.16kB [1s] Writing at 0x00075503 ------------- ----------------  43.6% 240.00kB/550.16kB [2s] Writing at 0x0007b22f ------------- ----------------  46.5% 256.00kB/550.16kB [2s] Writing at 0x00080e16 -------------- ---------------  49.4% 272.00kB/550.16kB [2s] Writing at 0x00087247 --------------- --------------  52.3% 288.00kB/550.16kB [2s] Writing at 0x0008d617 ---------------- -------------  55.3% 304.00kB/550.16kB [2s] Writing at 0x00093564 ----------------- ------------  58.2% 320.00kB/550.16kB [2s] Writing at 0x00099457 ------------------ -----------  61.1% 336.00kB/550.16kB [2s] Writing at 0x0009f521 ------------------- ----------  64.0% 352.00kB/550.16kB [2s] Writing at 0x000a5307 -------------------- ---------  66.9% 368.00kB/550.16kB [2s] Writing at 0x000ab578 -------------------- ---------  69.8% 384.00kB/550.16kB [2s] Writing at 0x000b1364 --------------------- --------  72.7% 400.00kB/550.16kB [2s] Writing at 0x000b6dc7 ---------------------- -------  75.6% 416.00kB/550.16kB [2s] Writing at 0x000bc520 ----------------------- ------  78.5% 432.00kB/550.16kB [2s] Writing at 0x000c1e4c ------------------------ -----  81.4% 448.00kB/550.16kB [2s] Writing at 0x000c7442 ------------------------- ----  84.3% 464.00kB/550.16kB [3s] Writing at 0x000cdc69 -------------------------- ---  87.2% 480.00kB/550.16kB [3s] Writing at 0x000d3e78 --------------------------- --  90.2% 496.00kB/550.16kB [3s] Writing at 0x000d9b7a --------------------------- --  93.1% 512.00kB/550.16kB [3s] Writing at 0x000df587 ---------------------------- -  96.0% 528.00kB/550.16kB [3s] Writing at 0x000e51c1 -----------------------------   98.9% 544.00kB/550.16kB [3s] Writing at 0x000e96e0 ------------------------------ 100.0% 550.16kB/550.16kB [3s] 
+Wrote 890592 bytes (563359 compressed) at 0x00010000 in 3.5 seconds (2045.3 kbit/s).
+Verifying written data...
+Hash of data verified.
+
+Hard resetting via RTS pin...

@@ -1,0 +1,31 @@
+{
+  "product_name": "TELEX Bench",
+  "version": "0.1.1",
+  "source_pdf_sha256": "983805e350e68d430d59fe445f296d25ad165b0911eae8eea0acf927d6ee1cc3",
+  "source_page": 1,
+  "wordmark_region_pdf_top_left": [
+    180,
+    1430,
+    1010,
+    1580
+  ],
+  "method": "Original PDF vector outlines extracted without redrawing. Original blue gradient preserved under vector clip; reversed wordmark changes black to white. Native icons rendered from SVG.",
+  "palette": [
+    "#003DFF",
+    "#FFFFFF",
+    "#D9D9D9",
+    "#012599"
+  ],
+  "files": {
+    "app-icon.png": "440a11a5a838a567b2b86eb06e7389e912ef82bb0cb257fb351106e2d74b744c",
+    "app-icon.svg": "c2f40528cb8f91bac4d01c65b233d779347d5591a53d7cb1048a9d9b83973cfc",
+    "telex-bench.icns": "c8c1d20f334c92ff6de78f5d966ed518d0d9b8ea336115f1f13e8ff7149057ed",
+    "telex-bench.ico": "98afe9484507711865b135bc763335cf786e60932519bb529e1e1a380ed54437",
+    "wordmark-dark.png": "f13a9957a50f4ae44c3921049b1bd64d12f2949ddc7ee55e42dd4343309b8cb4",
+    "wordmark-dark.svg": "93bf096cff0b5dce1ba1f4ea4438611c502daf4fee91e33e3cf11bf9dd5b3f71",
+    "wordmark-light.png": "613244167ec6fda92697bdeb154bbab1e119d8da170fec89f687440f0b4c47c4",
+    "wordmark-light.svg": "70fe79ce8626cf3f8ab5b64fdba3e02c62779c05dbe098e9399a6c5f29c1de62"
+  },
+  "renderer": "Chromium via Playwright 1.56.1; preserves original gradient clip. Pillow used only for ICNS/ICO format encoding.",
+  "revision": "User requested full TELEX wordmark instead of isolated X. All application icons use the full original wordmark."
+}

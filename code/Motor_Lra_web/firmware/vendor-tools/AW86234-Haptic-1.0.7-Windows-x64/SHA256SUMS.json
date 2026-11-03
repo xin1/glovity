@@ -1,0 +1,285 @@
+{
+  "release": "1.0.7",
+  "files": [
+    {
+      "path": "app/AW86234-Haptic-Control.exe",
+      "bytes": 63395767,
+      "sha256": "a8098ea6b1501b15c5db29b6eb79064f31c80770d923ff103e934a774524e2a9"
+    },
+    {
+      "path": "docs/tactile_com7_ch4.json",
+      "bytes": 348,
+      "sha256": "22c8db8a6a3b867cb00474f7d0d4d1eece5d43f8f904ac1ddd54a26447c5010f"
+    },
+    {
+      "path": "docs/触觉反馈实现与验收.md",
+      "bytes": 20915,
+      "sha256": "8c7f1aedd0043b5b78c16d276cf2c90da246b5fddffa00b3c94ade37d90796f0"
+    },
+    {
+      "path": "firmware/app-1.0.7.bin",
+      "bytes": 260400,
+      "sha256": "b639a7bc94ca5d996ae200cde6650532b58e98f7cb27bb83d7c61357213bf4d6"
+    },
+    {
+      "path": "firmware/bootloader.bin",
+      "bytes": 20064,
+      "sha256": "b86eabdea7c19f19a128b57ebb12281d0e4d39b0d7787e572ab012b61b9ce2c7"
+    },
+    {
+      "path": "firmware/partition-table.bin",
+      "bytes": 3072,
+      "sha256": "7f00b6c042a89b15b0cac534f82ed988caf29278ff5700b0c511eb1b5bb7c820"
+    },
+    {
+      "path": "Flash-New-Board.cmd",
+      "bytes": 118,
+      "sha256": "79dd18e6cdecc60d95bae3a6aa3b6473c2722128bc5e26e699c2519a98590076"
+    },
+    {
+      "path": "Flash-Update.cmd",
+      "bytes": 116,
+      "sha256": "67f5ac6350a52c2cea379ee804932255e8bb75c5c618b358c93dc94792312d53"
+    },
+    {
+      "path": "licenses/bitarray/bitarray-3.10.1.dist-info/licenses/LICENSE",
+      "bytes": 2458,
+      "sha256": "4abcdd815b9674d4b9f016cb5c32815d781d9bf2fc5c068e7f79ceddca7e8f1d"
+    },
+    {
+      "path": "licenses/bitstring/bitstring-4.4.0.dist-info/licenses/LICENSE",
+      "bytes": 1111,
+      "sha256": "4110041ff5b99a3b0f64d4aa0c426fb9bb4fb3de69cd4c847e634f8e99b2c6f0"
+    },
+    {
+      "path": "licenses/cffi/cffi-2.1.1.dist-info/licenses/LICENSE",
+      "bytes": 1123,
+      "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63"
+    },
+    {
+      "path": "licenses/click/click-8.5.0.dist-info/licenses/LICENSE.txt",
+      "bytes": 1475,
+      "sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d"
+    },
+    {
+      "path": "licenses/cryptography/cryptography-50.0.1.dist-info/licenses/LICENSE",
+      "bytes": 197,
+      "sha256": "3e0c7c091a948b82533ba98fd7cbb40432d6f1a9acbf85f5922d2f99a93ae6bb"
+    },
+    {
+      "path": "licenses/cryptography/cryptography-50.0.1.dist-info/licenses/LICENSE.APACHE",
+      "bytes": 11360,
+      "sha256": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe"
+    },
+    {
+      "path": "licenses/cryptography/cryptography-50.0.1.dist-info/licenses/LICENSE.BSD",
+      "bytes": 1532,
+      "sha256": "602c4c7482de6479dd2e9793cda275e5e63d773dacd1eca689232ab7008fb4fb"
+    },
+    {
+      "path": "licenses/dependencies.json",
+      "bytes": 5793,
+      "sha256": "b4fec19d9510a3d082394ef6320dc880bf80ae097140d11c25fcde03a15a5c61"
+    },
+    {
+      "path": "licenses/esptool/esptool/targets/stub_flasher/2/LICENSE-APACHE",
+      "bytes": 11365,
+      "sha256": "3caf7db4e38f3b3a5e6eb3d7004473188e03f2e18129a0da6289a02c012d7277"
+    },
+    {
+      "path": "licenses/esptool/esptool/targets/stub_flasher/2/LICENSE-MIT",
+      "bytes": 1092,
+      "sha256": "de9c9e7b2f939f909b27eea39630893885604c8cde7de4a822b53cb37d0036a0"
+    },
+    {
+      "path": "licenses/esptool/esptool-5.3.1.dist-info/licenses/LICENSE",
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    {
+      "path": "licenses/intelhex/intelhex-2.3.0.dist-info/LICENSE.txt",
+      "bytes": 1528,
+      "sha256": "1b2eb032ab8a1b0266f7995c76e44509f89ca9c0e90ec507763b5e735aca7de4"
+    },
+    {
+      "path": "licenses/numpy/numpy/_core/include/numpy/random/LICENSE.txt",
+      "bytes": 1039,
+      "sha256": "d544761558b510866c21f7e8a2d5716fca76e0b98117e3b6b86314db7244d150"
+    },
+    {
+      "path": "licenses/numpy/numpy/ma/LICENSE",
+      "bytes": 1616,
+      "sha256": "d78dbb208b80d92b4d333e41a4baae50d12444f46e53199fa7726a91de6e2da7"
+    },
+    {
+      "path": "licenses/numpy/numpy/random/LICENSE.md",
+      "bytes": 3582,
+      "sha256": "b4bc2f4fa1c95778f1ed3dd8f14706bece399475b978f9f34b5d3cd72521b48a"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/LICENSE.txt",
+      "bytes": 45831,
+      "sha256": "a804dff0ead9fadc5293456410bcbfc32bf024be9c4513459663fb7b442d2341"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt",
+      "bytes": 1039,
+      "sha256": "d544761558b510866c21f7e8a2d5716fca76e0b98117e3b6b86314db7244d150"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING",
+      "bytes": 704,
+      "sha256": "aea41976c720f91bd19725c16916a1ace40eb1ea42620d340e587a5de4bbcea0"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/_core/src/highway/LICENSE",
+      "bytes": 21155,
+      "sha256": "d208152e2777ffd0126eacc1bd21c0320d69e4e6b622d21a2a12a47e8ef73763"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/_core/src/multiarray/dragon4_LICENSE.txt",
+      "bytes": 1441,
+      "sha256": "b0fd592d4ead563148e3977e7b589169d46a5ef2ff133c755a81af880a3fc919"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md",
+      "bytes": 1542,
+      "sha256": "a732977853530066790c42817087f4829b518dd98d340c916acbfd227e39d3cb"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE",
+      "bytes": 1573,
+      "sha256": "585483905b13d4b42f800c55ba99e89d6e2e33ccd5f503e201c07531d148ff41"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md",
+      "bytes": 1523,
+      "sha256": "8db000e158c162e7249787852d8c69764706502ccee725c06641b31c1e95c8af"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt",
+      "bytes": 2314,
+      "sha256": "19060ef465e1797d682ee0fc3081bd25ab1395e995e43d25c9d13c95d9a3cd6b"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/ma/LICENSE",
+      "bytes": 1616,
+      "sha256": "d78dbb208b80d92b4d333e41a4baae50d12444f46e53199fa7726a91de6e2da7"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/random/LICENSE.md",
+      "bytes": 3582,
+      "sha256": "b4bc2f4fa1c95778f1ed3dd8f14706bece399475b978f9f34b5d3cd72521b48a"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/random/src/distributions/LICENSE.md",
+      "bytes": 2805,
+      "sha256": "cf5619f25b112d5ce7c896efffc8e610bcb345dfadcc19f2c1460aa48fff2c9e"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md",
+      "bytes": 2986,
+      "sha256": "92c10699884321f1c2947fe2a70ab23b0fbf1507f756d89dd08f38c61fc3d4fa"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md",
+      "bytes": 1176,
+      "sha256": "41190663b77bee5302386495a07b7eabfbfa571aa0ae2f11da6764162062fc4f"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/random/src/philox/LICENSE.md",
+      "bytes": 1540,
+      "sha256": "322ac46d870c8aeead6c53adcccc839296fb3c8e456eae155081297daf7f8013"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md",
+      "bytes": 1253,
+      "sha256": "28cad82ce1379dc529df30da78ec012d7d0d1d576b03ddcb93388aee53659f59"
+    },
+    {
+      "path": "licenses/numpy/numpy-2.5.2.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md",
+      "bytes": 340,
+      "sha256": "454ec7350e478e037061850b67395753b425b1cb0a34bbc26290b020bf89d763"
+    },
+    {
+      "path": "licenses/PyInstaller/pyinstaller-6.21.0.dist-info/licenses/COPYING.txt",
+      "bytes": 32138,
+      "sha256": "dcf75fdb959db1e3b41c0f8505069d2ece781b5ec6b3d0a4d30975cfc6580245"
+    },
+    {
+      "path": "licenses/pyqtgraph/pyqtgraph/colors/maps/CC-BY license - applies to CET color map data.txt",
+      "bytes": 14990,
+      "sha256": "c97deeeca4ae375a0334bc7f7af5f707aabfcec959c53c783b9f8771d28fd5b3"
+    },
+    {
+      "path": "licenses/pyqtgraph/pyqtgraph-0.14.0.dist-info/licenses/LICENSE.txt",
+      "bytes": 1160,
+      "sha256": "b4ed24d468da61df9028a52abe9283a592e63f315943a1c86cd96a9ea5b62079"
+    },
+    {
+      "path": "licenses/PySide6/pyside6-6.11.2.dist-info/licenses/LicenseRef-Qt-Commercial.txt",
+      "bytes": 470,
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3"
+    },
+    {
+      "path": "licenses/PySide6_Addons/pyside6_addons-6.11.2.dist-info/licenses/LicenseRef-Qt-Commercial.txt",
+      "bytes": 470,
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3"
+    },
+    {
+      "path": "licenses/PySide6_Essentials/pyside6_essentials-6.11.2.dist-info/licenses/LicenseRef-Qt-Commercial.txt",
+      "bytes": 470,
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3"
+    },
+    {
+      "path": "licenses/reedsolo/reedsolo-1.7.0.dist-info/LICENSE",
+      "bytes": 2388,
+      "sha256": "2da9536c23b72bac15603bb1f8dbf269dc68ecfbc35a75f8d0aa9cb209ba0934"
+    },
+    {
+      "path": "licenses/rich/rich-15.0.0.dist-info/licenses/LICENSE",
+      "bytes": 1056,
+      "sha256": "deed7c17a4318158190a3ea239cc879a5a50271cebb98ae7025f48fbe58dca15"
+    },
+    {
+      "path": "licenses/shiboken6/shiboken6-6.11.2.dist-info/licenses/LicenseRef-Qt-Commercial.txt",
+      "bytes": 470,
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3"
+    },
+    {
+      "path": "RELEASE.json",
+      "bytes": 846,
+      "sha256": "b63468f326e16416e8bd3d286d183e2447235222a9b2620776d228ae0dd65e1b"
+    },
+    {
+      "path": "scripts/flash.ps1",
+      "bytes": 1729,
+      "sha256": "40c0be63df2747e197c3d60e5004684fce4c4a3d261ac5a273748ea4c425ae6d"
+    },
+    {
+      "path": "source/aw86234-source-1.0.7.zip",
+      "bytes": 516916,
+      "sha256": "0b514d0da775044954f80f4a0c20877a163911b8767090cd5f3d140733ecbd7c"
+    },
+    {
+      "path": "source/esptool-installed-source.zip",
+      "bytes": 290679,
+      "sha256": "7cde9e3822f07629c8db62b5b86a158563a7aaf1067dad8239a4ce6de62fdae0"
+    },
+    {
+      "path": "Start.cmd",
+      "bytes": 61,
+      "sha256": "d73668e5d67057c18c37698de46970a4a6cce8797206b7dcf1fe0cf8052a2454"
+    },
+    {
+      "path": "tools/AW86234-Flasher.exe",
+      "bytes": 32124159,
+      "sha256": "22e7884cb66bb94db7b6312ca5faf076c9cb1e8c7236537eef1cb85056b011d9"
+    },
+    {
+      "path": "使用说明.txt",
+      "bytes": 2112,
+      "sha256": "c7f08c2e48d2b64430183c2b1e770d94bb04f006694e76faa1de0b46e2018990"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+"-specs=D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32s3-glovity/bootloader/specs/picolibc.specs"
+-mlongcalls
+-fno-builtin-memcpy
+-fno-builtin-memset
+-fno-builtin-bzero

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32c6/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

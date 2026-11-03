@@ -1,0 +1,395 @@
+P-CAD Schematic ASCII File Export Log :
+      Information : Start export of symbol definitions for parts
+      Warning :     Symbol name [USBLC6-2SC6], mode [Normal], part [1] changed to [USBLC6-2SC6_1_N]
+      Warning :     Rectangle [200mil : -300mil]-[1100mil : 100mil] exported as lines.
+      Warning :     Symbol name [AO3401A], mode [Normal], part [1] changed to [AO3401A_1_N]
+      Warning :     Symbol name [AO3400A], mode [Normal], part [1] changed to [AO3400A_1_N]
+      Warning :     Symbol name [TP4054-42-SOT25-R], mode [Normal], part [1] changed to [TP4054-42-SOT25-R_1_N]
+      Warning :     Rectangle [200mil : -300mil]-[1000mil : 100mil] exported as lines.
+      Warning :     Symbol name [SY8089AAC], mode [Normal], part [1] changed to [SY8089AAC_1_N]
+      Warning :     Rectangle [200mil : -300mil]-[800mil : 100mil] exported as lines.
+      Warning :     Symbol name [R], mode [Normal], part [1] changed to [R_1_N]
+      Warning :     Symbol name [LED_RED], mode [Normal], part [1] changed to [LED_RED_1_N]
+      Warning :     Symbol name [LED_GREEN], mode [Normal], part [1] changed to [LED_GREEN_1_N]
+      Warning :     Symbol name [Header 2], mode [Normal], part [1] changed to [Header_2_1_N]
+      Warning :     Rectangle [150mil : -200mil]-[350mil : 100mil] exported as lines.
+      Warning :     Symbol name [CC], mode [Normal], part [1] changed to [CC_1_N]
+      Warning :     Symbol name [LED_BLUE], mode [Normal], part [1] changed to [LED_BLUE_1_N]
+      Warning :     No data found for DisplayMode [Normal] & PartNum [1]
+      Warning :     Symbol name [B3U-1000P], mode [Normal], part [2] changed to [B3U-1000P_2_N]
+      Warning :     Rectangle [-300mil : -100mil]-[300mil : 100mil] exported as lines.
+      Warning :     Symbol name [LG], mode [Normal], part [1] changed to [LG_1_N]
+      Warning :     Elliptical arc at position [-37.5mil : 0mil] converted to circular arc
+      Warning :     Elliptical arc at position [-12.5mil : 0mil] converted to circular arc
+      Warning :     Elliptical arc at position [12.5mil : 0mil] converted to circular arc
+      Warning :     Elliptical arc at position [37.5mil : 0mil] converted to circular arc
+      Warning :     Symbol name [EVPAEDB2A], mode [Normal], part [1] changed to [EVPAEDB2A_1_N]
+      Warning :     Rectangle [200mil : -300mil]-[900mil : 100mil] exported as lines.
+      Warning :     Symbol name [UOV-K20], mode [Normal], part [1] changed to [UOV-K20_1_N]
+      Warning :     Rectangle [-400mil : -200mil]-[400mil : 200mil] exported as lines.
+      Warning :     Symbol name [AW86234FCR], mode [Normal], part [1] changed to [AW86234FCR_1_N]
+      Warning :     Rectangle [-500mil : -400mil]-[500mil : 300mil] exported as lines.
+      Warning :     Symbol name [SSxx], mode [Normal], part [1] changed to [SSxx_1_N]
+      Warning :     Symbol name [4.7kΩ*4], mode [Normal], part [1] changed to [4.7kΩ*4_1_N]
+      Warning :     Rectangle [-200mil : -100mil]-[200mil : 400mil] exported as lines.
+      Warning :     Symbol name [SUH08-2P], mode [Normal], part [1] changed to [SUH08-2P_1_N]
+      Warning :     Rectangle [-150mil : -250mil]-[150mil : 250mil] exported as lines.
+      Warning :     Symbol name [TCA9548ARGER], mode [Normal], part [1] changed to [TCA9548ARGER_1_N]
+      Warning :     Rectangle [-300mil : -750mil]-[300mil : 750mil] exported as lines.
+      Warning :     Symbol name [SUH08-4P], mode [Normal], part [1] changed to [SUH08-4P_1_N]
+      Warning :     Rectangle [-150mil : -350mil]-[150mil : 350mil] exported as lines.
+      Warning :     Symbol name [NH-B2020RGBA-HF], mode [Normal], part [1] changed to [NH-B2020RGBA-HF_1_N]
+      Warning :     Rectangle [-400mil : -200mil]-[400mil : 200mil] exported as lines.
+      Warning :     Symbol name [TYPE-C], mode [Normal], part [1] changed to [TYPE-C_1_N]
+      Warning :     Rectangle [-400mil : -700mil]-[400mil : 700mil] exported as lines.
+      Warning :     Symbol name [ESP32-S3-MINI-1U], mode [Normal], part [1] changed to [ESP32-S3-MINI-1U_1_N]
+      Warning :     Rectangle [-1050mil : -1450mil]-[1050mil : 1300mil] exported as lines.
+      Information : End export of symbol definitions for part
+      Information : Start exporting the symbol definitions for power ports
+      Warning :     End exporting the symbol defintions for power ports
+      Information : Start exporting component definitions
+      Warning :     Component [IC2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (USBLC6-2SC6).
+      Warning :        Finish exporting component.
+      Warning :     Component [Q2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (AO3401A).
+      Warning :        Finish exporting component.
+      Warning :     Component [Q4] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (AO3400A).
+      Warning :        Finish exporting component.
+      Warning :     Component [Q3] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [IC1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (TP4054-42-SOT25-R).
+      Warning :        Finish exporting component.
+      Warning :     Component [IC3] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (SY8089AAC).
+      Warning :        Finish exporting component.
+      Warning :     Component [R13] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (R).
+      Warning :        Finish exporting component.
+      Warning :     Component [R10] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R4] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R3] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R21] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R38] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R40] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R41] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R19] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R20] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R29] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R36] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R39] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R32] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R33] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R37] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R11] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R12] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R34] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R35] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R24] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [Q1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [LED1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (LED_RED).
+      Warning :        Finish exporting component.
+      Warning :     Component [LED2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (LED_GREEN).
+      Warning :        Finish exporting component.
+      Warning :     Component [JP1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (Header 2).
+      Warning :     Component [Header 2] changed to [HEADER_2]
+      Warning :        Finish exporting component.
+      Warning :     Component [C2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (CC).
+      Warning :        Finish exporting component.
+      Warning :     Component [R6] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R5] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C3] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [LED3] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (LED_BLUE).
+      Warning :        Finish exporting component.
+      Warning :     Component [C5] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C6] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C8] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C7] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C21] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C26] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C11] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C9] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C12] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C18] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C13] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C10] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [BOOT1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (B3U-1000P).
+      Warning :        Finish exporting component.
+      Warning :     Component [RESET1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R30] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R31] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [L1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (LG).
+      Warning :        Finish exporting component.
+      Warning :     Component [J1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (EVPAEDB2A).
+      Warning :        Finish exporting component.
+      Warning :     Component [U13] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (UOV-K20).
+      Warning :        Finish exporting component.
+      Warning :     Component [Q5] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R43] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R42] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C33] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U16] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (AW86234FCR).
+      Warning :        Finish exporting component.
+      Warning :     Component [C40] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C34] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C37] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C27] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C30] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U17] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C41] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C35] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C38] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C28] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C31] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U18] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C42] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C36] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C39] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C29] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C32] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U10] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C24] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C19] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C22] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C14] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C16] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [D1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (SSxx).
+      Warning :     Component [SSxx] changed to [SSXX]
+      Warning :        Finish exporting component.
+      Warning :     Component [U11] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C25] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C20] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C23] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C15] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C17] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (4.7kΩ*4).
+      Warning :     Component [4.7kΩ*4] changed to [4.7KΩ*4]
+      Warning :        Finish exporting component.
+      Warning :     Component [R7] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R8] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U9] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (SUH08-2P).
+      Warning :        Finish exporting component.
+      Warning :     Component [U12] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U14] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U15] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U19] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (TCA9548ARGER).
+      Warning :        Finish exporting component.
+      Warning :     Component [BUS1_1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (SUH08-4P).
+      Warning :        Finish exporting component.
+      Warning :     Component [BUS1_2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [BUS1_3] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [BUS2_1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [BUS2_2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C1] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [C4] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R9] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R18] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R27] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [LED4] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (NH-B2020RGBA-HF).
+      Warning :        Finish exporting component.
+      Warning :     Component [R22] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R25] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R23] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R26] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R14] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R16] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R15] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [R17] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U2] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (TYPE-C).
+      Warning :        Finish exporting component.
+      Warning :     Component [C43] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :     Component [U3] in sheet [C:\Users\BINGXU~1\AppData\Local\Temp\QjzF6E8.tmp] doesn't have a library reference
+      Warning :        Exporting component (ESP32-S3-MINI-1U).
+      Warning :        Finish exporting component.
+      Information : End exporting component definitions
+      Information : Start exporting component definitions for power ports
+      Warning :     End exporting component definitions for powerports
+      Information : Start export of netlist
+      Information : Start export of component instances
+      Information : End export of component instances
+      Information : Start export of nets
+      Information : End export of nets
+      Information : End export of netlist
+      Information : Start exporting the objects for sheet [TELEX_CORE_LEFT_V2]
+      Information : Start WIRES export
+      Information : End WIRES export
+      Information : Start BUSES export
+      Information : End BUSES export
+      Information : Start PORTS export
+      Information : End PORTS export
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     P-CAD doesn't support object type [Parameter]
+      Warning :     Exporting powerport at [9150mil : 9550mil] as component with designator [GND1]
+      Warning :     Exporting powerport at [9450mil : 800mil] as component with designator [PP3_3V1]
+      Warning :     Exporting powerport at [3400mil : 7600mil] as component with designator [PP3_3V2]
+      Warning :     Exporting powerport at [750mil : 8500mil] as component with designator [PVUSB1]
+      Warning :     Exporting powerport at [750mil : 7900mil] as component with designator [PVUSB2]
+      Warning :     Exporting powerport at [700mil : 8600mil] as component with designator [GND2]
+      Warning :     Exporting powerport at [800mil : 9700mil] as component with designator [GND3]
+      Warning :     Exporting powerport at [450mil : 10100mil] as component with designator [PVBAT1]
+      Warning :     Exporting powerport at [2250mil : 4000mil] as component with designator [PVBAT2]
+      Warning :     Exporting powerport at [2450mil : 9600mil] as component with designator [GND4]
+      Warning :     Exporting powerport at [4600mil : 10100mil] as component with designator [GND5]
+      Warning :     Exporting powerport at [6050mil : 9700mil] as component with designator [GND6]
+      Warning :     Exporting powerport at [2250mil : 10000mil] as component with designator [PVUSB3]
+      Warning :     Exporting powerport at [11100mil : 3050mil] as component with designator [PP3_3V3]
+      Warning :     Exporting powerport at [10900mil : 9550mil] as component with designator [PVBAT3]
+      Warning :     Exporting powerport at [15100mil : 10000mil] as component with designator [GND7]
+      Warning :     Exporting powerport at [2350mil : 10200mil] as component with designator [GND8]
+      Warning :     Exporting powerport at [7500mil : 400mil] as component with designator [PP3_3V4]
+      Warning :     Exporting powerport at [850mil : 4000mil] as component with designator [GND9]
+      Warning :     Exporting powerport at [11100mil : 800mil] as component with designator [GND10]
+      Warning :     Exporting powerport at [8600mil : 750mil] as component with designator [GND11]
+      Warning :     Exporting powerport at [11100mil : 2350mil] as component with designator [GND12]
+      Warning :     Exporting powerport at [6050mil : 10200mil] as component with designator [PVBAT4]
+      Warning :     Exporting powerport at [6900mil : 10000mil] as component with designator [GND13]
+      Warning :     Exporting powerport at [8050mil : 10100mil] as component with designator [PVIN1]
+      Warning :     Exporting powerport at [8250mil : 10450mil] as component with designator [GND14]
+      Warning :     Exporting powerport at [7050mil : 9400mil] as component with designator [PP3_3V5]
+      Warning :     Exporting powerport at [7450mil : 9500mil] as component with designator [GND15]
+      Warning :     Exporting powerport at [8050mil : 9550mil] as component with designator [PP3_3V6]
+      Warning :     Exporting powerport at [8400mil : 9900mil] as component with designator [GND16]
+      Warning :     Exporting powerport at [6550mil : 10250mil] as component with designator [GND17]
+      Warning :     Exporting powerport at [3500mil : 9500mil] as component with designator [PVUSB4]
+      Warning :     Exporting powerport at [6700mil : 8600mil] as component with designator [PVBAT5]
+      Warning :     Exporting powerport at [6800mil : 7900mil] as component with designator [PVIN2]
+      Warning :     Exporting powerport at [8750mil : 8600mil] as component with designator [PP3_3V7]
+      Warning :     Exporting powerport at [10900mil : 8600mil] as component with designator [PP3_3V8]
+      Warning :     Exporting powerport at [10500mil : 9950mil] as component with designator [GND18]
+      Warning :     Exporting powerport at [12550mil : 9500mil] as component with designator [GND19]
+      Warning :     Exporting powerport at [10250mil : 10400mil] as component with designator [GND20]
+      Warning :     Exporting powerport at [3750mil : 8350mil] as component with designator [GND21]
+      Warning :     Exporting powerport at [5450mil : 8350mil] as component with designator [PVUSB5]
+      Warning :     Exporting powerport at [2450mil : 8450mil] as component with designator [GND22]
+      Warning :     Exporting powerport at [550mil : 900mil] as component with designator [GND23]
+      Warning :     Exporting powerport at [4100mil : 4100mil] as component with designator [GND24]
+      Warning :     Exporting powerport at [5400mil : 3450mil] as component with designator [GND25]
+      Warning :     Exporting powerport at [4450mil : 2950mil] as component with designator [PP3_3V9]
+      Warning :     Exporting powerport at [6550mil : 2950mil] as component with designator [GND26]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     P-CAD doesn't support object type [ParameterSet]
+      Warning :     Exporting powerport at [13800mil : 10000mil] as component with designator [GND27]
+      Warning :     Exporting powerport at [3850mil : 4100mil] as component with designator [PP3_3V10]
+      Warning :     Exporting powerport at [13350mil : 8800mil] as component with designator [PP3_3V11]
+      Warning :     Exporting powerport at [14200mil : 8050mil] as component with designator [GND28]
+      Warning :     Exporting powerport at [13250mil : 8050mil] as component with designator [GND29]
+      Warning :     Exporting powerport at [12750mil : 6500mil] as component with designator [GND30]
+      Warning :     Exporting powerport at [12350mil : 7200mil] as component with designator [GND31]
+      Warning :     Exporting powerport at [14150mil : 7400mil] as component with designator [GND32]
+      Warning :     Exporting powerport at [12750mil : 6600mil] as component with designator [PVDD1]
+      Warning :     Exporting powerport at [14850mil : 6600mil] as component with designator [PVDD2]
+      Warning :     Exporting powerport at [12250mil : 6500mil] as component with designator [GND33]
+      Warning :     Exporting powerport at [14350mil : 6400mil] as component with designator [GND34]
+      Warning :     Exporting powerport at [12750mil : 4600mil] as component with designator [GND35]
+      Warning :     Exporting powerport at [12350mil : 5300mil] as component with designator [GND36]
+      Warning :     Exporting powerport at [14150mil : 5500mil] as component with designator [GND37]
+      Warning :     Exporting powerport at [12750mil : 4700mil] as component with designator [PVDD3]
+      Warning :     Exporting powerport at [14850mil : 4700mil] as component with designator [PVDD4]
+      Warning :     Exporting powerport at [12250mil : 4600mil] as component with designator [GND38]
+      Warning :     Exporting powerport at [14350mil : 4500mil] as component with designator [GND39]
+      Warning :     Exporting powerport at [12750mil : 2650mil] as component with designator [GND40]
+      Warning :     Exporting powerport at [12350mil : 3350mil] as component with designator [GND41]
+      Warning :     Exporting powerport at [14150mil : 3550mil] as component with designator [GND42]
+      Warning :     Exporting powerport at [12750mil : 2750mil] as component with designator [PVDD5]
+      Warning :     Exporting powerport at [14850mil : 2750mil] as component with designator [PVDD6]
+      Warning :     Exporting powerport at [12250mil : 2650mil] as component with designator [GND43]
+      Warning :     Exporting powerport at [14350mil : 2550mil] as component with designator [GND44]
+      Warning :     Exporting powerport at [9050mil : 6500mil] as component with designator [GND45]
+      Warning :     Exporting powerport at [8650mil : 7200mil] as component with designator [GND46]
+      Warning :     Exporting powerport at [10450mil : 7400mil] as component with designator [GND47]
+      Warning :     Exporting powerport at [9050mil : 6600mil] as component with designator [PVDD7]
+      Warning :     Exporting powerport at [11150mil : 6600mil] as component with designator [PVDD8]
+      Warning :     Exporting powerport at [11150mil : 6400mil] as component with designator [GND48]
+      Warning :     Exporting powerport at [8550mil : 6500mil] as component with designator [GND49]
+      Warning :     Exporting powerport at [10650mil : 6400mil] as component with designator [GND50]
+      Warning :     Exporting powerport at [9050mil : 4600mil] as component with designator [GND51]
+      Warning :     Exporting powerport at [8650mil : 5300mil] as component with designator [GND52]
+      Warning :     Exporting powerport at [10450mil : 5500mil] as component with designator [GND53]
+      Warning :     Exporting powerport at [9050mil : 4700mil] as component with designator [PVDD9]
+      Warning :     Exporting powerport at [11150mil : 4700mil] as component with designator [PVDD10]
+      Warning :     Exporting powerport at [8550mil : 4600mil] as component with designator [GND54]
+      Warning :     Exporting powerport at [10650mil : 4500mil] as component with designator [GND55]
+      Warning :     Exporting powerport at [1400mil : 1000mil] as component with designator [GND56]
+      Warning :     Exporting powerport at [350mil : 3300mil] as component with designator [PP3_3V12]
+      Warning :     Exporting powerport at [8350mil : 1200mil] as component with designator [GND57]
+      Warning :     Exporting powerport at [9650mil : 1200mil] as component with designator [GND58]
+      Warning :     Exporting powerport at [11250mil : 1200mil] as component with designator [GND59]
+      Warning :     Exporting powerport at [12600mil : 1200mil] as component with designator [GND60]
+      Warning :     Exporting powerport at [14100mil : 1200mil] as component with designator [GND61]
+      Warning :     Exporting powerport at [1700mil : 3300mil] as component with designator [PP3_3V13]
+      Warning :     Exporting powerport at [350mil : 2600mil] as component with designator [PP3_3V14]
+      Warning :     Exporting powerport at [1700mil : 2600mil] as component with designator [PP3_3V15]
+      Warning :     Exporting powerport at [1900mil : 900mil] as component with designator [GND62]
+      Warning :     Exporting powerport at [2750mil : 1000mil] as component with designator [GND63]
+      Warning :     Exporting powerport at [3150mil : 900mil] as component with designator [GND64]
+      Warning :     Exporting powerport at [4000mil : 1000mil] as component with designator [GND65]
+      Warning :     Exporting powerport at [4450mil : 900mil] as component with designator [GND66]
+      Warning :     Exporting powerport at [5300mil : 1000mil] as component with designator [GND67]
+      Warning :     Exporting powerport at [5800mil : 900mil] as component with designator [GND68]
+      Warning :     Exporting powerport at [6650mil : 1000mil] as component with designator [GND69]
+      Warning :     Exporting powerport at [2300mil : 6300mil] as component with designator [GND70]
+      Warning :     Exporting powerport at [1550mil : 4700mil] as component with designator [GND71]
+      Warning :     Exporting powerport at [2300mil : 5800mil] as component with designator [GND72]
+      Warning :     Exporting powerport at [2550mil : 5550mil] as component with designator [PP3_3V16]
+      Warning :     Exporting powerport at [2550mil : 4900mil] as component with designator [GND73]
+      Warning :     Exporting powerport at [2400mil : 6100mil] as component with designator [PP3_3V17]
+      Warning :     Exporting powerport at [2400mil : 6750mil] as component with designator [PP3_3V18]
+      Warning :     Exporting powerport at [700mil : 5600mil] as component with designator [GND74]
+      Warning :     Exporting powerport at [7300mil : 7500mil] as component with designator [PP3_3V19]
+      Warning :     Exporting powerport at [11050mil : 7900mil] as component with designator [PVDD11]
+      Warning :     Exporting powerport at [7150mil : 4400mil] as component with designator [GND75]
+      Information : End exporting the objects for sheet [TELEX_CORE_LEFT_V2]
+EndLog

@@ -1,0 +1,42 @@
+{
+  "source": "paired-flasher/firmware-reference/RemoteCal_Glove.ino (good)",
+  "registers": {
+    "unlock": [
+      "0x69",
+      "0xB588"
+    ],
+    "start": [
+      "0x01",
+      "0x0007"
+    ],
+    "clear": [
+      "0x01",
+      "0x0000"
+    ],
+    "save": [
+      "0x00",
+      "0x0000"
+    ]
+  },
+  "start": [
+    "probe each 0x50..0x59,0x60",
+    "unlock all online",
+    "delay 100ms",
+    "CALSW=0x07 all online",
+    "delay 100ms"
+  ],
+  "stop": [
+    "unlock all online",
+    "delay 100ms",
+    "CALSW=0 all online",
+    "delay 100ms",
+    "unlock all online EVEN IF clearing failed",
+    "delay 100ms",
+    "SAVE=0 all online",
+    "delay 500ms"
+  ],
+  "wired_timeout_seconds": null,
+  "wireless_timeout_seconds": 60,
+  "timeout_saves": false,
+  "effect_verified": false
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "two_hands_pose_haptics",
+    "evidence": "test_two_hands_pose_and_haptics_with_loss",
+    "physical": false
+  },
+  {
+    "id": "route_change",
+    "evidence": "test_route_switch_revokes_and_requires_new_start",
+    "physical": false
+  },
+  {
+    "id": "calibration_inhibit",
+    "evidence": "test_calibration_blocks_all_output",
+    "physical": false
+  },
+  {
+    "id": "late_start_tombstone",
+    "evidence": "test_replayed_start_after_stop_rejected_by_actual_c_core",
+    "physical": false
+  },
+  {
+    "id": "shutdown",
+    "evidence": "test_shutdown_and_restart_stays_disarmed",
+    "physical": false
+  },
+  {
+    "id": "legacy_independent_decoder",
+    "evidence": "test_legacy_external_decoder_compatibility",
+    "physical": false
+  },
+  {
+    "id": "lost_ack",
+    "evidence": "test_missing_update_ack_stops_and_never_rearms",
+    "physical": false
+  },
+  {
+    "id": "bad_crc_duplicate",
+    "evidence": "test_bad_crc_and_duplicate_pose_do_not_double_count",
+    "physical": false
+  },
+  {
+    "id": "driver_failure",
+    "evidence": "test_driver_failure_is_not_success",
+    "physical": false
+  }
+]

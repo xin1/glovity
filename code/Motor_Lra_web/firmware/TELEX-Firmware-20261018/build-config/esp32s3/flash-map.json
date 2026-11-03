@@ -1,0 +1,14 @@
+{
+  "target": "esp32s3",
+  "path_base": "package root",
+  "flash_settings": {
+    "flash_mode": "dio",
+    "flash_size": "4MB",
+    "flash_freq": "40m"
+  },
+  "flash_files": {
+    "0x0": "binaries/esp32s3/bootloader.bin",
+    "0x8000": "binaries/esp32s3/partition-table.bin",
+    "0x10000": "binaries/esp32s3/telex_device.bin"
+  }
+}

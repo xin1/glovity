@@ -1,0 +1,42 @@
+Removed Pin From Net: NetName=VCC Pin=USB1-1
+Removed Pin From Net: NetName=D_N Pin=USB1-2
+Removed Pin From Net: NetName=D_P Pin=USB1-3
+Removed Pin From Net: NetName=GND Pin=USB1-4
+Removed Member From Class: ClassName=TELEX_BLE_RECEIVE_V1.0 Member=USB1
+Added Component: Designator=R10(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R11(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=U3(USB-C-SMD_TYPEC-304-BCP16)
+Added Pin To Net: NetName=GND Pin=R10-1
+Added Pin To Net: NetName=GND Pin=R11-1
+Added Pin To Net: NetName=GND Pin=U3-13
+Added Pin To Net: NetName=GND Pin=U3-14
+Added Pin To Net: NetName=GND Pin=U3-15
+Added Pin To Net: NetName=GND Pin=U3-16
+Added Pin To Net: NetName=GND Pin=U3-A1B12
+Added Pin To Net: NetName=VCC Pin=U3-A4B9
+Added Pin To Net: NetName=D_P Pin=U3-A6
+Added Pin To Net: NetName=D_N Pin=U3-A7
+Added Pin To Net: NetName=GND Pin=U3-B1A12
+Added Pin To Net: NetName=VCC Pin=U3-B4A9
+Added Pin To Net: NetName=D_P Pin=U3-B6
+Added Pin To Net: NetName=D_N Pin=U3-B7
+Added Pin To Net: NetName=NetR10_2 Pin=R10-2
+Added Pin To Net: NetName=NetR10_2 Pin=U3-A5
+Added Net: Name=NetR10_2
+Added Pin To Net: NetName=NetR11_2 Pin=R11-2
+Added Pin To Net: NetName=NetR11_2 Pin=U3-B5
+Added Net: Name=NetR11_2
+Change Class Name : Old Net Name=TELEX_BLE_RECEIVE_V1.0 New Net Name=TELEX_BLE_RECEIVE_TYPEC_V1.0
+Added Member To Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=Component R10 5.1K
+Added Member To Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=Component R11 5.1K
+Added Member To Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=Component U3 TYPE-C

@@ -1,0 +1,18 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: TELEX_CORE_LEFT_V2.0.PcbDoc   2026/10/16  10:52:01
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : TELEX_CORE_LEFT_V2.0-RoundHoles.TXT
+ASCII SlotHoles File : TELEX_CORE_LEFT_V2.0-SlotHoles.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      0.305mm (12mil)                                           Round             160       PTH        338.73mm (13.34inch)
+T2      0.406mm (16mil)                                           Round             25        PTH        127.62mm (5.02inch)
+T3      0.6mm (24mil)                                             Slot              4         PTH        37.02mm (1.46inch)
+T4      1.7mm (67mil)                                             Round             3         PTH        54.00mm (2.13inch)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              192
+
+Total Processing Time (hh:mm:ss) : 00:00:00

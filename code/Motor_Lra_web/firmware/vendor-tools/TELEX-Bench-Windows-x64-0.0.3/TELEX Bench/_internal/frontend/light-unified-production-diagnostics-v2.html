@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Glovity 生产烧录与诊断校准</title>
+  <style>
+    :root{
+      --bg:#f3f6fb;--surface:#fff;--sub:#f8fafc;--line:#dfe6ef;--line-2:#edf1f5;
+      --text:#172236;--muted:#718196;--blue:#2563eb;--blue-soft:#eaf1ff;
+      --purple:#7655d6;--purple-soft:#f1edff;--green:#138064;--green-soft:#e5f7f0;
+      --amber:#b96c05;--amber-soft:#fff3dc;--red:#cf3f56;--red-soft:#ffedf0;
+      --shadow:0 8px 28px rgba(31,55,89,.07)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;max-width:100%;overflow-x:hidden}
+    body{background:var(--bg);color:var(--text);font:14px/1.5 "Microsoft YaHei UI","Segoe UI",sans-serif}
+    button,input,select{font:inherit}.hidden{display:none!important}button{cursor:pointer}
+    .topbar{height:68px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 26px;gap:24px;position:sticky;top:0;z-index:30;backdrop-filter:blur(12px)}
+    .brand{display:flex;align-items:center;gap:11px;min-width:270px}.logo{width:37px;height:37px;border-radius:12px;background:linear-gradient(135deg,#2864ee,#78aaf9);display:grid;place-items:center;color:#fff;font-weight:850;box-shadow:0 6px 15px rgba(37,99,235,.25)}.brand b{display:block;letter-spacing:.06em}.brand small{display:block;color:var(--muted);font-size:9px}
+    .workspace-tabs{display:flex;gap:5px;background:#eef2f7;padding:4px;border-radius:10px}.workspace-tabs button{border:0;background:transparent;padding:8px 17px;border-radius:7px;color:#64748b;font-weight:700}.workspace-tabs button.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(36,54,80,.1)}
+    .spacer{flex:1}.scan-state{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:11px;white-space:nowrap}.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px var(--green-soft)}
+    .page{width:100%;max-width:1580px;margin:0 auto;padding:24px 28px 48px;min-width:0}
+    .page-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px}.page-head h1{font-size:24px;line-height:1.2;margin:0 0 5px}.page-head p{margin:0;color:var(--muted)}.head-actions{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+    .btn{border:1px solid var(--line);background:#fff;color:#43536b;padding:9px 14px;border-radius:9px;font-weight:700;transition:.15s}.btn:hover{border-color:#aebdd0;transform:translateY(-1px)}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.danger{background:var(--red-soft);border-color:#f1c4cb;color:var(--red)}.btn.ghost-blue{background:var(--blue-soft);border-color:#cbdafe;color:var(--blue)}.btn:disabled{opacity:.48;cursor:not-allowed;transform:none}.btn.small{padding:7px 10px;font-size:10px}.btn.active{background:var(--blue-soft);border-color:#b9cef8;color:var(--blue)}
+    .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 5px 20px rgba(30,55,90,.045);margin-bottom:14px;min-width:0}.panel-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}.panel-head h2{font-size:15px;margin:0}.panel-head p{font-size:10px;color:var(--muted);margin:3px 0 0}.panel-tools{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 9px;font-size:9px;background:#f1f4f8;color:#637287;border:1px solid #e5eaf0;white-space:nowrap}.badge.ok{background:var(--green-soft);border-color:#c8ebde;color:var(--green)}.badge.warn{background:var(--amber-soft);border-color:#f2d7a8;color:var(--amber)}.badge.blue{background:var(--blue-soft);border-color:#cedcfa;color:var(--blue)}.badge.purple{background:var(--purple-soft);border-color:#ddd4ff;color:var(--purple)}
+    .badge.error{background:var(--red-soft);border-color:#f1c4cb;color:var(--red)}.badge.active{background:var(--blue-soft);border-color:#cbdafe;color:var(--blue)}
+    .table-wrap{overflow:auto;border-radius:9px}.device-table,.imu-table{width:100%;border-collapse:collapse}.device-table th,.device-table td,.imu-table th,.imu-table td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line-2);font-size:10px;white-space:nowrap}.device-table th,.imu-table th{font-weight:650;color:#8796a8;background:#fbfcfe;position:sticky;top:0;z-index:1}.device-table tr:last-child td,.imu-table tr:last-child td{border-bottom:0}.role{font-weight:750}.port,code{font-family:Consolas,monospace;color:#516079}.source{font-size:8px;color:var(--muted)}.notice{padding:11px 13px;border-radius:9px;font-size:10px;margin-top:12px}.notice.info{background:var(--blue-soft);color:#335eac}.notice.warn{background:var(--amber-soft);color:#8a5d12}.notice.override{background:var(--red-soft);color:var(--red);border:1px solid #f1c4cb}
+    .versions{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}.version-card{border:1px solid var(--line);border-radius:13px;background:#fff;padding:15px;cursor:pointer;position:relative;transition:.16s;min-height:174px}.version-card:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(30,55,90,.07)}.version-card.disabled{opacity:.48;cursor:not-allowed;filter:saturate(.45)}.version-card.disabled:hover{transform:none;box-shadow:none}.version-card.selected{border:2px solid var(--blue);padding:14px;background:#fbfdff;box-shadow:0 0 0 3px rgba(37,99,235,.08)}.version-card.v4.selected{border-color:var(--purple);box-shadow:0 0 0 3px rgba(118,85,214,.09)}.version-card.v5.selected{border-color:var(--green);box-shadow:0 0 0 3px rgba(16,185,129,.09)}.version-card .topline{display:flex;align-items:center;gap:7px}.version-card h3{font-size:17px;margin:0}.version-card .status{margin-left:auto;font-size:8px;border-radius:999px;padding:4px 7px;background:#f1f4f8;color:#6b788a}.version-card .status.current{background:var(--green-soft);color:var(--green)}.version-card .status.new{background:var(--purple-soft);color:var(--purple)}.version-card p{color:var(--muted);font-size:10px;margin:8px 0 12px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:7px}.fact{background:var(--sub);border-radius:8px;padding:7px}.fact span{display:block;color:#8a98a8;font-size:8px}.fact b{font-size:10px}.auto-tag{position:absolute;right:12px;bottom:11px;color:var(--blue);font-size:9px;font-weight:750}.v4 .auto-tag{color:var(--purple)}.v5 .auto-tag{color:var(--green)}
+    .bind-grid{display:grid;gap:10px}.bind-row{display:grid;grid-template-columns:150px minmax(200px,250px) minmax(0,1fr);align-items:center;gap:14px;padding:11px 13px;border:1px solid var(--line-2);border-radius:11px;background:var(--sub)}.bind-role{display:flex;align-items:center;gap:10px;min-width:0}.bind-role .role-chip{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-weight:850;color:#fff;font-size:11px;flex:none}.role-chip.rx{background:var(--green)}.role-chip.left{background:var(--blue)}.role-chip.right{background:var(--purple)}.bind-role b{display:block;font-size:12px}.bind-role small{display:block;color:var(--muted);font-size:8px}.bind-mac{font-size:10px;min-width:0;overflow-wrap:anywhere;color:var(--muted)}.bind-mac b{font-family:Consolas,monospace;color:var(--text);font-size:10px}.bind-mac .source{font-size:8px;color:var(--muted);margin-top:2px}
+    .config-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:14px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field label{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.field input{width:100%;border:1px solid var(--line);background:#fff;color:var(--text);padding:10px 11px;border-radius:9px;outline:0}.field input:focus{border-color:#82a6ef;box-shadow:0 0 0 3px rgba(37,99,235,.11)}
+    .select-shell{position:relative;display:flex;align-items:center;border:1px solid var(--line);background:#fff;border-radius:9px;transition:.15s;min-width:0}.select-shell:hover{border-color:#aebdd0}.select-shell:focus-within{border-color:#7ea3ed;box-shadow:0 0 0 3px rgba(37,99,235,.11)}.select-shell.disabled{background:#f0f3f7;opacity:.62}.select-accent{position:absolute;left:11px;z-index:1;color:var(--blue);font-size:10px;font-weight:850;pointer-events:none;min-width:15px;text-align:center}.select-accent.purple{color:var(--purple)}.select-accent.neutral{color:#8290a2}.select-chevron{position:absolute;right:11px;width:7px;height:7px;border-right:1.6px solid #718196;border-bottom:1.6px solid #718196;transform:rotate(45deg) translateY(-2px);pointer-events:none}.select-shell select{appearance:none;-webkit-appearance:none;width:100%;border:0;background:transparent;color:var(--text);padding:10px 34px 10px 36px;outline:0;cursor:pointer;font-weight:600;min-width:0}.select-shell select:disabled{cursor:not-allowed}.select-shell.compact select{padding-top:7px;padding-bottom:7px;font-size:10px}
+    .checkbox-pill{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px 12px;cursor:pointer;font-size:10px;color:var(--text);min-height:42px}.checkbox-pill input{margin:0;accent-color:var(--blue);width:auto}.checkbox-pill .destructive{color:var(--red);font-weight:750}
+    .actions-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:13px 0 0}.mode-hint{margin-left:auto;font-size:9px;color:var(--muted)}
+    .id-preview{font-size:24px;font-weight:800;letter-spacing:.035em;color:var(--blue);background:var(--blue-soft);border-radius:10px;padding:13px 14px;margin-top:12px}.summary-line{display:flex;justify-content:space-between;gap:15px;padding:8px 0;border-bottom:1px solid var(--line-2);font-size:10px}.summary-line span{color:var(--muted)}.summary-line b{text-align:right}.summary-line:last-child{border-bottom:0}.bottom-actions{display:flex;justify-content:flex-end;align-items:center;gap:9px;flex-wrap:wrap}.compat{margin-right:auto;color:var(--green);font-size:10px}.compat.bad{color:var(--red)}
+    .exec-progress{height:10px;background:#e7edf5;border-radius:8px;overflow:hidden;margin-top:11px}.exec-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),#71a8ff);transition:.2s}.exec-progress-meta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:10px;margin-top:10px}.exec-progress-meta b{color:var(--text)}
+    .exec-log{font:10px/1.5 Consolas,monospace;height:180px;overflow-y:auto;background:var(--sub);border:1px solid var(--line-2);border-radius:10px;padding:8px 14px;margin-top:11px;scrollbar-color:#c8d3df transparent}.exec-log div{padding:6px 0;border-bottom:1px solid var(--line-2);color:var(--text);white-space:pre-wrap;overflow-wrap:anywhere}.exec-log div:last-child{border-bottom:0}.exec-log time{color:#8b99aa;margin-right:10px}.exec-log .ok{color:var(--green)}.exec-log .warn{color:var(--amber)}.exec-log .error{color:var(--red)}
+    .result-banner{border:1px solid;border-radius:10px;padding:12px 14px;margin-top:12px;font-size:10px;display:flex;gap:12px;align-items:flex-start}.result-banner.ok{background:var(--green-soft);border-color:#c8ebde;color:var(--green)}.result-banner.err{background:var(--red-soft);border-color:#f1c4cb;color:var(--red)}.result-banner b{display:block;font-size:12px;margin:0 0 4px}.result-banner p{margin:0;white-space:pre-wrap;line-height:1.55;flex:1;min-width:0}.result-banner .btn{margin-left:auto;flex:none}
+    .diagnostic-shell{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 68px)}.diag-nav{background:#fff;border-right:1px solid var(--line);padding:22px 14px}.diag-nav-title{font-size:9px;letter-spacing:.1em;color:#9aa7b7;margin:0 10px 12px}.diag-tab{width:100%;border:0;background:transparent;color:#64748b;text-align:left;padding:11px 12px;border-radius:10px;margin-bottom:5px;display:flex;align-items:center;gap:10px}.diag-tab i{font-style:normal;width:28px;height:28px;border-radius:8px;background:#eff3f7;display:grid;place-items:center}.diag-tab span{display:block;font-weight:750;font-size:12px}.diag-tab small{display:block;color:#9aa7b7;font-size:8px}.diag-tab.active{background:var(--blue-soft);color:var(--blue)}.diag-tab.active i{background:var(--blue);color:#fff}.session-card{margin-top:24px;padding:13px;background:var(--sub);border:1px solid var(--line-2);border-radius:10px;font-size:9px;color:var(--muted)}.session-card b{display:block;color:var(--text);margin-bottom:5px}.session-card div{display:flex;justify-content:space-between;padding-top:5px}
+    .session-controls{display:flex;gap:8px;flex-wrap:wrap}.hands-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}.hand-column{min-width:0}.hand-overview{border-top:3px solid var(--blue);padding-top:15px}.hand-overview.right{border-top-color:var(--purple)}.hand-title{display:flex;align-items:center;gap:10px}.hand-symbol{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue);font-weight:850}.right .hand-symbol{background:var(--purple-soft);color:var(--purple)}.hand-title h2{margin:0;font-size:16px}.hand-title p{margin:2px 0 0;color:var(--muted);font-size:9px}.connection{margin-left:auto}
+    .hand-metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:13px 0}.metric{background:var(--sub);border:1px solid var(--line-2);border-radius:10px;padding:10px 9px;min-width:0}.metric label{display:block;color:var(--muted);font-size:8px;white-space:nowrap}.metric strong{display:block;font-size:17px;margin-top:3px;white-space:nowrap}.metric strong small{font-size:8px;color:var(--muted);font-weight:500;margin-left:2px}.metric em{font-style:normal;color:var(--green);font-size:8px}
+    .chart-card{background:linear-gradient(180deg,#fff,#fbfcfe);border:1px solid var(--line-2);border-radius:11px;padding:10px}.chart{width:100%;height:190px;display:block}.gridline{stroke:#e9eef4;stroke-width:1}.axis{font-size:8px;fill:#8795a6}.chart-line{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.chart-area{opacity:.09}.chart-legend{display:flex;gap:14px;color:var(--muted);font-size:8px;flex-wrap:wrap;padding:2px 4px 0}.chart-legend i{display:inline-block;width:14px;height:2px;margin-right:5px;vertical-align:middle}.chart-note{margin-left:auto}
+    .imu-panel{padding:0;overflow:hidden}.imu-panel .panel-head{padding:15px 16px 0}.imu-panel .table-wrap{max-height:386px;border-top:1px solid var(--line-2);border-radius:0}.imu-table th,.imu-table td{padding:9px 8px}.imu-address{display:inline-flex;align-items:center;justify-content:center;min-width:49px;padding:4px 7px;border-radius:7px;font:750 10px/1 Consolas,monospace}.imu-address.left{background:var(--blue-soft);color:var(--blue);border:1px solid #d2def8}.imu-address.right{background:var(--purple-soft);color:var(--purple);border:1px solid #ddd5fa}.disconnected-mask{opacity:.58;filter:saturate(.45)}.last-frame{display:none}.disconnected-mask .last-frame{display:inline-flex}
+    .cal-layout{display:grid;grid-template-columns:minmax(330px,.82fr) minmax(500px,1.18fr);gap:14px;align-items:start}.cal-left{min-width:0}.cal-hero{background:linear-gradient(135deg,#edf4ff,#f7f9ff);border:1px solid #d9e5fb;border-radius:13px;padding:19px;margin-bottom:14px}.cal-hero h2{font-size:18px;margin:0 0 7px}.cal-hero p{color:var(--muted);margin:0;font-size:10px}.cal-rules{margin:14px 0 0;padding-left:18px;color:#586981;font-size:9px}.cal-rules li{margin:6px 0}.duration-row{display:flex;align-items:center;gap:12px}.duration-row input{flex:1}.duration-value{min-width:55px;text-align:right;font-weight:750;color:var(--blue)}.cal-state{height:520px;display:grid;place-items:center;text-align:center;overflow:hidden;margin-bottom:0}.cal-state-inner{width:min(100%,520px);padding:18px}.cal-ready-icon{width:68px;height:68px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:25px;margin:0 auto 12px}.countdown{font-size:66px;font-weight:800;color:var(--blue);line-height:1}.countdown small{font-size:13px;color:var(--muted)}.mag-values{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:17px auto 0;max-width:360px}.mag-values div{background:var(--sub);border-radius:9px;padding:10px}.mag-values span{display:block;color:var(--muted);font-size:8px}.mag-values b{font-family:Consolas,monospace;font-size:12px}.cal-actions{display:flex;justify-content:center;gap:8px;margin-top:18px;flex-wrap:wrap}.cal-progress{height:7px;background:#e7edf5;border-radius:8px;overflow:hidden;margin:16px auto 0;max-width:390px}.cal-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),#71a8ff);transition:.2s}
+    .event-log{font:10px/1.45 Consolas,monospace;height:240px;overflow-y:auto;scrollbar-color:#c8d3df transparent}.event-log div{padding:7px 0;border-bottom:1px solid var(--line-2)}.event-log time{color:#8b99aa;margin-right:8px}.event-log .ok{color:var(--green)}.event-log .warn{color:var(--amber)}.event-log .error{color:var(--red)}
+    .report-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}.report-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}.report-card label{display:block;color:var(--muted);font-size:9px}.report-card strong{display:block;font-size:20px;margin:4px 0}.report-card span{font-size:9px;color:var(--green)}.report-list{display:grid;gap:8px}.report-row{display:grid;grid-template-columns:38px 1.3fr 1fr .8fr auto;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line-2)}.report-row:last-child{border-bottom:0}.report-icon{width:34px;height:34px;border-radius:9px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:10px;font-weight:750}.report-row b{font-size:11px}.report-row small{display:block;color:var(--muted);font-size:9px}
+    .modal-bg{position:fixed;inset:0;background:rgba(23,34,54,.33);z-index:50;display:grid;place-items:center;padding:18px}.modal{background:#fff;border-radius:15px;box-shadow:0 20px 70px rgba(18,34,56,.2);width:min(520px,100%);padding:22px;max-height:calc(100vh - 40px);overflow:auto}.modal.wide{width:min(660px,100%)}.modal h2{font-size:18px;margin:0 0 5px}.modal>p{margin:0 0 14px;color:var(--muted);font-size:10px}.modal .summary-list{display:grid;gap:7px;margin-top:4px}.modal .summary-line{padding:7px 9px;background:var(--sub);border:1px solid var(--line-2);border-radius:8px;border-bottom:0}.modal .summary-line span{flex:none}.modal .summary-line b{text-align:left;font-size:10px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.toast{position:fixed;right:24px;bottom:24px;background:#24344b;color:#fff;padding:11px 15px;border-radius:9px;box-shadow:var(--shadow);z-index:80;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}.pulse{animation:pulse 1.4s infinite}@keyframes pulse{50%{opacity:.45}}
+    @media(max-width:1199px){.versions,.report-cards{grid-template-columns:1fr}.config-grid,.cal-layout{grid-template-columns:1fr}.hands-grid{grid-template-columns:1fr}.diagnostic-shell{grid-template-columns:190px minmax(0,1fr)}.cal-state{height:520px}.hand-metrics{grid-template-columns:repeat(5,minmax(92px,1fr));overflow:auto}.imu-panel .table-wrap{max-height:330px}}
+    @media(max-width:759px){.topbar{height:auto;min-height:68px;padding:10px 15px;flex-wrap:wrap}.brand{min-width:0}.brand small,.scan-state{display:none}.workspace-tabs{order:3;width:100%}.workspace-tabs button{flex:1}.page{padding:18px 14px 34px}.page-head{display:block}.head-actions{margin:12px 0 0}.bind-row{grid-template-columns:1fr;gap:9px}.fields{grid-template-columns:1fr}.diagnostic-shell{display:block}.diag-nav{border-right:0;border-bottom:1px solid var(--line);padding:10px 14px;display:flex;gap:6px;overflow:auto}.diag-nav-title,.session-card{display:none}.diag-tab{width:auto;min-width:132px;margin:0}.diag-tab small{display:none}.hand-metrics{grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}.cal-state{height:auto;min-height:420px}.event-log{height:240px}.report-row{grid-template-columns:38px 1fr auto}.report-row .hide-mobile{display:none}.bottom-actions{justify-content:flex-start}.compat{width:100%;margin:0}.chart{height:175px}.modal-actions{flex-wrap:wrap}.modal-actions .btn{flex:1 1 150px}}
+    @media(max-width:420px){.brand b{font-size:13px}.panel{padding:14px}.page-head h1{font-size:21px}.hand-metrics{grid-template-columns:1fr 1fr}.metric strong{font-size:15px}.mag-values{grid-template-columns:1fr}.countdown{font-size:52px}.report-row{grid-template-columns:34px 1fr}.report-row .btn{grid-column:2}.id-preview{font-size:19px}.workspace-tabs button{padding:8px 9px;font-size:12px}}
+  </style>
+<link rel="stylesheet" href="workbench.css">
+<script src="workbench.js" defer></script>
+</head>
+<body>
+<aside class="workbench-nav" aria-label="主导航">
+ <div class="workbench-brand"><span class="logo">G</span><div><b>Glovity</b><small>烧录与校准工作台</small></div></div>
+ <div class="nav-label">工作区</div>
+ <button class="nav-item active" data-page="production" onclick="navigateWorkbench('production')"><span>↗</span><div>设备与烧录<small>连接 · 固件 · 执行</small></div></button>
+ <button class="nav-item" data-page="monitor" onclick="navigateWorkbench('monitor')"><span>⌁</span><div>实时监控<small>双手数据与 IMU</small></div></button>
+ <button class="nav-item" data-page="calibration" onclick="navigateWorkbench('calibration')"><span>◎</span><div>磁力计校准<small>无线与 USB 有线</small></div></button>
+ <button class="nav-item" data-page="signal" onclick="navigateWorkbench('signal')"><span>▥</span><div>信号测试<small>采集 · 质量 · 导出</small></div></button>
+ <button class="nav-item" data-page="reports" onclick="navigateWorkbench('reports')"><span>▤</span><div>记录与报告<small>查看结果与原始数据</small></div></button>
+ <div class="nav-foot"><b>Unified Console · 1.1.0</b><small>Mac 测试版 · ver.2 / 3 / 4 / 5</small><button class="btn small" onclick="showGuide()">使用指南</button></div>
+</aside>
+  <header class="topbar">
+    <div class="brand"><div class="logo">G</div><div><b>GLOVITY</b><small>设备、固件与数据</small></div></div>
+    <nav class="workspace-tabs" aria-label="工作区">
+      <button id="ws-production" class="active" onclick="switchWorkspace('production')">生产烧录</button>
+      <button id="ws-diagnostics" onclick="switchWorkspace('diagnostics')">诊断与校准</button>
+    </nav>
+    <div class="spacer"></div>
+    <div class="scan-state"><i class="live-dot"></i><span id="top-status">后端未连接</span></div>
+  </header>
+
+  <section id="production-workspace">
+    <main class="page">
+      <div class="page-head">
+        <div><h1>设备与烧录</h1><p>按顺序连接设备、选择固件并确认任务；执行前会再次核对配置。</p></div>
+        <div class="head-actions"><button id="scan-btn" class="btn" onclick="scanSerialPorts()">刷新串口</button><button id="reidentify-btn" class="btn" onclick="reidentifyReceiverMcu()">重新识别 MCU</button></div>
+      </div>
+      <section class="panel">
+        <div class="panel-head"><div><h2>设备扫描结果</h2><p>连接 USB 数据线后等待识别；未识别的设备可在下方手动绑定。</p></div><div class="panel-tools"><span id="scan-summary" class="badge">等待设备</span><span id="probe-badge" class="badge warn">代际未确认</span></div></div>
+        <div class="table-wrap"><table class="device-table"><thead><tr><th>串口</th><th>角色</th><th>ID</th><th>MAC</th><th>MCU</th><th>固件</th><th>查询状态</th></tr></thead><tbody id="device-body"></tbody></table></div>
+        <div id="probe-notice" class="notice warn"><b>空白 S3 设备无法区分 ver.3 / ver.5。</b> 请手动选择固件代际（ver.2 / ver.4 同样可人工指定）。</div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><h2>2. 选择固件版本</h2><p>版本只影响设备选择、固件资源和 MCU 配置；后续生产、诊断与校准流程保持一致。</p></div><div class="panel-tools"><span id="selection-source" class="badge warn">代际未确认</span><button id="reset-generation-btn" class="btn small" onclick="resetGenerationSelection()">恢复系统预选</button></div></div>
+        <div class="versions">
+          <article id="ver-2" class="version-card" onclick="selectVersion(2,false)"><div class="topline"><h3>ver.2</h3><span class="status">0704 历史版</span></div><p>0704 交付固件，用于旧批次 ESP32-S3 设备维护。</p><div class="facts"><div class="fact"><span>目标 MCU</span><b>ESP32-S3</b></div><div class="fact"><span>ID 前缀</span><b>TELEX_2…</b></div><div class="fact"><span>固件资源</span><b>已导入</b></div><div class="fact"><span>定位</span><b>历史版本</b></div></div><span id="tag-ver-2" class="auto-tag"></span></article>
+          <article id="ver-3" class="version-card" onclick="selectVersion(3,false)"><div class="topline"><h3>ver.3</h3><span class="status current">S3 可靠版</span></div><p>当前 ESP32-S3 正式固件，支持可靠无线校准和生产验收。</p><div class="facts"><div class="fact"><span>目标组合</span><b>S3 接收器 + S3 手套</b></div><div class="fact"><span>ID 前缀</span><b>TELEX_3…</b></div><div class="fact"><span>固件资源</span><b>已验证</b></div><div class="fact"><span>定位</span><b>正式版本</b></div></div><span id="tag-ver-3" class="auto-tag"></span></article>
+          <article id="ver-4" class="version-card v4" onclick="selectVersion(4,false)"><div class="topline"><h3>ver.4</h3><span class="status new">C6 手套版</span></div><p>继续使用 S3/ver.3 接收器，手套改为 ESP32-C6/ver.4；统一使用 TELEX_4… ID。</p><div class="facts"><div class="fact"><span>目标组合</span><b>S3 接收器 + C6 手套</b></div><div class="fact"><span>ID 前缀</span><b>TELEX_4…</b></div><div class="fact"><span>固件资源</span><b>已导入</b></div><div class="fact"><span>流程差异</span><b>仅选择阶段</b></div></div><span id="tag-ver-4" class="auto-tag"></span></article>
+          <article id="ver-5" class="version-card v5" onclick="selectVersion(5,false)"><div class="topline"><h3>ver.5</h3><span class="status new">双平面校准版</span></div><p>2026-08-28 正式固件，S3 手套 + S3 接收器；磁力计校准使用 0x09 双平面模式。</p><div class="facts"><div class="fact"><span>目标组合</span><b>S3 接收器 + S3 手套</b></div><div class="fact"><span>ID 前缀</span><b>TELEX_5…</b></div><div class="fact"><span>固件资源</span><b>已验证</b></div><div class="fact"><span>定位</span><b>最新正式版</b></div></div><span id="tag-ver-5" class="auto-tag"></span></article>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><h2>1. 连接设备与分配角色</h2><p>把扫描到的串口分配给接收器 / 左手 / 右手；选择后即时保存；单设备返修时只绑定一个目标。</p></div><div class="panel-tools"><span class="badge blue">自动读取配对地址</span></div></div>
+        <div class="bind-grid">
+          <div class="bind-row">
+            <div class="bind-role"><span class="role-chip rx">RX</span><div><b>接收器</b><small>receiver</small></div></div>
+            <div class="field" style="margin:0"><label for="assign-receiver">绑定端口</label><div class="select-shell"><span class="select-accent neutral">⇄</span><select id="assign-receiver" onchange="assignRole('receiver',this.value)"><option value="">未分配 · 请选择端口</option></select><i class="select-chevron"></i></div></div>
+            <div class="bind-mac" id="bind-mac-receiver"><b>尚未读取</b><div class="source">自动检测 · 可手动覆盖</div></div>
+          </div>
+          <div class="bind-row">
+            <div class="bind-role"><span class="role-chip left">L</span><div><b>左手</b><small>left</small></div></div>
+            <div class="field" style="margin:0"><label for="assign-left">绑定端口</label><div class="select-shell"><span class="select-accent neutral">⇄</span><select id="assign-left" onchange="assignRole('left',this.value)"><option value="">未分配 · 请选择端口</option></select><i class="select-chevron"></i></div></div>
+            <div class="bind-mac" id="bind-mac-left"><b>尚未读取</b><div class="source">自动检测 · 可手动覆盖</div></div>
+          </div>
+          <div class="bind-row">
+            <div class="bind-role"><span class="role-chip right">R</span><div><b>右手</b><small>right</small></div></div>
+            <div class="field" style="margin:0"><label for="assign-right">绑定端口</label><div class="select-shell"><span class="select-accent neutral">⇄</span><select id="assign-right" onchange="assignRole('right',this.value)"><option value="">未分配 · 请选择端口</option></select><i class="select-chevron"></i></div></div>
+            <div class="bind-mac" id="bind-mac-right"><b>尚未读取</b><div class="source">自动检测 · 可手动覆盖</div></div>
+          </div>
+        </div>
+      </section>
+      <div class="config-grid">
+        <section class="panel">
+          <div class="panel-head"><div><h2>3. 设置烧录任务</h2><p>组合产品代码与流水号后应用设备 ID；套装可选完整或快速方式，两者均检查无线配对；返修保留未覆盖分区。</p></div></div>
+          <div class="fields">
+            <div class="field"><label for="bundle">烧录模式</label><div class="select-shell"><span class="select-accent neutral" id="accent-bundle">▣</span><select id="bundle" onchange="applyFlashMode(this.value)"><option value="full_set" selected>自动套装 · 接收器 + 检测到的手</option><option value="single">单设备修复 · 仅绑定一个角色</option></select><i class="select-chevron"></i></div></div>
+            <div class="field"><label for="kind">产品代码</label><div class="select-shell"><span class="select-accent neutral" id="accent-kind">T</span><select id="kind" onchange="updateSelectAccent('kind');updateId()"><option value="P">P · Production</option><option value="D">D · Development</option><option value="T" selected>T · Test</option><option value="Q">Q · Quality</option></select><i class="select-chevron"></i></div></div>
+            <div class="field"><label for="serial">三位流水号</label><input id="serial" type="number" min="1" max="999" value="1" oninput="updateId()"></div>
+            <div class="field hidden" id="erase-field"><label for="full-erase-single">全擦除策略（仅单设备修复）</label><label class="checkbox-pill" for="full-erase-single"><input id="full-erase-single" type="checkbox" onchange="toggleFullErase()"><span>烧录前全擦除目标设备<span class="destructive">（危险操作）</span></span></label></div>
+          </div>
+          <div class="actions-row"><button id="apply-serial-btn" class="btn ghost-blue" onclick="applyDeviceId()">应用设备 ID</button><span id="mode-hint" class="mode-hint">自动套装：识别到接收器即自动匹配检测到的手，无需手动区分单/双手套</span></div>
+          <div id="id-preview" class="id-preview">TELEX_?T_001</div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><div><h2>任务摘要</h2><p>烧录前只展示影响执行的关键配置。</p></div></div>
+          <div class="summary-line"><span>设备 ID</span><b id="sum-id">TELEX_?T_001</b></div>
+          <div class="summary-line"><span>烧录模式</span><b id="sum-bundle">双手套装 · 接收器 + 左右手</b></div>
+          <div class="summary-line"><span>代际来源</span><b id="sum-source">代际未确认</b></div>
+          <div class="summary-line"><span>硬件组合</span><b id="sum-chip">等待扫描</b></div>
+          <div class="summary-line"><span>固件版本</span><b id="sum-version">待选择</b></div>
+          <div class="summary-line"><span>资源状态</span><b id="sum-manifest">等待代际确认</b></div>
+          <div class="bottom-actions" style="margin-top:16px"><span id="compat" class="compat bad">等待代际确认后才能继续</span><button id="flash-btn" class="btn primary" disabled onclick="openFlashConfirm()">请先选择代际</button></div>
+        </section>
+      </div>
+      <section class="panel">
+        <div class="panel-head"><div><h2>烧录执行</h2><p>停止请求会在当前设备操作安全结束后生效。任务完成前请保持供电和连接。</p></div><div class="panel-tools"><span id="exec-phase-badge" class="badge">空闲</span><span id="exec-completed" class="badge blue">已完成 0 套</span></div></div>
+        <div class="exec-progress-meta"><span id="exec-progress-label">等待开始</span><b id="exec-progress-percent">0%</b></div>
+        <div class="exec-progress"><i id="exec-progress-fill"></i></div>
+        <div id="exec-result" class="result-banner hidden">
+          <div><b id="exec-result-title">烧录完成</b><p id="exec-result-detail"></p></div>
+          <button id="exec-reset-btn" class="btn" onclick="resetFlash()">复位</button>
+        </div>
+        <div id="exec-log-list" class="exec-log"><div><time>--:--:--</time>等待任务开始。</div></div>
+        <div class="bottom-actions" style="margin-top:14px"><span id="stop-hint" class="compat" style="color:var(--muted)">烧录未开始</span><button id="exec-stop-btn" class="btn danger" disabled onclick="stopFlash()">安全停止</button></div>
+      </section>
+    </main>
+  </section>
+
+  <section id="diagnostics-workspace" class="hidden">
+    <div class="diagnostic-shell">
+      <aside class="diag-nav">
+        <div class="diag-nav-title">诊断工作区</div>
+        <button id="diag-monitor-tab" class="diag-tab active" onclick="switchDiagnostic('monitor')"><i>⌁</i><div><span>实时监控</span><small>双手 IMU 与链路</small></div></button>
+        <button id="diag-cal-tab" class="diag-tab" onclick="switchDiagnostic('calibration')"><i>◎</i><div><span>磁力计校准</span><small>无线默认 / 有线备选</small></div></button>
+        <button id="diag-report-tab" class="diag-tab" onclick="switchDiagnostic('reports')"><i>▤</i><div><span>记录与报告</span><small>会话与验收结果</small></div></button>
+        <div class="session-card"><b>当前会话</b><div><span>接收器</span><em>—</em></div><div><span>左手</span><em>—</em></div><div><span>右手</span><em>—</em></div><div><span>协议</span><em>REMOTE_CAL_1</em></div></div>
+      </aside>
+      <main class="page">
+        <section id="monitor-view">
+          <div class="page-head">
+            <div><h1>双手实时监控</h1><p>左右手始终同屏，采用统一时间轴和量程；暂停与记录作用于整个会话。</p></div>
+            <div class="head-actions session-controls"><button id="pause-btn" class="btn hidden" onclick="toggleLive()">暂停刷新</button><button id="record-btn" class="btn primary" onclick="navigateWorkbench('signal')">采集与记录</button><button id="monitor-start-btn" class="btn" onclick="startMonitor()">开始监控</button><button id="monitor-stop-btn" class="btn danger hidden" onclick="stopMonitor()">停止监控</button><span id="live-badge" class="badge ok">● 双手实时</span></div>
+          </div>
+          <div class="hands-grid">
+            <div id="hand-left-column" class="hand-column">
+              <section class="panel hand-overview left">
+                <div class="hand-title"><div class="hand-symbol">L</div><div><h2>左手</h2><p>等待接收器数据 · 11 个通道</p></div><span id="left-connection" class="connection badge ok">等待数据</span></div>
+                <div id="left-metrics" class="hand-metrics"></div>
+                <div class="chart-card"><svg id="chart-left" class="chart" viewBox="0 0 640 190" role="img" aria-label="左手通信质量趋势"></svg><div class="chart-legend"><span><i style="background:var(--blue)"></i>采样率</span><span><i style="background:var(--green)"></i>丢包率</span><span><i style="background:var(--amber)"></i>RTT</span><span class="chart-note">共同时间窗 · 60 秒</span></div></div>
+              </section>
+              <section class="panel imu-panel"><div class="panel-head"><div><h2>左手 IMU 快照</h2><p>角色色标只用于识别，不代表告警级别。</p></div><div class="panel-tools"><span class="badge blue">L · 11 颗</span><span class="badge last-frame">保留最后一帧</span></div></div><div class="table-wrap"><table class="imu-table"><thead><tr><th>IMU 地址</th><th>Roll</th><th>Pitch</th><th>Yaw</th><th>Q0</th><th>Q1</th><th>Q2</th><th>状态</th></tr></thead><tbody id="imu-left-body"></tbody></table></div></section>
+            </div>
+            <div id="hand-right-column" class="hand-column">
+              <section class="panel hand-overview right">
+                <div class="hand-title"><div class="hand-symbol">R</div><div><h2>右手</h2><p>等待接收器数据 · 11 个通道</p></div><span id="right-connection" class="connection badge ok">等待数据</span></div>
+                <div id="right-metrics" class="hand-metrics"></div>
+                <div class="chart-card"><svg id="chart-right" class="chart" viewBox="0 0 640 190" role="img" aria-label="右手通信质量趋势"></svg><div class="chart-legend"><span><i style="background:var(--purple)"></i>采样率</span><span><i style="background:var(--green)"></i>丢包率</span><span><i style="background:var(--amber)"></i>RTT</span><span class="chart-note">共同时间窗 · 60 秒</span></div></div>
+              </section>
+              <section class="panel imu-panel"><div class="panel-head"><div><h2>右手 IMU 快照</h2><p>地址 0x50–0x59 与 0x60，共 11 颗。</p></div><div class="panel-tools"><span class="badge purple">R · 11 颗</span><span class="badge last-frame">保留最后一帧</span></div></div><div class="table-wrap"><table class="imu-table"><thead><tr><th>IMU 地址</th><th>Roll</th><th>Pitch</th><th>Yaw</th><th>Q0</th><th>Q1</th><th>Q2</th><th>状态</th></tr></thead><tbody id="imu-right-body"></tbody></table></div></section>
+            </div>
+          </div>
+        </section>
+
+        <section id="calibration-view" class="hidden">
+          <div class="page-head"><div><h1>磁力计校准</h1><p>默认经接收器无线校准；有线 USB 为主动选择的备选方案。</p></div><div class="head-actions"><button class="btn" onclick="switchDiagnostic('monitor')">返回监控</button></div></div>
+          <div class="cal-layout">
+            <div class="cal-left">
+              <div class="cal-hero"><h2>校准任务设置</h2><p>先让手套预热约 5 分钟，再缓慢向各方向旋转。开始后查看实际收到的 IMU 数据。</p><ul class="cal-rules"><li>无线模式通过接收器发送 START/STOP/ABORT，并持续跟踪目标数据。</li><li>有线模式开始前自动检查目标手套 USB 是否存在。</li><li>断连会结束本机会话；无线取消使用 ABORT，有线退出由固件决定。保存以 COMPLETE 为准。</li></ul></div>
+              <section class="panel">
+                <div class="fields">
+                  <div class="field"><label for="cal-hand">目标手套</label><div class="select-shell"><span id="accent-cal-hand" class="select-accent">●</span><select id="cal-hand" onchange="updateSelectAccent('cal-hand')"><option value="left">左手</option><option value="right">右手</option></select><i class="select-chevron"></i></div></div>
+                  <div class="field"><label for="cal-mode">校准方式</label><div class="select-shell"><span id="accent-cal-mode" class="select-accent">⌁</span><select id="cal-mode" onchange="updateSelectAccent('cal-mode')"><option value="wireless">无线 · 默认</option><option value="wired">有线 USB · 备选</option></select><i class="select-chevron"></i></div></div>
+                </div>
+                <div class="field" style="margin-top:13px"><label for="cal-duration">校准时长</label><div class="duration-row"><input id="cal-duration" type="range" min="20" max="50" value="35" oninput="updateDuration()"><span id="duration-value" class="duration-value">35 秒</span></div></div>
+                <button class="btn primary" style="width:100%;margin-top:16px" onclick="startCalibration()">开始校准</button>
+              </section>
+              <section class="panel"><div class="panel-head"><div><h2>事件日志</h2><p>查看当前任务的状态变化与结果。</p></div></div><div id="event-log" class="event-log"><div><time>--:--:--</time>等待任务开始。</div></div></section>
+            </div>
+            <section class="panel cal-state">
+              <div id="cal-ready" class="cal-state-inner"><div class="cal-ready-icon">◎</div><h2>准备就绪</h2><p style="color:var(--muted)">选择目标、连接方式和时长后开始。无线模式为默认项。</p></div>
+              <div id="cal-running" class="cal-state-inner hidden"><div class="badge ok pulse">● 正在接收目标手套数据</div><div style="margin-top:15px"><span id="cal-count" class="countdown">35<small> 秒</small></span></div><p id="cal-sub" style="color:var(--muted)">左手 · 无线校准 · 旋转手套覆盖多个方向</p><div class="mag-values"><div><span>MAG X</span><b id="mag-x">—</b></div><div><span>MAG Y</span><b id="mag-y">—</b></div><div><span>MAG Z</span><b id="mag-z">—</b></div></div><div class="cal-progress"><i id="cal-progress-bar"></i></div><div class="cal-actions"><button class="btn primary" onclick="stopCalibration(true)">提前结束并保存</button><button class="btn danger" onclick="stopCalibration(false)">取消且不保存</button></div></div>
+              <div id="cal-result" class="cal-state-inner hidden"><div id="result-icon" class="cal-ready-icon">✓</div><h2 id="result-title">校准完成</h2><p id="result-text" style="color:var(--muted)">已收到 COMPLETE，并恢复实时监控。</p><div class="cal-actions"><button class="btn primary" onclick="resetCalibration();switchDiagnostic('monitor')">关闭并恢复监控</button><button class="btn" onclick="resetCalibration()">再次校准</button></div></div>
+            </section>
+          </div>
+        </section>
+
+
+<section id="signal-view" class="hidden">
+ <div class="page-head"><div><h1>信号测试</h1><p>使用接收器的真实帧流，记录原始数据并生成双手质量报告。</p></div></div>
+ <section class="panel capture-config"><div><h2>采集设置</h2><p>先在设备页绑定接收器，再开始监控。采集与监控共享同一读流。</p><div class="field"><label for="capture-seconds">记录时长</label><select id="capture-seconds"><option value="30">30 秒 · 快速检查</option><option value="60">60 秒 · 标准检查</option><option value="120">120 秒 · 稳定性检查</option></select></div></div><div class="capture-actions"><button class="btn" onclick="startMonitor()">开始监控</button><button id="capture-start-btn" class="btn primary" onclick="startCapture()">开始测试并记录</button><button id="capture-stop-btn" class="btn danger hidden" onclick="stopCapture()">结束并保存</button></div></section>
+ <section class="panel"><div class="panel-head"><h2 id="capture-status">等待开始</h2><span id="capture-count" class="badge">0 帧</span></div><div class="exec-progress"><i id="capture-progress"></i></div><p id="capture-detail">完成后保存质量报告、原始帧 CSV 和完整 IMU 解析 CSV。</p><div id="quality-result" class="table-wrap"><p class="empty-state">尚无测试结果。未接收到数据时不会显示“通过”。</p></div></section>
+ <div class="notice info">RSSI 与 RTT 未包含在当前接收器协议中，显示为未提供。IMU 通道有数据不等于传感器已通过硬件验收。</div>
+</section>
+<section id="reports-view" class="hidden">
+ <div class="page-head"><div><h1>记录与报告</h1><p>保留真实任务结果、采集数据及会话快照，便于核对与回到 Windows 测试。</p></div><div class="head-actions"><button class="btn" onclick="openReportsFolder()">打开保存目录</button><button class="btn primary" onclick="exportSession()">保存会话快照</button></div></div>
+ <section class="panel"><div class="panel-head"><div><h2>最近记录</h2><p id="report-count">正在读取</p></div><button class="btn small" onclick="refreshReports()">刷新</button></div><div id="report-list" class="report-list"><p class="empty-state">暂无记录</p></div></section>
+</section>
+
+      </main>
+    </div>
+  </section>
+
+  <div id="confirm-modal" class="modal-bg hidden"><div class="modal wide">
+    <h2>确认此次烧录</h2><p>确认仅针对当前快照；角色、模式、设备 ID 或代际变更后需重新确认。</p>
+    <div id="confirm-body" class="summary-list"></div>
+    <div id="confirm-warnings" class="notice warn hidden"></div>
+    <div class="modal-actions"><button class="btn" onclick="cancelFlashConfirm()">返回修改</button><button id="confirm-flash-btn" class="btn primary" onclick="startFlash()">确认并开始烧录</button></div>
+  </div></div>
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script>
+    let version=null,selectionSource="unknown",live=true,recording=false,calTimer=null,lastCalStatus=null,liveEvidence=null,flashMode="full_set",backendDeviceId=null;
+    let backendConnected=false,backendPollInFlight=false,backendPollTimer=null,lastBackendState=null;
+    let generationState={status:"unknown",generation:null,source:"none"};
+    const roleBindingSig={};
+    const profiles={
+      2:{chip:"ESP32-S3",name:"0704 历史版",manifest:"资源待构建"},
+      3:{chip:"ESP32-S3",name:"S3 可靠版",manifest:"已加载并验证 SHA256"},
+      4:{chip:"HYBRID",name:"S3 Receiver + C6 Gloves",manifest:"ver.4 手套资源待正式导入"},
+      5:{chip:"ESP32-S3",name:"v5 Reliable 20260828",manifest:"已加载并验证 SHA256"}
+    };
+    const phaseLabels={
+      idle:"空闲 · 就绪",reading_macs:"读取 MAC 地址",validating_input:"校验输入",patching:"修补固件",
+      erasing:"擦除 Flash",flashing:"正在烧录固件",waiting_reenumeration:"等待设备重枚举",
+      verifying_identity:"校验设备身份",verifying_pairing:"校验无线配对",done:"已完成",error:"执行失败"
+    };
+    const handState={
+      left:{label:"左手",accent:"blue",connected:false,lastUpdate:"尚未接收",rate:0,loss:0,rssi:null,rtt:0,battery:null},
+      right:{label:"右手",accent:"purple",connected:false,lastUpdate:"尚未接收",rate:0,loss:0,rssi:null,rtt:0,battery:null}
+    };
+    const imuAddresses=["0x50","0x51","0x52","0x53","0x54","0x55","0x56","0x57","0x58","0x59","0x60"];
+    const selectAccents={"cal-hand":{left:"●",right:"●"},"cal-mode":{wireless:"⌁",wired:"USB"},"bundle":{full_set:"▣",single:"◫"}};
+
+    function esc(value){
+      return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+    function roleName(role){return role==="receiver"?"接收器":role==="left"?"左手":role==="right"?"右手":role}
+    function rawAssignment(value){
+      return typeof value==="string"?value.replace(/\s*\(unavailable\)\s*$/,""):"";
+    }
+    function modeLabel(mode){
+      return mode==="single"?"单设备修复 · 仅绑定一个角色":mode==="full_set"?"自动套装 · 接收器 + 检测到的手":(mode||"—");
+    }
+
+    function switchWorkspace(name){
+      document.getElementById("production-workspace").classList.toggle("hidden",name!=="production");
+      document.getElementById("diagnostics-workspace").classList.toggle("hidden",name!=="diagnostics");
+      document.getElementById("ws-production").classList.toggle("active",name==="production");
+      document.getElementById("ws-diagnostics").classList.toggle("active",name==="diagnostics");
+      document.getElementById("top-status").textContent=name==="production"?(backendConnected?"后端已连接 · 自动刷新 5 Hz":"后端未连接"):"接收器 — · 诊断会话 · 联合监控";
+      window.scrollTo(0,0);
+    }
+    function switchDiagnostic(name){
+      const ids={monitor:"monitor-view",calibration:"calibration-view",reports:"reports-view"};
+      Object.entries(ids).forEach(([key,id])=>document.getElementById(id).classList.toggle("hidden",key!==name));
+      ["monitor","cal","report"].forEach(key=>document.getElementById("diag-"+key+"-tab").classList.remove("active"));
+      document.getElementById("diag-"+(name==="calibration"?"cal":name==="reports"?"report":"monitor")+"-tab").classList.add("active");
+      window.scrollTo(0,0);
+    }
+
+    function selectVersion(value,automatic=false,source="manual"){
+      if(automatic&&generationState.status!=="resolved")return;
+      if(!automatic){
+        const mismatch=generationState.status!=="unknown"&&generationState.generation!==null&&value!==generationState.generation;
+        selectionSource=mismatch?"override":"manual";
+        generationState={status:generationState.status,generation:generationState.generation,source:generationState.source};
+        if(backendConnected){
+          postBridgeJson("/api/generation/select",{generation:value,override_reason:mismatch?"Operator manually selected a different generation":""})
+            .then(applyBackendState).catch(error=>toast("代际选择未同步："+error.message));
+        }
+      }else selectionSource=source;
+      version=value;renderVersionSelection();updateId();updateSummary();
+    }
+    function inferGeneration(evidence){
+      const chipCandidates=new Set();
+      (evidence.gloveChips||[]).forEach(chip=>{
+        if(chip==="ESP32-C6")chipCandidates.add(4);
+        else if(chip==="ESP32-S3"){chipCandidates.add(3);chipCandidates.add(5)}
+      });
+      const idGenerations=new Set((evidence.deviceIds||[]).map(id=>{
+        const current=/^TELEX_([345])[PDTQ]_[0-9]{3}$/.exec(id||"");
+        const legacy=/^TELEX_2(?:[PDTQ]|A(?:_(?:RX|LEFT|RIGHT))?)_[0-9]{3}$/.exec(id||"");
+        return current?Number(current[1]):legacy?2:null;
+      }).filter(Boolean));
+      if(idGenerations.size>0){
+        if(idGenerations.size>1)return{status:"conflict",generation:null,source:"conflict"};
+        const idGen=[...idGenerations][0];
+        if(chipCandidates.size===0)return{status:"resolved",generation:idGen,source:"device_id"};
+        if(chipCandidates.has(idGen))return{status:"resolved",generation:idGen,source:"glove_mcu+device_id"};
+        return{status:"conflict",generation:null,source:"conflict"};
+      }
+      if(chipCandidates.size===1)return{status:"resolved",generation:[...chipCandidates][0],source:"glove_mcu"};
+      if(chipCandidates.size>1)return{status:"unknown",generation:null,source:"glove_mcu_ambiguous"};
+      return{status:"unknown",generation:null,source:"none"};
+    }
+    function generationSourceLabel(source){
+      return source==="glove_mcu"?"手套 MCU 自动匹配":source==="device_id"?"设备 ID 自动匹配":source==="glove_mcu+device_id"?"MCU + ID 一致":source==="glove_mcu_ambiguous"?"S3 手套同时兼容 ver.3 / ver.5，需人工确认":source==="manual"?"人工选择代际":source==="override"?"人工覆盖代际":source==="conflict"?"代际冲突":"代际未确认";
+    }
+    function renderVersionSelection(){
+      [2,3,4,5].forEach(v=>{
+        const card=document.getElementById("ver-"+v),tag=document.getElementById("tag-ver-"+v),selected=v===version,disabled=false;
+        card.classList.toggle("selected",selected);card.classList.toggle("disabled",disabled);card.setAttribute("aria-disabled",disabled?"true":"false");
+        tag.textContent=selected?(selectionSource==="unknown"?"":selectionSource==="manual"?"✓ 人工锁定":selectionSource==="override"?"⚠ 人工覆盖":generationSourceLabel(selectionSource)):"";
+      });
+    }
+    function applyGenerationEvidence(evidence){
+      generationState=inferGeneration(evidence);
+      if(selectionSource==="manual"||selectionSource==="override"){
+        renderVersionSelection();updateId();updateSummary();return;
+      }
+      if(generationState.status==="resolved"){
+        version=generationState.generation;selectionSource=generationState.source;renderVersionSelection();updateId();updateSummary();
+        return;
+      }
+      version=null;selectionSource=generationState.status==="conflict"?"conflict":"unknown";
+      renderVersionSelection();updateId();updateSummary();
+    }
+    function detectedChip(){
+      const data=liveEvidence;
+      if(!data)return"等待扫描";
+      if(data.gloveChips&&data.gloveChips.length)return(data.receiverChip||"未知")+" 接收器 + "+data.gloveChips.join(" / ")+" 手套";
+      if(data.deviceIds&&data.deviceIds.length)return(data.receiverChip||"未知")+" 接收器 · 已读设备 ID";
+      return(data.receiverChip||"未知")+" 接收器";
+    }
+    function isCompatible(chip){
+      if(version===null)return false;
+      if(selectionSource==="manual"||selectionSource==="override"||generationState.status==="manual")return true;
+      return generationState.status==="resolved"&&version===generationState.generation;
+    }
+    function updateId(){
+      const n=Math.max(1,Math.min(999,parseInt(document.getElementById("serial").value||"1",10)||1));
+      const kind=document.getElementById("kind").value,prefix=version===null?"?":version;
+      const computed="TELEX_"+prefix+kind+"_"+String(n).padStart(3,"0");
+      const previewEl=document.getElementById("id-preview"),sumEl=document.getElementById("sum-id");
+      const shown=backendDeviceId||computed;
+      if(previewEl)previewEl.textContent=shown;
+      if(sumEl)sumEl.textContent=shown;
+    }
+    function updateSummary(){
+      const p=version?profiles[version]:null,chip=detectedChip(),compatible=isCompatible(chip),sourceLabel=generationSourceLabel(selectionSource);
+      const sourceBadge=document.getElementById("selection-source");
+      sourceBadge.textContent=sourceLabel;
+      sourceBadge.className="badge "+(generationState.status==="resolved"||generationState.status==="manual"?"ok":"warn");
+      document.getElementById("sum-source").textContent=sourceLabel;
+      document.getElementById("sum-chip").textContent=chip;
+      document.getElementById("sum-version").textContent=p?"ver."+version+" · "+p.name:"待选择";
+      document.getElementById("sum-manifest").textContent=p?p.manifest:"等待代际确认";
+      document.getElementById("sum-bundle").textContent=modeLabel(flashMode);
+      const compat=document.getElementById("compat"),btn=document.getElementById("flash-btn");
+      if(generationState.status==="conflict"&&selectionSource!=="manual"&&selectionSource!=="override"){compat.textContent="⚠ 代际冲突，请人工选择并确认";compat.className="compat bad"}
+      else if(selectionSource==="manual"||selectionSource==="override"){compat.textContent=selectionSource==="override"?"⚠ 已人工覆盖，请确认设备证据":"✓ 已人工锁定代际，可继续烧录";compat.className="compat "+(selectionSource==="override"?"bad":"")}
+      else if(generationState.status==="unknown"){compat.textContent="等待手动选择 ver.2、ver.3、ver.4 或 ver.5";compat.className="compat bad"}
+      else{compat.textContent=compatible?"✓ "+sourceLabel:"✕ 设备证据与固件版本不一致";compat.className="compat "+(compatible?"":"bad")}
+      btn.disabled=!compatible;
+      btn.textContent=compatible?"开始 ver."+version+" 烧录":"请先选择代际";
+    }
+    function updateSelectAccent(selectId){
+      const select=document.getElementById(selectId),accent=document.getElementById("accent-"+selectId);
+      if(!select||!accent)return;
+      if(selectAccents[selectId]){
+        const next=selectAccents[selectId][select.value];
+        if(next)accent.textContent=next;
+        accent.classList.toggle("purple",selectId==="cal-hand"&&select.value==="right");
+      }else if(selectId==="kind")accent.textContent=select.value;
+    }
+
+    function applyBackendState(state){
+      if(!state||typeof state!=="object")throw new TypeError("backend state must be an object");
+      const rawEvidence=state.generation_evidence||{receiver_chip:null,glove_chips:[],device_ids:[]};
+      const evidence={receiverChip:rawEvidence.receiver_chip??rawEvidence.receiverChip??null,gloveChips:rawEvidence.glove_chips??rawEvidence.gloveChips??[],deviceIds:rawEvidence.device_ids??rawEvidence.deviceIds??[]};
+      const decision=state.generation_decision||inferGeneration(evidence);
+      liveEvidence=evidence;
+      const identities=state.detected_identities||{},ports=Array.isArray(state.ports)?state.ports:[],body=document.getElementById("device-body");
+      body.innerHTML="";
+      ports.forEach(port=>{
+        const identity=Object.values(identities).find(item=>item&&item.port===port.device);
+        const roleKey=identity&&identity.role||port.role||"unknown";
+        const role=({receiver:"接收器",left:"左手",right:"右手",unknown:"未识别"}[roleKey]||roleKey||"未识别");
+        const chip=port.mcu||identity&&identity.mcu||identity&&identity.chip||"未确认";
+        const deviceId=identity&&identity.device_id||port.device_id||"—（未读取）";
+        const mac=identity&&identity.mac||port.mac||"—";
+        const firmware=identity&&identity.firmware||port.firmware||"—";
+        const queryStatus=port.query_status||identity&&identity.query_status||"unknown";
+        const statusLabel={resolved:"已识别",no_response:"身份未响应",error:"查询失败",unknown:"待查询",queued:"等待识别",querying:"正在识别"}[queryStatus]||queryStatus;
+        body.insertAdjacentHTML("beforeend",`<tr><td class="port">${esc(port.device)}</td><td class="role">${esc(role)}</td><td><code>${esc(deviceId)}</code></td><td>${esc(mac)}</td><td><b>${esc(chip)}</b><div class="source">实时状态</div></td><td>${esc(firmware)}</td><td><span class="badge ${queryStatus==="resolved"?"ok":"warn"}">${esc(statusLabel)}</span></td></tr>`);
+      });
+      generationState={status:decision.status,generation:decision.generation,source:decision.source};
+      const backendSelected=state.selected_generation,backendSource=state.selection_source||"unverified";
+      if(backendSelected!==null&&backendSelected!==undefined&&(backendSource==="manual"||backendSource==="override")){
+        version=backendSelected;selectionSource=backendSource;
+      }else if(decision.status==="resolved"){
+        version=decision.generation;selectionSource=decision.source;
+      }else{
+        version=null;selectionSource=decision.status==="conflict"?"conflict":"unknown";
+      }
+      if(typeof state.device_id==="string"&&state.device_id)backendDeviceId=state.device_id;
+      else backendDeviceId=null;
+      renderVersionSelection();updateId();updateSummary();
+      if(state.monitor)renderMonitor(state.monitor);
+      if(state.calibration)renderCalibration(state.calibration);
+      renderRoleBinding(state);
+      syncFlashModeControls(state);
+      renderExecution(state);
+      const badge=document.getElementById("probe-badge"),notice=document.getElementById("probe-notice");
+      if(decision.status==="unknown"){badge.className="badge warn";badge.textContent="代际未确认";notice.className="notice warn";notice.innerHTML="<b>扫描证据不足，无法确认产品代际。</b> 请手动选择 ver.2、ver.3、ver.4 或 ver.5。"}
+      else if(decision.status==="conflict"){badge.className="badge warn";badge.textContent="代际冲突";notice.className="notice warn";notice.innerHTML="<b>MCU 与设备 ID 指向不同代际。</b> 当前人工选择仍保留，烧录前请确认覆盖理由。"}
+      else{badge.className="badge ok";badge.textContent="产品证据已读取";notice.className="notice info";notice.innerHTML="<b>"+generationSourceLabel(decision.source)+"。</b> 已由实时后端扫描状态更新。"}
+    }
+
+    function renderRoleBinding(state){
+      const ports=Array.isArray(state.ports)?state.ports:[];
+      const assignments=(state&&typeof state.assignments==="object")?state.assignments:{};
+      const identities=(state&&typeof state.detected_identities==="object")?state.detected_identities:{};
+      const manualMacs=(state&&typeof state.manual_peer_macs==="object")?state.manual_peer_macs:{};
+      ["receiver","left","right"].forEach(role=>{
+        const select=document.getElementById("assign-"+role);
+        if(!select)return;
+        const assigned=typeof assignments[role]==="string"?assignments[role]:"";
+        const raw=rawAssignment(assigned);
+        const available=ports.map(p=>p.device);
+        const autoPort=identities[role]&&identities[role].port?identities[role].port:null;
+        const sig=available.join(",")+"|"+assigned+"|"+(autoPort||"");
+        const focused=(typeof document!=="undefined")&&document.activeElement===select;
+        if(roleBindingSig[role]!==sig&&!focused){
+          roleBindingSig[role]=sig;
+          const options=[{value:"",label:"未分配 · 请选择端口"}];
+          available.forEach(d=>options.push({value:d,label:d}));
+          if(raw&&available.indexOf(raw)===-1)options.push({value:"",label:assigned+"（已拔出，不可用）"});
+          select.innerHTML=options.map(o=>`<option value="${esc(o.value)}">${esc(o.label)}</option>`).join("");
+          // Auto-bind default: show the detected port as selected when no manual binding exists.
+          const target=(available.indexOf(raw)>-1)?raw:(available.indexOf(autoPort)>-1?autoPort:"");
+          if(select.value!==target)select.value=target;
+        }
+        const macCell=document.getElementById("bind-mac-"+role);
+        if(!macCell)return;
+        const identity=identities[role];
+        const manual=typeof manualMacs[role]==="string"&&manualMacs[role]?manualMacs[role]:"";
+        if(manual){macCell.innerHTML="<b>"+esc(manual)+"</b><div class=\"source\">手动 MAC（覆盖自动检测）</div>";}
+        else if(identity&&identity.mac){macCell.innerHTML="<b>"+esc(identity.mac)+"</b><div class=\"source\">自动检测 · 可手动覆盖</div>";}
+        else{macCell.innerHTML="<b>尚未读取</b><div class=\"source\">自动检测 · 可手动覆盖</div>";}
+      });
+    }
+
+    function syncFlashModeControls(state){
+      if(typeof state.mode==="string"){
+        flashMode=state.mode;
+        const select=document.getElementById("bundle");
+        if(select&&select.value!==flashMode&&document.activeElement!==select)select.value=flashMode;
+        updateSelectAccent("bundle");
+      }
+      const eraseField=document.getElementById("erase-field"),hint=document.getElementById("mode-hint");
+      if(eraseField)eraseField.classList.toggle("hidden",flashMode!=="single");
+      if(hint)hint.textContent=flashMode==="single"?"单设备修复：只需在角色绑定中选择一个目标角色":"自动套装：识别到接收器即自动匹配检测到的手，无需手动区分单/双手套";
+      if(typeof state.full_erase_single==="boolean"){
+        const box=document.getElementById("full-erase-single");
+        if(box&&box.checked!==state.full_erase_single)box.checked=state.full_erase_single;
+      }
+    }
+
+    function renderExecution(state){
+      const phase=state.phase||"idle";
+      const phaseEl=document.getElementById("exec-phase-badge");
+      if(phaseEl){
+        phaseEl.textContent=phaseLabels[phase]||phase;
+        phaseEl.className="badge "+(phase==="done"?"ok":phase==="error"?"error":phase==="flashing"?"active pulse":phase==="idle"?"":"active");
+      }
+      const completed=document.getElementById("exec-completed");
+      if(completed)completed.textContent="已完成 "+Number(state.completed_sets||0)+" 套";
+      const raw=Math.max(0,Math.min(100,Number(state.progress||0)));
+      const percentEl=document.getElementById("exec-progress-percent"),fillEl=document.getElementById("exec-progress-fill"),labelEl=document.getElementById("exec-progress-label");
+      if(percentEl)percentEl.textContent=Math.round(raw)+"%";
+      if(fillEl)fillEl.style.width=raw+"%";
+      if(labelEl)labelEl.textContent=state.progress_label||(phase==="idle"?"等待开始":phaseLabels[phase]||phase);
+      const stopBtn=document.getElementById("exec-stop-btn"),hint=document.getElementById("stop-hint");
+      const terminal=phase==="idle"||phase==="done"||phase==="error";
+      if(stopBtn)stopBtn.disabled=terminal;
+      if(hint)hint.textContent=terminal?(phase==="done"?"任务已完成":phase==="error"?"任务已停止，请复位后重试":"烧录未开始"):"任务进行中 · 可安全停止";
+      const list=document.getElementById("exec-log-list");
+      if(list){
+        const logs=Array.isArray(state.logs)?state.logs.slice(-200):[];
+        if(!logs.length){list.innerHTML="<div><time>--:--:--</time>暂无任务日志。</div>";}
+        else{
+          const atBottom=typeof list.scrollHeight==="number"&&typeof list.scrollTop==="number"&&typeof list.clientHeight==="number"&&(list.scrollHeight-list.scrollTop-list.clientHeight<30);
+          list.innerHTML=logs.map(entry=>{
+            const t=(entry.timestamp||"").replace("T"," ").replace("Z","").slice(0,19);
+            const cls=entry.level==="warning"?"warn":entry.level==="error"?"error":"";
+            return "<div class=\""+cls+"\"><time>"+esc(t)+"</time>"+esc(entry.message||"")+"</div>";
+          }).join("");
+          if(atBottom)list.scrollTop=list.scrollHeight;
+        }
+      }
+      const box=document.getElementById("exec-result");
+      if(!box)return;
+      const overlay=state.result_overlay;
+      const titleEl=document.getElementById("exec-result-title"),detailEl=document.getElementById("exec-result-detail"),resetBtn=document.getElementById("exec-reset-btn");
+      if(!overlay||typeof overlay!=="object"){
+        box.classList.add("hidden");
+        if(resetBtn)resetBtn.classList.add("hidden");
+        return;
+      }
+      const success=phase==="done"||overlay.status==="success";
+      box.classList.remove("hidden");
+      box.className="result-banner "+(success?"ok":"err");
+      if(titleEl)titleEl.textContent=success?"烧录完成 ✓":"烧录失败 · 需要处理";
+      if(detailEl){
+        const lines=[];
+        if(overlay.device_id)lines.push("设备 ID："+overlay.device_id);
+        if(overlay.verification)lines.push("执行方式："+(overlay.verification==="write_and_pairing"?"快速 · 写入与配对校验":"完整校验"));
+        if(overlay.pairing_checked)lines.push("无线配对与维护模式退出已确认");
+        if(overlay.roles)lines.push("参与设备："+overlay.roles.map(roleName).join("、"));
+        if(overlay.skipped?.length)lines.push("未参与："+overlay.skipped.map(roleName).join("、"));
+        if(overlay.message)lines.push(overlay.message);
+        if(overlay.category)lines.push("错误类别："+overlay.category);
+        if(overlay.recovery_hint)lines.push("处理建议："+overlay.recovery_hint);
+        detailEl.textContent=lines.join("\n")||(success?"任务已成功完成。":"请查看日志并处理后重试。");
+      }
+      if(resetBtn)resetBtn.classList.remove("hidden");
+    }
+
+    function apiUrl(path){return new URL(path,window.location.href).toString()}
+    async function fetchBridgeJson(path){
+      if(typeof fetch!=="function")throw new Error("fetch unavailable");
+      const response=await fetch(apiUrl(path));
+      if(!response.ok)throw new Error("bridge request failed");
+      return response.json();
+    }
+    async function postBridgeJson(path,payload){
+      if(typeof fetch!=="function")throw new Error("fetch unavailable");
+      const response=await fetch(apiUrl(path),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      const data=await response.json();
+      if(!response.ok)throw new Error(data.error||"bridge request failed");
+      return data;
+    }
+    async function resetGenerationSelection(){
+      if(backendConnected){
+        try{applyBackendState(await postBridgeJson("/api/generation/reset",{}));toast("已恢复系统预选");return}
+        catch(error){toast("恢复系统预选失败："+error.message);return}
+      }
+      selectionSource="unknown";version=null;generationState={status:"unknown",generation:null,source:"none"};
+      renderVersionSelection();updateId();updateSummary();
+      toast("已恢复系统预选");
+    }
+    function setBackendConnection(connected){
+      backendConnected=connected;
+      const status=document.getElementById("top-status");
+      if(status)status.textContent=connected?"后端已连接 · 自动刷新 5 Hz":"后端未连接";
+    }
+    async function refreshBackendState(){
+      if(backendPollInFlight)return;
+      backendPollInFlight=true;
+      try{
+        const state=await fetchBridgeJson("/api/state");
+        lastBackendState=state;setBackendConnection(true);
+        applyBackendState(state);
+      }catch(_error){setBackendConnection(false)}
+      finally{backendPollInFlight=false}
+    }
+    async function initializeBackend(){
+      try{await fetchBridgeJson("/api/health");setBackendConnection(true)}
+      catch(_error){setBackendConnection(false)}
+      await refreshBackendState();
+      backendPollTimer=setInterval(refreshBackendState,200);
+    }
+
+    async function scanSerialPorts(){
+      try{
+        if(typeof fetch!=="function")throw new Error("fetch unavailable");
+        const response=await fetch(apiUrl("/api/scan"),{method:"POST"});
+        const data=await response.json();
+        if(!response.ok)throw new Error(data.error||"bridge request failed");
+        applyBackendState(data);setBackendConnection(true);lastBackendState=data;
+        toast("串口扫描完成");
+      }catch(error){setBackendConnection(false);toast("扫描失败："+error.message)}
+    }
+    async function reidentifyReceiverMcu(){
+      const port=receiverPortFromState();
+      if(!port){toast("未找到接收器端口，请先在角色绑定中选择接收器");return}
+      try{
+        const data=await postBridgeJson("/api/mcu/reidentify",{port});
+        toast("重新识别完成："+(data.chip||data.status||"已更新"));
+        await refreshBackendState();
+      }catch(error){toast("重新识别 MCU 失败："+error.message)}
+    }
+    async function assignRole(role,portValue){
+      try{
+        applyBackendState(await postBridgeJson("/api/assign",{role,port:portValue}));
+        toast(portValue?("已绑定 "+roleName(role)+" → "+portValue):("已解除 "+roleName(role)+" 绑定"));
+      }catch(error){toast("角色绑定失败："+error.message);refreshBackendState()}
+    }
+    async function applyFlashMode(mode){
+      const previous=flashMode;flashMode=mode;
+      const eraseField=document.getElementById("erase-field");
+      if(eraseField)eraseField.classList.toggle("hidden",flashMode!=="single");
+      updateSelectAccent("bundle");updateSummary();
+      try{
+        applyBackendState(await postBridgeJson("/api/config/mode",{mode}));
+      }catch(error){
+        flashMode=previous;
+        if(eraseField)eraseField.classList.toggle("hidden",flashMode!=="single");
+        updateSelectAccent("bundle");updateSummary();
+        toast("切换烧录模式失败："+error.message);
+      }
+    }
+    async function toggleFullErase(){
+      const box=document.getElementById("full-erase-single"),enabled=!!(box&&box.checked);
+      try{applyBackendState(await postBridgeJson("/api/config/full-erase-single",{enabled}));toast(enabled?"已启用单设备全擦除":"已关闭全擦除")}
+      catch(error){toast("更新全擦除设置失败："+error.message);if(box)box.checked=!enabled}
+    }
+    async function applyDeviceId(){
+      const kindEl=document.getElementById("kind"),serialEl=document.getElementById("serial");
+      const kind=(kindEl?kindEl.value:"T").toUpperCase(),num=Math.max(1,Math.min(999,parseInt((serialEl?serialEl.value:"1")||"1",10)||1));
+      try{
+        applyBackendState(await postBridgeJson("/api/config/serial",{kind,number:num}));
+        toast("设备 ID 已应用："+((lastBackendState&&lastBackendState.device_id)||""));
+      }catch(error){toast("应用设备 ID 失败："+error.message)}
+    }
+    async function stopFlash(){
+      try{await postBridgeJson("/api/flash/stop",{});toast("已请求安全停止，当前设备操作完成后停止");refreshBackendState()}
+      catch(error){toast("停止请求失败："+error.message)}
+    }
+    async function resetFlash(){
+      try{applyBackendState(await postBridgeJson("/api/flash/reset",{}));toast("已复位，可开始下一任务")}
+      catch(error){toast("复位失败："+error.message)}
+    }
+
+    function openFlashConfirm(){
+      if(!backendConnected){toast("后端未连接，无法确认烧录");return}
+      if(version===null){toast("请先选择固件代际");return}
+      const state=lastBackendState||{};
+      const assignments=(state.assignments||{}),identities=(state.detected_identities||{}),manualMacs=(state.manual_peer_macs||{});
+      const rows=[];
+      rows.push({label:"设备 ID",value:state.device_id||"—"});
+      rows.push({label:"固件代际",value:"ver."+version+" · "+((profiles[version]||{}).name||"")});
+      rows.push({label:"烧录模式",value:modeLabel(flashMode)});
+      const bound=["receiver","left","right"].filter(role=>rawAssignment(assignments[role]));
+      const detectedBound=["receiver","left","right"].filter(role=>!rawAssignment(assignments[role])&&identities[role]&&identities[role].port);
+      const bindValue=bound.length?bound.map(role=>roleName(role)+" → "+(assignments[role]||"未绑定")).join("；")
+        : (detectedBound.length?detectedBound.map(role=>roleName(role)+" → 已检测 "+identities[role].port+"（烧录时自动匹配）").join("；") : "未绑定任何角色");
+      rows.push({label:"角色绑定",value:bindValue});
+      const peerText=["receiver","left","right"].map(role=>{
+        const manual=typeof manualMacs[role]==="string"?manualMacs[role]:"";
+        const detected=(identities[role]&&identities[role].mac)||"";
+        const mac=manual||detected||"无";
+        return roleName(role)+" "+mac+(manual?"（手动）":"（自动）");
+      });
+      rows.push({label:"Peer MAC 概览",value:peerText.join("；")});
+      if(flashMode==="single")rows.push({label:"全擦除策略",value:state.full_erase_single?"已勾选：烧录前全擦除目标设备":"未勾选"});
+      const body=document.getElementById("confirm-body");
+      body.innerHTML=rows.map(row=>"<div class=\"summary-line\"><span>"+esc(row.label)+"</span><b>"+esc(row.value)+"</b></div>").join("");
+      const warnings=Array.isArray(state.warnings)?state.warnings:[];
+      const warnBox=document.getElementById("confirm-warnings");
+      if(warnBox){
+        if(warnings.length){warnBox.classList.remove("hidden");warnBox.className="notice override";warnBox.textContent="⚠ "+warnings.join("；")}
+        else warnBox.classList.add("hidden");
+      }
+      document.getElementById("confirm-modal").classList.remove("hidden");
+      const confirmBtn=document.getElementById("confirm-flash-btn");
+      if(confirmBtn)confirmBtn.disabled=false;
+    }
+    function cancelFlashConfirm(){document.getElementById("confirm-modal").classList.add("hidden")}
+    async function startFlash(){
+      const btn=document.getElementById("confirm-flash-btn");
+      if(btn)btn.disabled=true;
+      try{
+        if(typeof fetch!=="function")throw new Error("fetch unavailable");
+        const response=await fetch(apiUrl("/api/flash/start"),{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});
+        const data=await response.json().catch(()=>({}));
+        if(!response.ok){
+          const details=(data&&data.error_details)||{};
+          const message=(details.category?details.category+"：":"")+(details.message||data.error||"烧录请求失败");
+          const hint=details.recovery_hint?(" "+details.recovery_hint):"";
+          toast("烧录启动失败："+message+hint);
+          if(btn)btn.disabled=false;
+          return;
+        }
+        cancelFlashConfirm();
+        toast("烧录请求已受理，进入执行状态");
+        await refreshBackendState();
+      }catch(error){
+        toast("烧录启动失败："+error.message);
+        if(btn)btn.disabled=false;
+      }
+    }
+
+    function metricMarkup(p){
+      return ["采样频率","丢包率","RSSI","RTT","电池"].map(label=>`<div class="metric"><label>${label}</label><strong>—</strong><em>尚未采集</em></div>`).join("");
+    }
+    function renderHandMetrics(side){
+      const p=handState[side],connection=document.getElementById(side+"-connection"),column=document.getElementById("hand-"+side+"-column");
+      document.getElementById(side+"-metrics").innerHTML=metricMarkup(p);
+      connection.className="connection badge "+(p.connected?"ok":"warn");
+      connection.textContent=p.connected?"● 在线":"● 已断连 · "+p.lastUpdate;
+      column.classList.toggle("disconnected-mask",!p.connected);
+    }
+    function chartPath(values,min,max){
+      return values.map((v,i)=>`${i?"L":"M"}${(38+i*(582/(values.length-1))).toFixed(1)},${(164-(v-min)/(max-min)*128).toFixed(1)}`).join(" ");
+    }
+    function renderHandChart(side){
+      document.getElementById("chart-"+side).innerHTML='<text x="180" y="100" class="axis">开始监控后显示真实数据趋势</text>';
+    }
+    function renderImuTable(side){
+      const body=document.getElementById("imu-"+side+"-body");body.innerHTML="";
+      imuAddresses.forEach(address=>body.insertAdjacentHTML("beforeend",`<tr><td><span class="imu-address ${side}">${address}</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge">尚未采集</span></td></tr>`));
+    }
+    function renderHands(){["left","right"].forEach(side=>{renderHandMetrics(side);renderHandChart(side);renderImuTable(side)})}
+    function setHandConnection(side,connected){
+      handState[side].connected=connected;
+      handState[side].lastUpdate=connected?"刚刚":new Date().toLocaleTimeString("zh-CN",{hour12:false});
+      renderHandMetrics(side);
+    }
+    function toggleLive(){
+      live=!live;document.getElementById("pause-btn").textContent=live?"暂停刷新":"继续刷新";
+      const badge=document.getElementById("live-badge");badge.className="badge "+(live?"ok":"warn");badge.textContent=live?"● 双手实时":"Ⅱ 双手已暂停";
+      toast(live?"双手实时刷新已恢复":"左右手曲线同时暂停在当前画面");
+    }
+    function toggleRecord(){
+      recording=!recording;const btn=document.getElementById("record-btn");btn.textContent=recording?"停止记录":"开始记录";btn.classList.toggle("danger",recording);btn.classList.toggle("primary",!recording);
+      toast(recording?"开始记录左右手原始帧与解析数据":"联合记录已停止并保存");
+    }
+
+    function receiverPortFromState(){
+      const state=lastBackendState||{};
+      const assignment=state.assignments&&state.assignments.receiver;
+      if(assignment)return rawAssignment(assignment);
+      const ports=Array.isArray(state.ports)?state.ports:[];
+      const rx=ports.find(p=>p.role==="receiver");
+      return rx?rx.device:null;
+    }
+    function startMonitor(){
+      const port=receiverPortFromState();
+      if(!port){toast("未找到接收器端口，请先在生产页绑定接收器角色");return}
+      postBridgeJson("/api/monitor/start",{port}).then(applyBackendState).catch(error=>toast("开始监控失败："+error.message));
+    }
+    function stopMonitor(){
+      postBridgeJson("/api/monitor/stop",{}).then(applyBackendState).catch(error=>toast("停止监控失败："+error.message));
+    }
+    function renderMonitor(snapshot){
+      if(!snapshot||typeof snapshot!=="object")return;
+      const active=Boolean(snapshot.active);
+      const startBtn=document.getElementById("monitor-start-btn"),stopBtn=document.getElementById("monitor-stop-btn");
+      if(startBtn)startBtn.classList.toggle("hidden",active);
+      if(stopBtn)stopBtn.classList.toggle("hidden",!active);
+      const badge=document.getElementById("live-badge");
+      if(!active){badge.className="badge warn";badge.textContent="● 监控未运行";return}
+      badge.className="badge ok";badge.textContent="● 双手实时 · "+(snapshot.receiver_port||"接收器");
+      ["left","right"].forEach(side=>{
+        const hand=snapshot.hands&&snapshot.hands[side];
+        if(!hand)return;
+        const connection=document.getElementById(side+"-connection");
+        connection.className="connection badge "+(hand.connected?"ok":"warn");
+        connection.textContent=hand.connected?"● 在线":(hand.stale?"● 已断连 · 保留最后帧":"● 等待数据");
+        document.getElementById(side+"-column").classList.toggle("disconnected-mask",!hand.connected);
+        document.getElementById(side+"-metrics").innerHTML=`<div class="metric"><label>采样频率</label><strong>${hand.sample_rate.toFixed(1)}<small>Hz</small></strong><em>${hand.sample_rate>20?"稳定":"偏低"}</em></div><div class="metric"><label>丢包率</label><strong>${(hand.loss_rate*100).toFixed(1)}<small>%</small></strong><em>${hand.loss_rate<0.05?"良好":"偏高"}</em></div><div class="metric"><label>RSSI</label><strong>—</strong><em>标准固件不可用</em></div><div class="metric"><label>包计数</label><strong>${hand.packet_count}</strong><em>${hand.duplicate_count} dup</em></div><div class="metric"><label>电池</label><strong>${hand.battery==null?"—":hand.battery+"%"}</strong><em>${hand.battery==null?"无数据":hand.battery>20?"充足":"偏低"}</em></div>`;
+        const imuBody=document.getElementById("imu-"+side+"-body");
+        imuBody.innerHTML="";
+        (hand.imus||[]).forEach(imu=>{
+          const status=imu.frozen?'<span class="badge warn">冻结 '+imu.freeze_duration.toFixed(0)+'s</span>':imu.available?'<span class="badge ok">正常</span>':'<span class="badge">无数据</span>';
+          const fmt=v=>v==null?"—":v.toFixed(1)+"°";
+          imuBody.insertAdjacentHTML("beforeend",`<tr><td><span class="imu-address ${side}">${imu.address}</span></td><td>${fmt(imu.roll)}</td><td>${fmt(imu.pitch)}</td><td>${fmt(imu.yaw)}</td><td>${imu.q0==null?"—":imu.q0.toFixed(3)}</td><td>${imu.q1==null?"—":imu.q1.toFixed(3)}</td><td>${imu.q2==null?"—":imu.q2.toFixed(3)}</td><td>${status}</td></tr>`);
+        });
+        renderMonitorChart(side,snapshot.series&&snapshot.series[side]);
+      });
+    }
+    function renderMonitorChart(side,series){
+      const svg=document.getElementById("chart-"+side),primary=side==="left"?"var(--blue)":"var(--purple)";
+      const points=(series||[]).filter(p=>p.rate!=null);
+      if(points.length<2){svg.innerHTML=`<text x="280" y="96" class="axis">采集趋势中…</text>`;return}
+      const rates=points.map(p=>p.rate),losses=points.map(p=>p.loss!=null?p.loss*100:0);
+      const maxRate=Math.max(35,...rates),ratePath=chartPath(rates,20,maxRate);
+      const maxLoss=Math.max(2,...losses),lossPath=chartPath(losses,0,maxLoss);
+      svg.innerHTML=`<g>${[36,68,100,132,164].map(y=>`<line x1="38" y1="${y}" x2="620" y2="${y}" class="gridline"/>`).join("")}<text x="8" y="40" class="axis">高</text><text x="8" y="166" class="axis">低</text><text x="594" y="184" class="axis">现在</text></g><path d="${ratePath}" stroke="${primary}" class="chart-line"/><path d="${lossPath}" stroke="var(--green)" class="chart-line"/>`;
+    }
+
+    function updateDuration(){document.getElementById("duration-value").textContent=document.getElementById("cal-duration").value+" 秒"}
+    function logEvent(text,cls=""){
+      const box=document.getElementById("event-log"),now=new Date().toLocaleTimeString("zh-CN",{hour12:false});
+      box.insertAdjacentHTML("beforeend",`<div class="${cls}"><time>${now}</time>${text}</div>`);box.scrollTop=box.scrollHeight;
+    }
+    function startCalibration(){
+      const side=document.getElementById("cal-hand").value,mode=document.getElementById("cal-mode").value,duration=parseInt(document.getElementById("cal-duration").value,10);
+      lastCalStatus=null;
+      postBridgeJson("/api/calibration/start",{side,mode,duration_s:duration})
+        .then(applyBackendState).catch(error=>toast("开始校准失败："+error.message));
+    }
+    function stopCalibration(save){
+      postBridgeJson("/api/calibration/stop",{save:Boolean(save)})
+        .then(applyBackendState).catch(error=>toast("停止校准失败："+error.message));
+    }
+    function renderCalibration(snapshot){
+      if(!snapshot||typeof snapshot!=="object")return;
+      const status=snapshot.status||"idle";
+      if(status!==lastCalStatus){
+        lastCalStatus=status;
+        if(status==="running")logEvent("校准进行中：旋转手套覆盖多个方向","ok");
+        if(status==="stopping")logEvent("已发送 STOP，等待 COMPLETE");
+        if(status==="aborting")logEvent("已发送 ABORT，取消且不保存","warn");
+        if(status==="completed"){logEvent("收到 COMPLETE · 偏移已保存","ok");showCalResult(true)}
+        if(status==="aborted"){logEvent("校准已取消 · 未保存","warn");showCalResult(false)}
+        if(status==="failed"){logEvent("校准失败："+(snapshot.last_error||"unknown"),"warn");showCalResult(false,"校准失败",snapshot.last_error||"未知错误")}
+      }
+      const active=snapshot.active;
+      if(active){
+        document.getElementById("cal-ready").classList.add("hidden");
+        document.getElementById("cal-result").classList.add("hidden");
+        document.getElementById("cal-running").classList.remove("hidden");
+        const remain=Math.max(0,snapshot.remaining_s||0),total=snapshot.duration_s||35;
+        document.getElementById("cal-count").innerHTML=Math.ceil(remain)+"<small> 秒</small>";
+        document.getElementById("cal-progress-bar").style.width=((1-remain/total)*100)+"%";
+        const side=snapshot.side==="right"?"右手":"左手";
+        document.getElementById("cal-sub").textContent=side+" · "+(snapshot.mode==="wired"?"有线 USB 校准":"无线校准")+" · 旋转手套覆盖多个方向";
+        const imus=Object.values(snapshot.imus||{});
+        if(imus.length){
+          const imu=imus[0];
+          document.getElementById("mag-x").textContent=(imu.mag_x||0).toFixed(1);
+          document.getElementById("mag-y").textContent=(imu.mag_y||0).toFixed(1);
+          document.getElementById("mag-z").textContent=(imu.mag_z||0).toFixed(1);
+        }
+      }
+    }
+    function showCalResult(saved,title,errorText){
+      clearInterval(calTimer);document.getElementById("cal-running").classList.add("hidden");document.getElementById("cal-result").classList.remove("hidden");
+      const icon=document.getElementById("result-icon");icon.textContent=saved?"✓":"×";icon.style.background=saved?"var(--green-soft)":"var(--red-soft)";icon.style.color=saved?"var(--green)":"var(--red)";
+      document.getElementById("result-title").textContent=title||(saved?"校准完成":"校准已取消");
+      document.getElementById("result-text").textContent=title?("校准失败："+(errorText||"未知错误")):(saved?"已收到 COMPLETE，校准数据已保存；关闭后恢复实时监控。":"已发送 ABORT，不保存本次结果；关闭后恢复实时监控。");
+      logEvent(saved?"收到 COMPLETE · 保存成功 · 准备恢复监控":"收到 ABORT 确认 · 未保存",saved?"ok":"warn");
+    }
+    function resetCalibration(){clearInterval(calTimer);document.getElementById("cal-result").classList.add("hidden");document.getElementById("cal-running").classList.add("hidden");document.getElementById("cal-ready").classList.remove("hidden")}
+    function toast(message){const el=document.getElementById("toast");el.textContent=message;el.classList.add("show");clearTimeout(el._timer);el._timer=setTimeout(()=>el.classList.remove("show"),1900)}
+
+    updateId();updateSummary();renderHands();["bundle","kind","cal-hand","cal-mode"].forEach(updateSelectAccent);if(typeof fetch==="function")initializeBackend();else setBackendConnection(false);
+  </script>
+</body>
+</html>

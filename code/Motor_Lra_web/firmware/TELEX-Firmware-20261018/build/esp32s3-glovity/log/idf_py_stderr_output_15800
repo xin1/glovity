@@ -1,0 +1,70 @@
+Command: cmake -G Ninja -B D:\Desktop\github\glovity\code\Motor_Lra_web\firmware\TELEX-Firmware-20261018\TELEX-Firmware-20261018\build\esp32s3-glovity -DPYTHON_DEPS_CHECKED=1 -DPYTHON=D:\Espressif\tools\python\v6.0.3\venv\Scripts\python.exe -DESP_PLATFORM=1 -DSDKCONFIG=D:\Desktop\github\glovity\code\Motor_Lra_web\firmware\TELEX-Firmware-20261018\TELEX-Firmware-20261018\build-config\esp32s3\sdkconfig -DIDF_TARGET=esp32s3 -DCCACHE_ENABLE=True D:\Desktop\github\glovity\code\Motor_Lra_web\firmware\TELEX-Firmware-20261018\TELEX-Firmware-20261018\source\firmware
+NOTE: D:/esp/v6.0.3/esp-idf/components/bt/host/nimble/Kconfig.in:1453: BT_NIMBLE_MESH_PROVISIONER: 'default 0' is not a valid bool value (only 'y' and 'n' are allowed). Value is treated as 'n'.
+NOTE: D:/esp/v6.0.3/esp-idf/components/fatfs/Kconfig:230: FATFS_PRINT_LLI: 'default 0' is not a valid bool value (only 'y' and 'n' are allowed). Value is treated as 'n'.
+NOTE: D:/esp/v6.0.3/esp-idf/components/fatfs/Kconfig:235: FATFS_PRINT_FLOAT: 'default 0' is not a valid bool value (only 'y' and 'n' are allowed). Value is treated as 'n'.
+NOTE: D:/esp/v6.0.3/esp-idf/components/bootloader/Kconfig.projbuild:385: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/bootloader/Kconfig.projbuild:425: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/bt/common/Kconfig.in:146: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/bt/host/nimble/Kconfig.in:1048: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/bt/controller/esp32c3/Kconfig.in:649: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/esp_hw_support\./lowpower/port/esp32p4/Kconfig.p4_rev3_mspi_workaround:6: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/esp_mm/Kconfig:20: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/esp_system\./port/soc/esp32s3/Kconfig.memory:21: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/openthread/Kconfig:106: Deprecation notice: hex literal '0' without '0x' prefix detected. In the next major version, hex literals will be required to have a '0x' prefix.
+NOTE: D:/esp/v6.0.3/esp-idf/components/bt/sdkconfig.rename.esp32s3:4: duplicate rename mapping for CONFIG_BT_NIMBLE_COEX_PHY_CODED_TX_RX_TLIM_EN: previous target CONFIG_BT_LE_COEX_PHY_CODED_TX_RX_TLIM_EN, new target CONFIG_BT_CTRL_COEX_PHY_CODED_TX_RX_TLIM_EN - last mapping is used
+NOTE: D:/esp/v6.0.3/esp-idf/components/bt/sdkconfig.rename.esp32s3:5: duplicate rename mapping for CONFIG_BT_NIMBLE_COEX_PHY_CODED_TX_RX_TLIM_DIS: previous target CONFIG_BT_LE_COEX_PHY_CODED_TX_RX_TLIM_DIS, new target CONFIG_BT_CTRL_COEX_PHY_CODED_TX_RX_TLIM_DIS - last mapping is used
+Loading defaults file D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/source/firmware/sdkconfig.defaults...
+NOTE: D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build-config/esp32s3/sdkconfig:3168: CONFIG_MBEDTLS_ATCA_HW_ECDSA_SIGN was replaced with CONFIG_MBEDTLS_SECURE_ELEMENT_DRIVER_ENABLED
+NOTE: D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build-config/esp32s3/sdkconfig:3170: CONFIG_MBEDTLS_ATCA_HW_ECDSA_VERIFY was replaced with CONFIG_MBEDTLS_SECURE_ELEMENT_DRIVER_ENABLED
+Default value for MBEDTLS_X509_TRUSTED_CERT_CALLBACK in sdkconfig is n but it is y according to Kconfig.
+Using default value from sdkconfig (n).
+Default value for MBEDTLS_CERTIFICATE_BUNDLE_CROSS_SIGNED_VERIFY in sdkconfig is n but it is y according to Kconfig.
+Using default value from sdkconfig (n).
+NOTE: Kconfig parser version: 1
+NOTE: Kconfig defaults policy: use sdkconfig
+NOTE: Status: Finished with notifications
+NOTE: D:/esp/v6.0.3/esp-idf/components/mbedtls/Kconfig:456: MBEDTLS_X509_TRUSTED_CERT_CALLBACK: Kconfig default value: y, sdkconfig default value: n, using n from sdkconfig
+NOTE: D:/esp/v6.0.3/esp-idf/components/mbedtls/Kconfig:546: MBEDTLS_CERTIFICATE_BUNDLE_CROSS_SIGNED_VERIFY: Kconfig default value: y, sdkconfig default value: n, using n from sdkconfig
+NOTE: D:/esp/v6.0.3/esp-idf/components/mbedtls/Kconfig:1575: MBEDTLS_SECURE_ELEMENT_DRIVER_ENABLED assigned multiple times: n (user-set), n (user-set) -> using n
+CMake Warning in D:/esp/v6.0.3/esp-idf/components/mbedtls/mbedtls/tf-psa-crypto/core/CMakeLists.txt:
+  The object file directory
+
+    D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32s3-glovity/esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/./
+
+  has 196 characters.  The maximum full path to an object file is 250
+  characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+
+    1c07b0f05c2cf1354337e81f203cd159/psa_crypto_driver_esp_cmac.c.obj
+
+  cannot be safely placed under this directory.  The build may not work
+  correctly.
+
+
+CMake Warning in D:/esp/v6.0.3/esp-idf/components/bootloader_support/CMakeLists.txt:
+  The object file directory
+
+    D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32s3-glovity/esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/./
+
+  has 193 characters.  The maximum full path to an object file is 250
+  characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+
+    bootloader_flash/src/bootloader_flash_config_esp32s3.c.obj
+
+  cannot be safely placed under this directory.  The build may not work
+  correctly.
+
+
+CMake Warning in D:/esp/v6.0.3/esp-idf/components/esp_driver_usb_serial_jtag/CMakeLists.txt:
+  The object file directory
+
+    D:/Desktop/github/glovity/code/Motor_Lra_web/firmware/TELEX-Firmware-20261018/TELEX-Firmware-20261018/build/esp32s3-glovity/esp-idf/esp_driver_usb_serial_jtag/CMakeFiles/__idf_esp_driver_usb_serial_jtag.dir/./
+
+  has 209 characters.  The maximum full path to an object file is 250
+  characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+
+    src/usb_serial_jtag_connection_monitor.c.obj
+
+  cannot be safely placed under this directory.  The build may not work
+  correctly.
+
+

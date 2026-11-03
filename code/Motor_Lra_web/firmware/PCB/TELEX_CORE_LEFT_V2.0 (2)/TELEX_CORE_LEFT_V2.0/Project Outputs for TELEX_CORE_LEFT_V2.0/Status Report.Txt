@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [TELEX_CORE_LEFT_V2.0.PrjPcb]
+   Generated File[TELEX_CORE_LEFT_V2.0-RoundHoles.TXT]
+   Generated File[TELEX_CORE_LEFT_V2.0-SlotHoles.TXT]
+   Generated File[TELEX_CORE_LEFT_V2.0.LDP]
+   Generated File[TELEX_CORE_LEFT_V2.0.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 10:52:01 On 2026/10/16

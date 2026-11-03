@@ -1,0 +1,49 @@
+﻿TELEX 独立固件包 — 2026-10-18
+
+一、包内内容
+binaries/esp32s3：左手、右手共用的 S3 固件。
+binaries/esp32c6：C6 接收器固件。
+每种芯片均包含 bootloader.bin、partition-table.bin、telex_device.bin 及原始构建清单。
+source/firmware：与以上二进制构建清单逐文件匹配的完整工程源码。
+source/protocol：现有协议说明和测试向量。
+build-config：各芯片实际构建使用的 sdkconfig，以及烧录地址与 Flash 参数。
+烧录地址.csv：可直接查阅的文件和偏移表。
+功能与验证说明.txt：功能、参数及实测边界。
+verification.json、SHA256SUMS.txt：整理结果及完整文件校验值。
+
+二、版本
+配套上位机：TELEX Bench 0.1.1。
+固件报告版本：0.1.0-dev，开发版；配置 schema=1，ESP-IDF 6.0.0。
+上位机改名及 Logo 更新未改变固件版本。本包直接整理已构建镜像，没有重新编译或修改固件。
+S3 包含用户确认的蓝色正常呼吸灯版本。
+两种芯片的镜像均已与 Mac 和 Windows 上位机内置文件逐字节校验一致。
+
+三、烧录
+建议使用 TELEX Bench 完成自动识别、下载与设备配置。
+若使用其他烧录工具，请先识别实际芯片和 Flash 容量，S3/C6 镜像不可互换。
+两种芯片本次构建参数均为 DIO、40 MHz、4 MB，实际 Flash 至少 4 MiB。
+bootloader.bin       -> 0x0000
+partition-table.bin  -> 0x8000
+telex_device.bin     -> 0x10000
+
+下面命令仅供已具备 esptool 环境的开发者使用，本包没有自动执行烧录的脚本。
+在解压包根目录执行，将 YOUR_PORT 替换为实际串口（Windows 例如 COM5，Mac 例如 /dev/cu.usbmodem...）：
+
+S3 左右手：
+python -m esptool --chip esp32s3 --port YOUR_PORT write-flash --flash-mode dio --flash-freq 40m --flash-size 4MB 0x0 binaries/esp32s3/bootloader.bin 0x8000 binaries/esp32s3/partition-table.bin 0x10000 binaries/esp32s3/telex_device.bin
+
+C6 接收器：
+python -m esptool --chip esp32c6 --port YOUR_PORT write-flash --flash-mode dio --flash-freq 40m --flash-size 4MB 0x0 binaries/esp32c6/bootloader.bin 0x8000 binaries/esp32c6/partition-table.bin 0x10000 binaries/esp32c6/telex_device.bin
+
+本包不含设备专属 NVS、套装身份或无线配对数据。上面分段烧录不写 NVS 区域（0x9000–0xEFFF）；不要为普通更新主动整片擦除。
+空白板首次烧录后，仍需通过 TELEX Bench 的设备下载/配置流程写入有效配置与所需配对。仅写入这三个 BIN 不等于振动和无线套装已经配置完成。
+当前固件在配置缺失、身份不符或旧协议模式下禁用振动；首次配置时明确启用振动程序。
+I²C/UART 选择必须与板上 0Ω 选贴接线一致。
+
+四、源码复现
+源码是 source/firmware，依赖 ESP-IDF 6.0.0；SDK、编译器和 Python 环境未装入交付包。
+分别使用 build-config/esp32s3/sdkconfig 与 build-config/esp32c6/sdkconfig 构建，不混用芯片配置。
+在已正确配置 ESP-IDF 的终端中，可将 PACKAGE_ROOT 替换为本包绝对路径，再分别执行：
+idf.py -C "PACKAGE_ROOT/source/firmware" -B "PACKAGE_ROOT/build/esp32s3" -D "SDKCONFIG=PACKAGE_ROOT/build-config/esp32s3/sdkconfig" -D IDF_TARGET=esp32s3 build
+idf.py -C "PACKAGE_ROOT/source/firmware" -B "PACKAGE_ROOT/build/esp32c6" -D "SDKCONFIG=PACKAGE_ROOT/build-config/esp32c6/sdkconfig" -D IDF_TARGET=esp32c6 build
+源码和配置的匹配已校验；本次整理没有在独立解压目录重新编译，不承诺不同工具环境生成的 BIN 字节完全相同。

@@ -1,0 +1,29 @@
+Removed Pin From Net: NetName=GND Pin=R11-1
+Removed Pin From Net: NetName=GND Pin=U3-13
+Removed Pin From Net: NetName=GND Pin=U3-14
+Removed Pin From Net: NetName=GND Pin=U3-15
+Removed Pin From Net: NetName=GND Pin=U3-16
+Removed Pin From Net: NetName=GND Pin=U3-A1B12
+Removed Pin From Net: NetName=VCC Pin=U3-A4B9
+Removed Pin From Net: NetName=NetR10_2 Pin=U3-A5
+Removed Pin From Net: NetName=D_P Pin=U3-A6
+Removed Pin From Net: NetName=D_N Pin=U3-A7
+Removed Pin From Net: NetName=GND Pin=U3-B1A12
+Removed Pin From Net: NetName=VCC Pin=U3-B4A9
+Removed Pin From Net: NetName=D_P Pin=U3-B6
+Removed Pin From Net: NetName=D_N Pin=U3-B7
+Removed Member From Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=R11
+Removed Member From Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=U3
+Added Component: Designator=U?(USB-C-SMD_TYPE-C-31-G-03)
+Added Pin To Net: NetName=GND Pin=U?-13
+Added Pin To Net: NetName=GND Pin=U?-14
+Added Pin To Net: NetName=GND Pin=U?-15
+Added Pin To Net: NetName=GND Pin=U?-16
+Added Pin To Net: NetName=GND Pin=U?-A1
+Added Pin To Net: NetName=VCC Pin=U?-A4
+Added Pin To Net: NetName=NetR10_2 Pin=U?-A5
+Added Pin To Net: NetName=D_P Pin=U?-A6
+Added Pin To Net: NetName=D_N Pin=U?-A7
+Added Pin To Net: NetName=VCC Pin=U?-B9
+Added Pin To Net: NetName=GND Pin=U?-B12
+Added Member To Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=Component U? TYPE-C MALE

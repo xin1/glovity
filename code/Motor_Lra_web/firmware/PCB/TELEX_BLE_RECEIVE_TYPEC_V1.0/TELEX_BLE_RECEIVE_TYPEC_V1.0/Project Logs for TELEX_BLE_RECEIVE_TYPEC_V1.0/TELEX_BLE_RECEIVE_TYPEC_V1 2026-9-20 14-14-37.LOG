@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=NetC2_1 Pin=C2-1
+Removed Pin From Net: NetName=GND Pin=C2-2
+Removed Pin From Net: NetName=GND Pin=U1-49_1
+Removed Pin From Net: NetName=GND Pin=U1-49_2
+Removed Pin From Net: NetName=GND Pin=U1-49_3
+Removed Pin From Net: NetName=GND Pin=U1-49_4
+Removed Pin From Net: NetName=GND Pin=U1-49_5
+Removed Pin From Net: NetName=GND Pin=U1-49_6
+Removed Pin From Net: NetName=GND Pin=U1-49_7
+Removed Pin From Net: NetName=GND Pin=U1-49_8
+Removed Pin From Net: NetName=GND Pin=U5-A12
+Removed Member From Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=C2
+Change Net Name : Old Net Name=NetC2_1 New Net Name=NetR4_2

@@ -1,0 +1,31 @@
+{
+  "package": "TELEX-Firmware-20261018",
+  "date": "2026-10-18",
+  "compatible_workbench": "TELEX Bench 0.1.1",
+  "firmware_version": "0.1.0-dev",
+  "operation": "package existing binaries; no rebuild or flashing",
+  "targets": [
+    {
+      "target": "esp32s3",
+      "firmware": "0.1.0-dev",
+      "source_sha256": "bc00aaca034913b8233225c067c7e5d7aa54139c8f2c4823ed5783b69a5ca9c8",
+      "source_files_verified": 78,
+      "binary_files_verified": 3,
+      "sdkconfig": "matched",
+      "macos_bundled_firmware": "byte-identical",
+      "windows_bundled_firmware": "byte-identical"
+    },
+    {
+      "target": "esp32c6",
+      "firmware": "0.1.0-dev",
+      "source_sha256": "bc00aaca034913b8233225c067c7e5d7aa54139c8f2c4823ed5783b69a5ca9c8",
+      "source_files_verified": 78,
+      "binary_files_verified": 3,
+      "sdkconfig": "matched",
+      "macos_bundled_firmware": "byte-identical",
+      "windows_bundled_firmware": "byte-identical"
+    }
+  ],
+  "source_files_total": 78,
+  "full_hardware_acceptance": false
+}

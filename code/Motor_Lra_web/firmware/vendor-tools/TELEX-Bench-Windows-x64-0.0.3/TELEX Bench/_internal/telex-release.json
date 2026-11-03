@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "product_name": "TELEX Bench",
+  "application": "0.0.3",
+  "config_schema": 1,
+  "files": {
+    "frontend/branding/app-icon.png": "440a11a5a838a567b2b86eb06e7389e912ef82bb0cb257fb351106e2d74b744c",
+    "frontend/branding/app-icon.svg": "c2f40528cb8f91bac4d01c65b233d779347d5591a53d7cb1048a9d9b83973cfc",
+    "frontend/branding/provenance.json": "ef176d370ebba9153fb2ac76523d6716159fe182bdb36027af7c8134a8c6b50f",
+    "frontend/branding/telex-bench.icns": "c8c1d20f334c92ff6de78f5d966ed518d0d9b8ea336115f1f13e8ff7149057ed",
+    "frontend/branding/telex-bench.ico": "98afe9484507711865b135bc763335cf786e60932519bb529e1e1a380ed54437",
+    "frontend/branding/wordmark-dark.png": "f13a9957a50f4ae44c3921049b1bd64d12f2949ddc7ee55e42dd4343309b8cb4",
+    "frontend/branding/wordmark-dark.svg": "93bf096cff0b5dce1ba1f4ea4438611c502daf4fee91e33e3cf11bf9dd5b3f71",
+    "frontend/branding/wordmark-light.png": "613244167ec6fda92697bdeb154bbab1e119d8da170fec89f687440f0b4c47c4",
+    "frontend/branding/wordmark-light.svg": "70fe79ce8626cf3f8ab5b64fdba3e02c62779c05dbe098e9399a6c5f29c1de62",
+    "frontend/telex.css": "40f3005a6c4521f95dfcbf2eae89795f4ee907fa69041b893aef625d56869f3b",
+    "frontend/telex.html": "b3ed044c94e9a1357dd00a557e7b7cf99f5892571a0c30d28aa82088ead8edc3",
+    "frontend/telex.js": "f5a182e579e30bfc27cdb2aa341a8c72f4ca3e624937da6eddad92b646399d10",
+    "telex-assets/esp32c6/bootloader.bin": "165ebf9ae176806aef64a9eeaab23a3d30126d6ad1f2f4b70c95b86ae207be69",
+    "telex-assets/esp32c6/build.json": "0cbfde2baf2901ff6d1cb873340a83d9b186f141d847bb11fbdc665e6b714cf9",
+    "telex-assets/esp32c6/partition-table.bin": "73c0b5c3e5fcba3a151cc70c453c93dd5f4798899e7f2f8cca76da1f32ffc501",
+    "telex-assets/esp32c6/telex_device.bin": "ce1b42301792b82e4720dc5c021a98311753a69e809193cd73f794b92da65374",
+    "telex-assets/esp32s3/bootloader.bin": "6ff0b616593a5479921bc4f29e8ebd0ea130ace848f23440c1a30861a2ded394",
+    "telex-assets/esp32s3/build.json": "71aa524a8bb90d97928a09cb4bfa82dfe1e057e6d0076763e3f76bd5e2a3f853",
+    "telex-assets/esp32s3/partition-table.bin": "73c0b5c3e5fcba3a151cc70c453c93dd5f4798899e7f2f8cca76da1f32ffc501",
+    "telex-assets/esp32s3/telex_device.bin": "cbb5059a93eb111e58e51224931f2047adbf47e6e5c5675bff271bcc8392bd82",
+    "telex-assets/firmware_manifest.json": "1dc739ae94346c179efe1cfa76487cda02a7f03f32184eaf2dd63ff9154b7766"
+  },
+  "firmware": [
+    {
+      "target": "esp32s3",
+      "version": "0.1.0-dev",
+      "source_sha256": "bc00aaca034913b8233225c067c7e5d7aa54139c8f2c4823ed5783b69a5ca9c8"
+    },
+    {
+      "target": "esp32c6",
+      "version": "0.1.0-dev",
+      "source_sha256": "bc00aaca034913b8233225c067c7e5d7aa54139c8f2c4823ed5783b69a5ca9c8"
+    }
+  ],
+  "acceptance": {
+    "software": "see test reports",
+    "hardware": "partial; see per-device evidence",
+    "windows": "pending"
+  }
+}

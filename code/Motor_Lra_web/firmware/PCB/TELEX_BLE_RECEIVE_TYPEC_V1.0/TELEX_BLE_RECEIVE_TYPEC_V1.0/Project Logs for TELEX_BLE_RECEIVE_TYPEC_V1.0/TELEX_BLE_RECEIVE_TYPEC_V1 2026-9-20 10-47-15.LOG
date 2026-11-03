@@ -1,0 +1,13 @@
+Added Component: Designator=U5(USB-C-SMD_TYPE-C-31-G-03)
+Added Pin To Net: NetName=GND Pin=U5-13
+Added Pin To Net: NetName=GND Pin=U5-14
+Added Pin To Net: NetName=GND Pin=U5-15
+Added Pin To Net: NetName=GND Pin=U5-16
+Added Pin To Net: NetName=GND Pin=U5-A1
+Added Pin To Net: NetName=VCC Pin=U5-A4
+Added Pin To Net: NetName=NetR10_2 Pin=U5-A5
+Added Pin To Net: NetName=D_P Pin=U5-A6
+Added Pin To Net: NetName=D_N Pin=U5-A7
+Added Pin To Net: NetName=VCC Pin=U5-B9
+Added Pin To Net: NetName=GND Pin=U5-B12
+Added Member To Class: ClassName=TELEX_BLE_RECEIVE_TYPEC_V1.0 Member=Component U5 TYPE-C MALE

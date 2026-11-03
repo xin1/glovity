@@ -1,0 +1,47 @@
+Removed Pin From Net: NetName=RXD0 Pin=U3-39
+Removed Pin From Net: NetName=TXD0 Pin=U3-40
+Added Component: Designator=C44(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C44-1
+Added Pin To Net: NetName=VUSB Pin=C44-2
+Add Pin To Net: Unknown Pin: Pin U2-A1B127
+Added Pin To Net: NetName=TXD0 Pin=U3-39
+Added Pin To Net: NetName=RXD0 Pin=U3-40
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C1 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C4 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C8 22uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C9 100nF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C12 100uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C13 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C15 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C44 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component IC1 TP4054-42-SOT25-R
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R1 4.7kΩ*4
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R2 4.7kΩ*4
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R3 5.1K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R7 4.7kΩ*4
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R8 4.7kΩ*4
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R9 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R10 2K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R14 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R15 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R16 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R17 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R18 160Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R19 22Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R20 22Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R21 160Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R22 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R23 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R24 100K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R25 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R26 0Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R27 120Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R29 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R30 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U10 AW86234FCR

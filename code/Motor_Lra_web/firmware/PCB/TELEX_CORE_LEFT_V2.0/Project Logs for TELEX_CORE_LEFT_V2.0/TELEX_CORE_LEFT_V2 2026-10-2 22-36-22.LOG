@@ -1,0 +1,872 @@
+Removed Pin From Net: NetName=GND Pin=LED4-2
+Removed Pin From Net: NetName=+3.3V Pin=R20-1
+Removed Pin From Net: NetName=+3.3V Pin=R21-2
+Removed Pin From Net: NetName=+3.3V Pin=R24-1
+Removed Pin From Net: NetName=+3.3V Pin=R29-1
+Removed Pin From Net: NetName=LP_SCL Pin=R29-2
+Removed Pin From Net: NetName=+3.3V Pin=R30-1
+Removed Pin From Net: NetName=LP_SDA Pin=R30-2
+Removed Pin From Net: NetName=IMU Pin=U2-1
+Removed Pin From Net: NetName=GND Pin=U2-4
+Removed Pin From Net: NetName=IMU Pin=U3-1
+Removed Pin From Net: NetName=GND Pin=U3-4
+Removed Pin From Net: NetName=IMU Pin=U4-1
+Removed Pin From Net: NetName=GND Pin=U4-4
+Removed Pin From Net: NetName=IMU Pin=U5-1
+Removed Pin From Net: NetName=GND Pin=U5-4
+Removed Pin From Net: NetName=IMU Pin=U6-1
+Removed Pin From Net: NetName=GND Pin=U6-4
+Removed Pin From Net: NetName=LP_SCL Pin=U7-2
+Removed Pin From Net: NetName=LP_SDA Pin=U7-3
+Removed Pin From Net: NetName=GND Pin=U7-4
+Removed Pin From Net: NetName=GND Pin=U8-1
+Removed Pin From Net: NetName=GND Pin=U8-2
+Removed Pin From Net: NetName=+3.3V Pin=U8-3
+Removed Pin From Net: NetName=BAT Pin=U8-5
+Removed Pin From Net: NetName=NetC7_1 Pin=U8-8
+Removed Pin From Net: NetName=GND Pin=U8-11
+Removed Pin From Net: NetName=IMU_CTRL Pin=U8-13
+Removed Pin From Net: NetName=GND Pin=U8-14
+Removed Pin From Net: NetName=PROC_N Pin=U8-17
+Removed Pin From Net: NetName=PROC_P Pin=U8-18
+Removed Pin From Net: NetName=POWER_CTRL Pin=U8-19
+Removed Pin From Net: NetName=LP_SDA Pin=U8-26
+Removed Pin From Net: NetName=LP_SCL Pin=U8-27
+Removed Pin From Net: NetName=GND Pin=U8-36
+Removed Pin From Net: NetName=GND Pin=U8-37
+Removed Pin From Net: NetName=GND Pin=U8-38
+Removed Pin From Net: NetName=GND Pin=U8-39
+Removed Pin From Net: NetName=GND Pin=U8-40
+Removed Pin From Net: NetName=GND Pin=U8-41
+Removed Pin From Net: NetName=GND Pin=U8-42
+Removed Pin From Net: NetName=GND Pin=U8-43
+Removed Pin From Net: NetName=GND Pin=U8-44
+Removed Pin From Net: NetName=GND Pin=U8-45
+Removed Pin From Net: NetName=GND Pin=U8-46
+Removed Pin From Net: NetName=GND Pin=U8-47
+Removed Pin From Net: NetName=GND Pin=U8-48
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-49
+Removed Pin From Net: NetName=GND Pin=U8-50
+Removed Pin From Net: NetName=GND Pin=U8-51
+Removed Pin From Net: NetName=GND Pin=U8-52
+Removed Pin From Net: NetName=GND Pin=U8-53
+Removed Pin From Net: NetName=GND Pin=U9-13
+Removed Pin From Net: NetName=GND Pin=U9-14
+Removed Pin From Net: NetName=GND Pin=U9-15
+Removed Pin From Net: NetName=GND Pin=U9-16
+Removed Pin From Net: NetName=GND Pin=U9-A1B12
+Removed Pin From Net: NetName=VUSB Pin=U9-A4B9
+Removed Pin From Net: NetName=D_P Pin=U9-A6
+Removed Pin From Net: NetName=D_N Pin=U9-A7
+Removed Pin From Net: NetName=GND Pin=U9-B1A12
+Removed Pin From Net: NetName=VUSB Pin=U9-B4A9
+Removed Pin From Net: NetName=D_P Pin=U9-B6
+Removed Pin From Net: NetName=D_N Pin=U9-B7
+Removed Pin From Net: NetName=GND Pin=U11-8
+Removed Pin From Net: NetName=IMU Pin=U11-11
+Removed Member From Class: ClassName=TELEX_CORE_LEFT_V1.0 Member=U4
+Removed Member From Class: ClassName=TELEX_CORE_LEFT_V1.0 Member=U5
+Removed Member From Class: ClassName=TELEX_CORE_LEFT_V1.0 Member=U6
+Removed Member From Class: ClassName=TELEX_CORE_LEFT_V1.0 Member=U7
+Removed Member From Class: ClassName=TELEX_CORE_LEFT_V1.0 Member=U8
+Change Component Footprint: Designator=U11 Old Footprint=JY901S New Footprint=DSBGA-9_L1.4-W1.3-R3-C3-P0.40-BL
+Change Component Footprint: Designator=LED4 Old Footprint=LED0603_BLUE New Footprint=NH-B2020RGBA-HF
+Change Component Footprint: Designator=U3 Old Footprint=SH1.0-4PWT New Footprint=ESP32-S3-MINI-1U
+Change Component Footprint: Designator=U2 Old Footprint=SH1.0-4PWT New Footprint=TYPE-C-F
+Change Component Footprint: Designator=U9 Old Footprint=USB-C-SMD_TYPEC-304-BCP16 New Footprint=WAFER-SUH08-WT-2A-2P-P0.80
+Change Component Comment : Designator=C14 Old Comment=1uF New Comment=100pF
+Change Component Comment : Designator=R13 Old Comment=2K New Comment=160Ω
+Change Component Comment : Designator=U11 Old Comment=JY901S New Comment=AW86234FCR
+Change Component Comment : Designator=LED4 Old Comment=LED_BLUE New Comment=NH-B2020RGBA-HF
+Change Component Comment : Designator=U3 Old Comment=SH1.0-4P New Comment=ESP32-S3-MINI-1U
+Change Component Comment : Designator=U2 Old Comment=SH1.0-4P New Comment=TYPE-C
+Change Component Comment : Designator=U9 Old Comment=TYPE-C New Comment=SUH08-2P
+Change Component Designator: OldDesignator=C1 NewDesignator=C10
+Change Component Designator: OldDesignator=C2 NewDesignator=C13
+Change Component Designator: OldDesignator=C3 NewDesignator=C2
+Change Component Designator: OldDesignator=C4 NewDesignator=C3
+Change Component Designator: OldDesignator=C7 NewDesignator=C18
+Change Component Designator: OldDesignator=C8 NewDesignator=C11
+Change Component Designator: OldDesignator=C9 NewDesignator=C7
+Change Component Designator: OldDesignator=C10 NewDesignator=C12
+Change Component Designator: OldDesignator=C11 NewDesignator=C9
+Change Component Designator: OldDesignator=C12 NewDesignator=C8
+Change Component Designator: OldDesignator=C13 NewDesignator=C21
+Change Component Designator: OldDesignator=C15 NewDesignator=C26
+Change Component Designator: OldDesignator=IC1 NewDesignator=IC3
+Change Component Designator: OldDesignator=IC2 NewDesignator=IC1
+Change Component Designator: OldDesignator=IC3 NewDesignator=IC2
+Change Component Designator: OldDesignator=R1 NewDesignator=R24
+Change Component Designator: OldDesignator=R2 NewDesignator=R11
+Change Component Designator: OldDesignator=R3 NewDesignator=R12
+Change Component Designator: OldDesignator=R4 NewDesignator=R34
+Change Component Designator: OldDesignator=R5 NewDesignator=R35
+Change Component Designator: OldDesignator=R6 NewDesignator=R10
+Change Component Designator: OldDesignator=R7 NewDesignator=R36
+Change Component Designator: OldDesignator=R8 NewDesignator=R39
+Change Component Designator: OldDesignator=R9 NewDesignator=R13
+Change Component Designator: OldDesignator=R10 NewDesignator=R32
+Change Component Designator: OldDesignator=R11 NewDesignator=R33
+Change Component Designator: OldDesignator=R12 NewDesignator=R37
+Change Component Designator: OldDesignator=R13 NewDesignator=R21
+Change Component Designator: OldDesignator=R14 NewDesignator=R6
+Change Component Designator: OldDesignator=R15 NewDesignator=R5
+Change Component Designator: OldDesignator=R16 NewDesignator=R19
+Change Component Designator: OldDesignator=R17 NewDesignator=R20
+Change Component Designator: OldDesignator=R18 NewDesignator=R3
+Change Component Designator: OldDesignator=R19 NewDesignator=R4
+Change Component Designator: OldDesignator=R22 NewDesignator=R29
+Change Component Designator: OldDesignator=R23 NewDesignator=R30
+Change Component Designator: OldDesignator=R25 NewDesignator=R40
+Change Component Designator: OldDesignator=R26 NewDesignator=R41
+Change Component Designator: OldDesignator=R27 NewDesignator=R38
+Change Component Designator: OldDesignator=R28 NewDesignator=R31
+Change Component Designator: OldDesignator=SW1 NewDesignator=RESET1
+Change Component Designator: OldDesignator=SW3 NewDesignator=BOOT1
+Change Component Designator: OldDesignator=U10 NewDesignator=U13
+Added Component: Designator=BUS1_1(WAFER-SUH08-WT-4A-4P-P0.80)
+Added Component: Designator=BUS1_2(WAFER-SUH08-WT-4A-4P-P0.80)
+Added Component: Designator=BUS1_3(WAFER-SUH08-WT-4A-4P-P0.80)
+Added Component: Designator=BUS2_1(WAFER-SUH08-WT-4A-4P-P0.80)
+Added Component: Designator=BUS2_2(WAFER-SUH08-WT-4A-4P-P0.80)
+Added Component: Designator=C1(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C4(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C15(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C16(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C17(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C19(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C20(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C22(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C23(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C24(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C25(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C27(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C28(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C29(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C30(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C31(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C32(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C33(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C34(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C35(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C36(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C37(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C38(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C39(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C40(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C41(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C42(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=C43(C0603)
+Add component (AddParameter): Name = "品牌"; Value = "muRata"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电容"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "耐压"; Value = "25V"; VariantName = "[No Variations]"
+Added Component: Designator=D1(SOD-123FL)
+Added Component: Designator=Q5(SOT95P280X125-3N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "AO3401A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/ao3401a/alpha-and-omega-semiconductor.html?utm_currency=USD&region=europe"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "1.25mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Alpha & Omega Semiconductors"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "AO3401A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=R1(0603*4)
+Added Component: Designator=R2(0603*4)
+Added Component: Designator=R7(0603*4)
+Added Component: Designator=R8(0603*4)
+Added Component: Designator=R9(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R14(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R15(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R16(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R17(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R18(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R22(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R23(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R25(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R26(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R27(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R42(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=R43(R0603)
+Add component (AddParameter): Name = "品牌"; Value = "国巨"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "备注"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "材质"; Value = "薄膜"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "类别"; Value = "电阻"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "精度"; Value = "1%"; VariantName = "[No Variations]"
+Added Component: Designator=U1(TCA9548ARGER)
+Added Component: Designator=U10(DSBGA-9_L1.4-W1.3-R3-C3-P0.40-BL)
+Added Component: Designator=U12(WAFER-SUH08-WT-2A-2P-P0.80)
+Added Component: Designator=U14(WAFER-SUH08-WT-2A-2P-P0.80)
+Added Component: Designator=U15(WAFER-SUH08-WT-2A-2P-P0.80)
+Added Component: Designator=U16(DSBGA-9_L1.4-W1.3-R3-C3-P0.40-BL)
+Added Component: Designator=U17(DSBGA-9_L1.4-W1.3-R3-C3-P0.40-BL)
+Added Component: Designator=U18(DSBGA-9_L1.4-W1.3-R3-C3-P0.40-BL)
+Added Component: Designator=U19(WAFER-SUH08-WT-2A-2P-P0.80)
+Added Pin To Net: NetName=IMU Pin=BUS1_1-1
+Added Pin To Net: NetName=GND Pin=BUS1_1-4
+Added Pin To Net: NetName=GND Pin=BUS1_1-5
+Added Pin To Net: NetName=GND Pin=BUS1_1-6
+Added Pin To Net: NetName=IMU Pin=BUS1_2-1
+Added Pin To Net: NetName=GND Pin=BUS1_2-4
+Added Pin To Net: NetName=GND Pin=BUS1_2-5
+Added Pin To Net: NetName=GND Pin=BUS1_2-6
+Added Pin To Net: NetName=IMU Pin=BUS1_3-1
+Added Pin To Net: NetName=GND Pin=BUS1_3-4
+Added Pin To Net: NetName=GND Pin=BUS1_3-5
+Added Pin To Net: NetName=GND Pin=BUS1_3-6
+Added Pin To Net: NetName=IMU Pin=BUS2_1-1
+Added Pin To Net: NetName=GND Pin=BUS2_1-4
+Added Pin To Net: NetName=GND Pin=BUS2_1-5
+Added Pin To Net: NetName=GND Pin=BUS2_1-6
+Added Pin To Net: NetName=IMU Pin=BUS2_2-1
+Added Pin To Net: NetName=GND Pin=BUS2_2-4
+Added Pin To Net: NetName=GND Pin=BUS2_2-5
+Added Pin To Net: NetName=GND Pin=BUS2_2-6
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=+3.3V Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C4-1
+Added Pin To Net: NetName=+3.3V Pin=C4-2
+Added Pin To Net: NetName=GND Pin=C15-2
+Added Pin To Net: NetName=GND Pin=C16-2
+Added Pin To Net: NetName=GND Pin=C17-2
+Added Pin To Net: NetName=GND Pin=C19-1
+Added Pin To Net: NetName=GND Pin=C20-1
+Added Pin To Net: NetName=GND Pin=C22-1
+Added Pin To Net: NetName=GND Pin=C23-1
+Added Pin To Net: NetName=GND Pin=C24-1
+Added Pin To Net: NetName=GND Pin=C25-1
+Added Pin To Net: NetName=GND Pin=C27-2
+Added Pin To Net: NetName=GND Pin=C28-2
+Added Pin To Net: NetName=GND Pin=C29-2
+Added Pin To Net: NetName=GND Pin=C30-2
+Added Pin To Net: NetName=GND Pin=C31-2
+Added Pin To Net: NetName=GND Pin=C32-2
+Added Pin To Net: NetName=GND Pin=C33-1
+Added Pin To Net: NetName=GND Pin=C34-1
+Added Pin To Net: NetName=GND Pin=C35-1
+Added Pin To Net: NetName=GND Pin=C36-1
+Added Pin To Net: NetName=GND Pin=C37-1
+Added Pin To Net: NetName=GND Pin=C38-1
+Added Pin To Net: NetName=GND Pin=C39-1
+Added Pin To Net: NetName=GND Pin=C40-1
+Added Pin To Net: NetName=GND Pin=C41-1
+Added Pin To Net: NetName=GND Pin=C42-1
+Added Pin To Net: NetName=GND Pin=C43-1
+Added Pin To Net: NetName=VBAT Pin=C43-2
+Added Pin To Net: NetName=GND Pin=D1-1
+Added Pin To Net: NetName=+3.3V Pin=LED4-4
+Added Pin To Net: NetName=+3.3V Pin=Q5-2
+Added Pin To Net: NetName=+3.3V Pin=R1-1
+Added Pin To Net: NetName=+3.3V Pin=R1-2
+Added Pin To Net: NetName=+3.3V Pin=R1-3
+Added Pin To Net: NetName=+3.3V Pin=R1-4
+Added Pin To Net: NetName=LP_SDA Pin=R1-7
+Added Pin To Net: NetName=LP_SCL Pin=R1-8
+Added Pin To Net: NetName=+3.3V Pin=R2-1
+Added Pin To Net: NetName=+3.3V Pin=R2-2
+Added Pin To Net: NetName=+3.3V Pin=R2-3
+Added Pin To Net: NetName=+3.3V Pin=R2-4
+Added Pin To Net: NetName=+3.3V Pin=R7-1
+Added Pin To Net: NetName=+3.3V Pin=R7-2
+Added Pin To Net: NetName=+3.3V Pin=R7-3
+Added Pin To Net: NetName=+3.3V Pin=R7-4
+Added Pin To Net: NetName=+3.3V Pin=R8-1
+Added Pin To Net: NetName=+3.3V Pin=R8-2
+Added Pin To Net: NetName=+3.3V Pin=R8-3
+Added Pin To Net: NetName=+3.3V Pin=R8-4
+Added Pin To Net: NetName=+3.3V Pin=R9-2
+Added Pin To Net: NetName=LP_SCL Pin=R14-1
+Added Pin To Net: NetName=LP_SDA Pin=R15-1
+Added Pin To Net: NetName=LP_SCL Pin=R22-1
+Added Pin To Net: NetName=LP_SDA Pin=R23-1
+Added Pin To Net: NetName=KEY Pin=R42-1
+Added Pin To Net: NetName=GND Pin=R43-1
+Added Pin To Net: NetName=GND Pin=U1-9
+Added Pin To Net: NetName=GND Pin=U1-18
+Added Pin To Net: NetName=+3.3V Pin=U1-21
+Added Pin To Net: NetName=GND Pin=U1-22
+Added Pin To Net: NetName=GND Pin=U1-23
+Added Pin To Net: NetName=GND Pin=U1-25
+Added Pin To Net: NetName=GND Pin=U2-13
+Added Pin To Net: NetName=GND Pin=U2-14
+Added Pin To Net: NetName=GND Pin=U2-15
+Added Pin To Net: NetName=GND Pin=U2-16
+Add Pin To Net: Unknown Pin: Pin U2-A1B127
+Added Pin To Net: NetName=VUSB Pin=U2-A4B9
+Added Pin To Net: NetName=D_P Pin=U2-A6
+Added Pin To Net: NetName=D_N Pin=U2-A7
+Added Pin To Net: NetName=GND Pin=U2-B1A12
+Added Pin To Net: NetName=VUSB Pin=U2-B4A9
+Added Pin To Net: NetName=D_P Pin=U2-B6
+Added Pin To Net: NetName=D_N Pin=U2-B7
+Added Pin To Net: NetName=GND Pin=U3-1
+Added Pin To Net: NetName=GND Pin=U3-2
+Added Pin To Net: NetName=+3.3V Pin=U3-3
+Added Pin To Net: NetName=IMU_CTRL Pin=U3-5
+Added Pin To Net: NetName=BAT Pin=U3-6
+Added Pin To Net: NetName=LP_SDA Pin=U3-14
+Added Pin To Net: NetName=LP_SCL Pin=U3-15
+Added Pin To Net: NetName=POWER_CTRL Pin=U3-18
+Added Pin To Net: NetName=PROC_N Pin=U3-23
+Added Pin To Net: NetName=PROC_P Pin=U3-24
+Added Pin To Net: NetName=GND Pin=U3-42
+Added Pin To Net: NetName=GND Pin=U3-43
+Added Pin To Net: NetName=NetC7_1 Pin=U3-45
+Added Pin To Net: NetName=GND Pin=U3-46
+Added Pin To Net: NetName=GND Pin=U3-47
+Added Pin To Net: NetName=GND Pin=U3-48
+Added Pin To Net: NetName=GND Pin=U3-49
+Added Pin To Net: NetName=GND Pin=U3-50
+Added Pin To Net: NetName=GND Pin=U3-51
+Added Pin To Net: NetName=GND Pin=U3-52
+Added Pin To Net: NetName=GND Pin=U3-53
+Added Pin To Net: NetName=GND Pin=U3-54
+Added Pin To Net: NetName=GND Pin=U3-55
+Added Pin To Net: NetName=GND Pin=U3-56
+Added Pin To Net: NetName=GND Pin=U3-57
+Added Pin To Net: NetName=GND Pin=U3-58
+Added Pin To Net: NetName=GND Pin=U3-59
+Added Pin To Net: NetName=GND Pin=U3-60
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-61
+Added Pin To Net: NetName=GND Pin=U3-62
+Added Pin To Net: NetName=GND Pin=U3-63
+Added Pin To Net: NetName=GND Pin=U3-64
+Added Pin To Net: NetName=GND Pin=U3-65
+Added Pin To Net: NetName=GND Pin=U9-3
+Added Pin To Net: NetName=GND Pin=U9-4
+Added Pin To Net: NetName=GND Pin=U10-B3
+Added Pin To Net: NetName=GND Pin=U11-B3
+Added Pin To Net: NetName=GND Pin=U12-3
+Added Pin To Net: NetName=GND Pin=U12-4
+Added Pin To Net: NetName=GND Pin=U14-3
+Added Pin To Net: NetName=GND Pin=U14-4
+Added Pin To Net: NetName=GND Pin=U15-3
+Added Pin To Net: NetName=GND Pin=U15-4
+Added Pin To Net: NetName=GND Pin=U16-B3
+Added Pin To Net: NetName=GND Pin=U17-B3
+Added Pin To Net: NetName=GND Pin=U18-B3
+Added Pin To Net: NetName=GND Pin=U19-3
+Added Pin To Net: NetName=GND Pin=U19-4
+Change Net Name : Old Net Name=NetC7_1 New Net Name=RESET
+Change Net Name : Old Net Name=NetIC1_3 New Net Name=NetIC3_3
+Change Net Name : Old Net Name=NetIC1_5 New Net Name=NetIC3_5
+Change Net Name : Old Net Name=NetIC2_1 New Net Name=NetIC1_1
+Change Net Name : Old Net Name=NetIC2_5 New Net Name=NetIC1_5
+Change Net Name : Old Net Name=NetIC3_4 New Net Name=NetIC2_4
+Change Net Name : Old Net Name=NetIC3_6 New Net Name=NetIC2_6
+Change Net Name : Old Net Name=NetR27_2 New Net Name=NetR38_2
+Added Pin To Net: NetName=BOOT Pin=BOOT1-1
+Added Pin To Net: NetName=BOOT Pin=R31-2
+Added Pin To Net: NetName=BOOT Pin=U3-4
+Added Net: Name=BOOT
+Added Pin To Net: NetName=BUS1_A Pin=BUS1_1-2
+Added Pin To Net: NetName=BUS1_A Pin=BUS1_2-2
+Added Pin To Net: NetName=BUS1_A Pin=BUS1_3-2
+Added Pin To Net: NetName=BUS1_A Pin=R22-2
+Added Pin To Net: NetName=BUS1_A Pin=R25-1
+Added Net: Name=BUS1_A
+Added Pin To Net: NetName=BUS1_B Pin=BUS1_1-3
+Added Pin To Net: NetName=BUS1_B Pin=BUS1_2-3
+Added Pin To Net: NetName=BUS1_B Pin=BUS1_3-3
+Added Pin To Net: NetName=BUS1_B Pin=R23-2
+Added Pin To Net: NetName=BUS1_B Pin=R26-1
+Added Net: Name=BUS1_B
+Added Pin To Net: NetName=BUS2_A Pin=BUS2_1-2
+Added Pin To Net: NetName=BUS2_A Pin=BUS2_2-2
+Added Pin To Net: NetName=BUS2_A Pin=R14-2
+Added Pin To Net: NetName=BUS2_A Pin=R16-1
+Added Net: Name=BUS2_A
+Added Pin To Net: NetName=BUS2_B Pin=BUS2_1-3
+Added Pin To Net: NetName=BUS2_B Pin=BUS2_2-3
+Added Pin To Net: NetName=BUS2_B Pin=R15-2
+Added Pin To Net: NetName=BUS2_B Pin=R17-1
+Added Net: Name=BUS2_B
+Added Pin To Net: NetName=HP_SCL Pin=R1-6
+Added Pin To Net: NetName=HP_SCL Pin=U1-19
+Added Pin To Net: NetName=HP_SCL Pin=U3-11
+Added Net: Name=HP_SCL
+Added Pin To Net: NetName=HP_SDA Pin=R1-5
+Added Pin To Net: NetName=HP_SDA Pin=U1-20
+Added Pin To Net: NetName=HP_SDA Pin=U3-10
+Added Net: Name=HP_SDA
+Added Pin To Net: NetName=KEY_STATE Pin=C33-2
+Added Pin To Net: NetName=KEY_STATE Pin=Q5-3
+Added Pin To Net: NetName=KEY_STATE Pin=R43-2
+Added Pin To Net: NetName=KEY_STATE Pin=U3-20
+Added Net: Name=KEY_STATE
+Added Pin To Net: NetName=LED_BLUE Pin=R18-1
+Added Pin To Net: NetName=LED_BLUE Pin=U3-9
+Added Net: Name=LED_BLUE
+Added Pin To Net: NetName=LED_GREEN Pin=R27-2
+Added Pin To Net: NetName=LED_GREEN Pin=U3-19
+Added Net: Name=LED_GREEN
+Added Pin To Net: NetName=LED_RED Pin=R21-1
+Added Pin To Net: NetName=LED_RED Pin=U3-17
+Added Net: Name=LED_RED
+Added Pin To Net: NetName=M0_N Pin=C22-2
+Added Pin To Net: NetName=M0_N Pin=U9-2
+Added Pin To Net: NetName=M0_N Pin=U10-C3
+Added Net: Name=M0_N
+Added Pin To Net: NetName=M0_P Pin=C14-1
+Added Pin To Net: NetName=M0_P Pin=U9-1
+Added Pin To Net: NetName=M0_P Pin=U10-A3
+Added Net: Name=M0_P
+Added Pin To Net: NetName=M1_N Pin=C23-2
+Added Pin To Net: NetName=M1_N Pin=U11-C3
+Added Pin To Net: NetName=M1_N Pin=U12-2
+Added Net: Name=M1_N
+Added Pin To Net: NetName=M1_P Pin=C15-1
+Added Pin To Net: NetName=M1_P Pin=U11-A3
+Added Pin To Net: NetName=M1_P Pin=U12-1
+Added Net: Name=M1_P
+Added Pin To Net: NetName=M2_N Pin=C37-2
+Added Pin To Net: NetName=M2_N Pin=U14-2
+Added Pin To Net: NetName=M2_N Pin=U16-C3
+Added Net: Name=M2_N
+Added Pin To Net: NetName=M2_P Pin=C27-1
+Added Pin To Net: NetName=M2_P Pin=U14-1
+Added Pin To Net: NetName=M2_P Pin=U16-A3
+Added Net: Name=M2_P
+Added Pin To Net: NetName=M3_N Pin=C38-2
+Added Pin To Net: NetName=M3_N Pin=U15-2
+Added Pin To Net: NetName=M3_N Pin=U17-C3
+Added Net: Name=M3_N
+Added Pin To Net: NetName=M3_P Pin=C28-1
+Added Pin To Net: NetName=M3_P Pin=U15-1
+Added Pin To Net: NetName=M3_P Pin=U17-A3
+Added Net: Name=M3_P
+Added Pin To Net: NetName=M4_N Pin=C39-2
+Added Pin To Net: NetName=M4_N Pin=U18-C3
+Added Pin To Net: NetName=M4_N Pin=U19-2
+Added Net: Name=M4_N
+Added Pin To Net: NetName=M4_P Pin=C29-1
+Added Pin To Net: NetName=M4_P Pin=U18-A3
+Added Pin To Net: NetName=M4_P Pin=U19-1
+Added Net: Name=M4_P
+Added Pin To Net: NetName=NetC16_1 Pin=C16-1
+Added Pin To Net: NetName=NetC16_1 Pin=U10-A2
+Added Net: Name=NetC16_1
+Added Pin To Net: NetName=NetC17_1 Pin=C17-1
+Added Pin To Net: NetName=NetC17_1 Pin=U11-A2
+Added Net: Name=NetC17_1
+Added Pin To Net: NetName=NetC30_1 Pin=C30-1
+Added Pin To Net: NetName=NetC30_1 Pin=U16-A2
+Added Net: Name=NetC30_1
+Added Pin To Net: NetName=NetC31_1 Pin=C31-1
+Added Pin To Net: NetName=NetC31_1 Pin=U17-A2
+Added Net: Name=NetC31_1
+Added Pin To Net: NetName=NetC32_1 Pin=C32-1
+Added Pin To Net: NetName=NetC32_1 Pin=U18-A2
+Added Net: Name=NetC32_1
+Added Pin To Net: NetName=NetLED4_2 Pin=LED4-2
+Added Pin To Net: NetName=NetLED4_2 Pin=R18-2
+Added Net: Name=NetLED4_2
+Added Pin To Net: NetName=NetLED4_3 Pin=LED4-3
+Added Pin To Net: NetName=NetLED4_3 Pin=R27-1
+Added Net: Name=NetLED4_3
+Added Pin To Net: NetName=NetQ5_1 Pin=Q5-1
+Added Pin To Net: NetName=NetQ5_1 Pin=R42-2
+Added Net: Name=NetQ5_1
+Added Pin To Net: NetName=NetR3_2 Pin=R3-2
+Added Pin To Net: NetName=NetR3_2 Pin=U2-A5
+Added Net: Name=NetR3_2
+Added Pin To Net: NetName=NetR4_2 Pin=R4-2
+Added Pin To Net: NetName=NetR4_2 Pin=U2-B5
+Added Net: Name=NetR4_2
+Added Pin To Net: NetName=RXD0 Pin=LED2-2
+Added Pin To Net: NetName=RXD0 Pin=R25-2
+Added Pin To Net: NetName=RXD0 Pin=U3-39
+Added Net: Name=RXD0
+Added Pin To Net: NetName=RXD1 Pin=R16-2
+Added Pin To Net: NetName=RXD1 Pin=U3-22
+Added Net: Name=RXD1
+Added Pin To Net: NetName=SCL_0 Pin=R8-8
+Added Pin To Net: NetName=SCL_0 Pin=U1-2
+Added Pin To Net: NetName=SCL_0 Pin=U10-C1
+Added Net: Name=SCL_0
+Added Pin To Net: NetName=SCL_1 Pin=R7-8
+Added Pin To Net: NetName=SCL_1 Pin=U1-4
+Added Pin To Net: NetName=SCL_1 Pin=U11-C1
+Added Net: Name=SCL_1
+Added Pin To Net: NetName=SCL_2 Pin=R7-6
+Added Pin To Net: NetName=SCL_2 Pin=U1-6
+Added Pin To Net: NetName=SCL_2 Pin=U16-C1
+Added Net: Name=SCL_2
+Added Pin To Net: NetName=SCL_3 Pin=R2-8
+Added Pin To Net: NetName=SCL_3 Pin=U1-8
+Added Pin To Net: NetName=SCL_3 Pin=U17-C1
+Added Net: Name=SCL_3
+Added Pin To Net: NetName=SCL_4 Pin=R2-6
+Added Pin To Net: NetName=SCL_4 Pin=U1-11
+Added Pin To Net: NetName=SCL_4 Pin=U18-C1
+Added Net: Name=SCL_4
+Added Pin To Net: NetName=SDA_0 Pin=R8-7
+Added Pin To Net: NetName=SDA_0 Pin=U1-1
+Added Pin To Net: NetName=SDA_0 Pin=U10-B1
+Added Net: Name=SDA_0
+Added Pin To Net: NetName=SDA_1 Pin=R7-7
+Added Pin To Net: NetName=SDA_1 Pin=U1-3
+Added Pin To Net: NetName=SDA_1 Pin=U11-B1
+Added Net: Name=SDA_1
+Added Pin To Net: NetName=SDA_2 Pin=R7-5
+Added Pin To Net: NetName=SDA_2 Pin=U1-5
+Added Pin To Net: NetName=SDA_2 Pin=U16-B1
+Added Net: Name=SDA_2
+Added Pin To Net: NetName=SDA_3 Pin=R2-7
+Added Pin To Net: NetName=SDA_3 Pin=U1-7
+Added Pin To Net: NetName=SDA_3 Pin=U17-B1
+Added Net: Name=SDA_3
+Added Pin To Net: NetName=SDA_4 Pin=R2-5
+Added Pin To Net: NetName=SDA_4 Pin=U1-10
+Added Pin To Net: NetName=SDA_4 Pin=U18-B1
+Added Net: Name=SDA_4
+Added Pin To Net: NetName=SIDE_SW1 Pin=R29-1
+Added Pin To Net: NetName=SIDE_SW1 Pin=U3-12
+Added Net: Name=SIDE_SW1
+Added Pin To Net: NetName=SIDE_SW2 Pin=R30-1
+Added Pin To Net: NetName=SIDE_SW2 Pin=U3-13
+Added Net: Name=SIDE_SW2
+Added Pin To Net: NetName=TCA_RESET Pin=R9-1
+Added Pin To Net: NetName=TCA_RESET Pin=U1-24
+Added Pin To Net: NetName=TCA_RESET Pin=U3-25
+Added Net: Name=TCA_RESET
+Added Pin To Net: NetName=TRIG Pin=R8-6
+Added Pin To Net: NetName=TRIG Pin=U3-16
+Added Pin To Net: NetName=TRIG Pin=U10-A1
+Added Pin To Net: NetName=TRIG Pin=U11-A1
+Added Pin To Net: NetName=TRIG Pin=U16-A1
+Added Pin To Net: NetName=TRIG Pin=U17-A1
+Added Pin To Net: NetName=TRIG Pin=U18-A1
+Added Net: Name=TRIG
+Added Pin To Net: NetName=TXD0 Pin=LED1-2
+Added Pin To Net: NetName=TXD0 Pin=R26-2
+Added Pin To Net: NetName=TXD0 Pin=U3-40
+Added Net: Name=TXD0
+Added Pin To Net: NetName=TXD1 Pin=R17-2
+Added Pin To Net: NetName=TXD1 Pin=U3-21
+Added Net: Name=TXD1
+Added Pin To Net: NetName=VDD Pin=C19-2
+Added Pin To Net: NetName=VDD Pin=C20-2
+Added Pin To Net: NetName=VDD Pin=C24-2
+Added Pin To Net: NetName=VDD Pin=C25-2
+Added Pin To Net: NetName=VDD Pin=C34-2
+Added Pin To Net: NetName=VDD Pin=C35-2
+Added Pin To Net: NetName=VDD Pin=C36-2
+Added Pin To Net: NetName=VDD Pin=C40-2
+Added Pin To Net: NetName=VDD Pin=C41-2
+Added Pin To Net: NetName=VDD Pin=C42-2
+Added Pin To Net: NetName=VDD Pin=D1-2
+Added Pin To Net: NetName=VDD Pin=Q3-3
+Added Pin To Net: NetName=VDD Pin=U10-B2
+Added Pin To Net: NetName=VDD Pin=U10-C2
+Added Pin To Net: NetName=VDD Pin=U11-B2
+Added Pin To Net: NetName=VDD Pin=U11-C2
+Added Pin To Net: NetName=VDD Pin=U16-B2
+Added Pin To Net: NetName=VDD Pin=U16-C2
+Added Pin To Net: NetName=VDD Pin=U17-B2
+Added Pin To Net: NetName=VDD Pin=U17-C2
+Added Pin To Net: NetName=VDD Pin=U18-B2
+Added Pin To Net: NetName=VDD Pin=U18-C2
+Added Net: Name=VDD
+Added Pin To Net: NetName=VIB_CTRL Pin=Q3-1
+Added Pin To Net: NetName=VIB_CTRL Pin=R39-2
+Added Pin To Net: NetName=VIB_CTRL Pin=U3-8
+Added Net: Name=VIB_CTRL
+Change Class Name : Old Net Name=TELEX_CORE_LEFT_V1.0 New Net Name=TELEX_CORE_LEFT_V2.0
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component BUS1_1 SUH08-4P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component BUS1_2 SUH08-4P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component BUS1_3 SUH08-4P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component BUS2_1 SUH08-4P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component BUS2_2 SUH08-4P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C16 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C17 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C18 1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C19 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C20 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C21 100nF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C22 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C23 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C24 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C25 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C26 1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C27 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C28 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C29 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C30 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C31 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C32 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C33 100nF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C34 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C35 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C36 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C37 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C38 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C39 100pF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C40 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C41 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C42 0.1uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component C43 10uF
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component D1 SSxx
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component Q5 AO3401A
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R32 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R33 100Ω
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R34 45.3K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R35 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R36 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R37 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R38 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R39 10K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R40 1K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R41 47K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R42 100K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component R43 100K
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U1 TCA9548ARGER
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U12 SUH08-2P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U13 UOV-K20
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U14 SUH08-2P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U15 SUH08-2P
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U16 AW86234FCR
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U17 AW86234FCR
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U18 AW86234FCR
+Added Member To Class: ClassName=TELEX_CORE_LEFT_V2.0 Member=Component U19 SUH08-2P
+Added Rule: Name=Schematic Supply Nets_5

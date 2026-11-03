@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "roles": {"unknown": 0, "left": 1, "right": 2, "receiver": 3},
+  "max_packet": 250,
+  "modes": {"legacy": {"imu": ["jy901p"], "haptics": false, "group_rate_hz": 30}, "new": {"imu": ["jy901p", "rion_stub"], "group_rate_hz": {"default": 30, "min": 1, "max": 100}}},
+  "rion_stub": {"parser": "not_implemented", "calibration": false, "uart1": [0,1,2,3,4], "uart0": [5,6,7,8,9,10]},
+  "motor_fingers": ["little", "ring", "middle", "index", "thumb"],
+  "performance": "Configuration range is not verified hardware throughput."
+}

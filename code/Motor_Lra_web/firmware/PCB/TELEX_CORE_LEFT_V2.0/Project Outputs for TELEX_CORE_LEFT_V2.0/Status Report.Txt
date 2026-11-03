@@ -1,0 +1,10 @@
+Output: Test Point Report
+Type  : Test Points
+From  : Variant [[No Variations]] of Project [TELEX_CORE_LEFT_V2.0.PrjPcb]
+   Generated File[Assembly Testpoint Report for TELEX_CORE_LEFT_V2.0.csv]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 17:55:26 On 2026/10/10

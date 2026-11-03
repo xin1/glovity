@@ -1,0 +1,22 @@
+{
+  "release": "1.0.7",
+  "packaged_at": "2026-09-30T16:26:21.740800+00:00",
+  "platform": "Windows x64",
+  "board": "ESP32-C6 AW86234 test board",
+  "firmware_version": "1.0.7",
+  "sensor": "PX-6AX COM7 address 3",
+  "motor": "COM32 CH4",
+  "verification": {
+    "portable_app_selfcheck_exit": 0,
+    "portable_gui_responding": true,
+    "portable_flasher_version": "5.3.1",
+    "portable_flasher_chip": "ESP32-C6",
+    "portable_flasher_flash_size": "4MB",
+    "firmware_image_checksum_valid": true,
+    "firmware_image_sha256_valid": true,
+    "host_source_tests_passed": 377,
+    "firmware_playback_and_codec_tests": "passed",
+    "residual_vibration_fix": "User confirmed resolved before packaging"
+  },
+  "note": "Port names are machine-specific. Portable tool checked read-only; packaging did not reflash the board."
+}
