@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-21",
+  "source": "05_six_axis_20261020",
+  "preprocessor_equivalence": {
+    "GloveLeft": [
+      {
+        "compile_check": true,
+        "preprocessed_sha256": "f2628cc914d961374c280dc4f0bebf0db99db66bedcd84fc3580f923b7f63e89",
+        "equivalent": true
+      },
+      {
+        "compile_check": false,
+        "preprocessed_sha256": "5323e1b7eb3e28f5da0065481a38d72bf4b94c68631056d4fc6fc274fe54833a",
+        "equivalent": true
+      }
+    ],
+    "Receiver": [
+      {
+        "compile_check": true,
+        "preprocessed_sha256": "8e6cafef6fda74078db9e03b0d72872679d80e645fabbb8219546523bbc1731b",
+        "equivalent": true
+      },
+      {
+        "compile_check": false,
+        "preprocessed_sha256": "b99a86f7f03a1cb17aa9f23976010f89e708df57732c59c0129bfc501566ce45",
+        "equivalent": true
+      }
+    ]
+  },
+  "new_esp32_compile": false,
+  "hardware_tested": false,
+  "note": "External Arduino headers mocked only for expansion equivalence; prior modular ESP32 compile recorded in source validation.json.",
+  "files": {
+    "GloveLeft/GloveLeft.h": "23c52dc0bd32b98b173dd6518c8d8c88363ce03ea8d4ab2036e443f6394d12d4",
+    "GloveLeft/GloveLeft.ino": "cab5fdf23bf14820964e3a1840769606d6c54faf2f169b37900991233a303a3d",
+    "README.md": "0ecb39ecc5e289d829c763b2e684b239f15ecebde6e1c20e4f5988b01c9439cb",
+    "Receiver/Receiver.h": "0973a5ab31e414a8bca57da3d4de30f5c7d5e495a4f9b7e1eb3e39df161a67e8",
+    "Receiver/Receiver.ino": "bc3539826ecb13a5fa6df3b27a23fd9837ba78a044cb9836a991b76156475fd9"
+  },
+  "preprocessor_normalization": "Remove whitespace-only lines before byte comparison; standard/Arduino external header mocks used for both versions.",
+  "unchanged_source_tests": {
+    "command": "python -m unittest discover -s firmware/05_six_axis_20261020/tests -p test_delivery.py -v",
+    "passed": 4
+  }
+}
