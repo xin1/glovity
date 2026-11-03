@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>LRA 触觉控制台</title>
+  <link rel="stylesheet" href="style.css?v=20261019-1">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">GLOVITY · HAPTIC LAB</p>
+        <h1>LRA 触觉控制台</h1>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="切换到白天模式" title="切换到白天模式">☾</button>
+    </header>
+
+    <section class="hero-grid">
+      <article class="control-card">
+        <div class="card-heading">
+          <div>
+            <p class="section-label" id="controlSectionLabel">触觉实时监视</p>
+            <h2 id="controlModeTitle">默认 · 170 Hz / AMP 47</h2>
+          </div>
+          <div id="holdBadge" class="hold-badge">待机</div>
+        </div>
+
+        <div id="controlPad" class="control-pad" tabindex="0" role="slider"
+             aria-label="振动强度" aria-valuemin="0" aria-valuemax="100"
+             aria-valuenow="50">
+          <canvas draggable="false" id="traceCanvas"></canvas>
+          <div class="pressure-scale" aria-hidden="true">
+            <div class="pressure-band collision-band"><strong>6.0—10.0 N</strong></div>
+            <div class="pressure-band friction-band"><strong>4.0—5.9 N</strong></div>
+            <div class="pressure-band saw-band"><strong>2.0—3.9 N</strong></div>
+            <div class="pressure-band tap-band"><strong>0—1.9 N</strong></div>
+          </div>
+          <div id="cursorLine" class="cursor-line">
+            <span></span>
+          </div>
+        </div>
+        <div class="gesture-hint">
+          <span class="mouse-icon"></span>
+          <span id="gestureHintText">默认：按住多久振动多久；跨过压力分档后平滑调整</span>
+        </div>
+
+        <div class="meter-row">
+          <div class="metric primary-metric">
+            <span>实时压力</span>
+            <strong id="forceValue">5.0</strong><small>N</small>
+          </div>
+          <div class="metric">
+            <span>按压时间</span>
+            <strong id="pressTimeValue">0</strong><small>ms</small>
+          </div>
+          <div class="metric">
+            <span>AMP</span>
+            <strong id="ampValue">30</strong>
+          </div>
+          <div class="metric">
+            <span>输出</span>
+            <strong id="vppValue">2.16</strong><small id="outputUnit">Vpp</small>
+          </div>
+          <div class="metric">
+            <span>实时频率</span>
+            <strong id="frequencyValue">110</strong><small>Hz</small>
+          </div>
+        </div>
+
+      </article>
+
+        <section class="parameter-editor info-card" aria-label="输出参数设置">
+          <div class="parameter-heading">
+            <div>
+              <p class="section-label">输出参数</p>
+              <strong>整体频率与整体振幅</strong>
+            </div>
+            <div class="parameter-actions">
+              <button id="detectF0Button" type="button">检测当前指尖 F0</button>
+              <button id="applyParametersButton" type="button">应用到设备</button>
+            </div>
+          </div>
+          <div class="f0-result" aria-live="polite">
+            <span>当前指尖马达谐振频率</span>
+            <strong id="f0Result">尚未检测</strong>
+          </div>
+          <div class="parameter-grid">
+            <label class="parameter-control" for="frequencyRange">
+              <span><b>整体频率</b><output><input id="frequencyNumber" type="number" min="0" max="400" step="1" value="170"> Hz</output></span>
+              <div class="recommended-range frequency-recommendation"><input id="frequencyRange" type="range" min="0" max="400" step="1" value="170"><i aria-hidden="true"></i></div>
+              <small id="frequencyHelp">浅色区：建议 50–300 Hz</small>
+            </label>
+            <label class="parameter-control" for="amplitudeRange">
+              <span><b>整体振幅</b><output>AMP <input id="amplitudeNumber" type="number" min="0" max="75" step="1" value="47"></output></span>
+              <div class="recommended-range amplitude-recommendation"><input id="amplitudeRange" type="range" min="0" max="75" step="1" value="47"><i aria-hidden="true"></i></div>
+              <small id="amplitudeVoltageHint">浅色区：建议 AMP 25–47</small>
+            </label>
+            <label class="parameter-control" for="sensitivityRange">
+              <span><b>反馈灵敏度</b><output id="sensitivityValue">5 · 高灵敏</output></span>
+              <input id="sensitivityRange" type="range" min="1" max="5" step="1" value="5">
+              <small id="sensitivityHelp">压力超过 0.4 N 启振；最快每 220 ms 响应一次</small>
+            </label>
+          </div>
+        </section>
+      <div class="tactile-column info-card single-finger-mode" id="tactileColumn">
+        <div class="card-heading sampling-heading"><span id="tactileStatus" class="hold-badge" hidden>未按压</span><span class="sampling-hidden-values" aria-hidden="true"><i id="tactileForceTitle">实机峰值</i><strong id="tactileForce">0.0</strong></span></div>
+        <section class="robot-hand-panel sampling-five-fingers" aria-labelledby="robotHandTitle">
+          <div class="robot-panel-heading">
+            <div>
+              <p class="section-label">LINKERHAND · L25 实机数据</p>
+              <h2 id="robotHandTitle">单指矩阵触觉总览</h2>
+            </div>
+            <div class="sampling-view-actions"><button id="robotHapticToggle" type="button" aria-pressed="true">实机模式</button><button id="expandTactile" type="button" aria-pressed="true">切换五指总览</button></div>
+            <div class="robot-stream-state" id="robotStreamState">
+              <i aria-hidden="true"></i>
+              <span><strong id="robotStreamStatus">正在连接机械手</strong><small id="robotLastUpdate">等待第一帧数据</small></span>
+            </div>
+          </div>
+          <div class="robot-all-fingers" id="robotAllFingers" aria-live="polite"></div>
+          <p class="robot-data-note" id="robotDataNote">数据来自 ROS2：/cb_left_hand_matrix_touch。矩阵峰值暂按 10 点≈0.5 N、140 点≈15 N 换算，超过 15 N 封顶；实际力值需用砝码标定。</p>
+        </section>
+        <div class="robot-finger-tabs sampling-finger-tabs" id="robotFingerTabs" role="tablist" aria-label="选择采样区显示的手指">
+          <button type="button" role="tab" aria-selected="false" data-finger="thumb">拇指</button>
+          <button type="button" role="tab" aria-selected="true" data-finger="index">食指</button>
+          <button type="button" role="tab" aria-selected="false" data-finger="middle">中指</button>
+          <button type="button" role="tab" aria-selected="false" data-finger="ring">无名指</button>
+          <button type="button" role="tab" aria-selected="false" data-finger="little">小指</button>
+        </div>
+        <div class="sampling-preset-row" id="samplingPresetRow" hidden>
+          <span>自定义动作预设</span>
+          <div id="samplingPresetButtons" class="sampling-preset-buttons"></div>
+          <button id="samplingSendHandPose" class="sampling-send-pose" type="button">发送姿态</button>
+        </div>
+        <div class="pen-readout"><span>实机触觉数据</span><span>仅供显示</span></div>
+        <div class="tactile-views">
+          <section class="single-finger-chart" aria-label="拇指实时压力曲线">
+            <div class="view-heading"><h3 id="singleFingerChartTitle">拇指触觉实时力曲线</h3><span>实时压力 / 15 N</span></div>
+            <div class="single-finger-chart-body">
+              <canvas id="singleFingerForceChart" role="img" aria-label="拇指触觉实时力曲线，量程 0 到 15 牛，256 级显示精度"></canvas>
+              <div class="single-force-metrics"><span>压力 <b id="singleForceValue">0.0 N</b></span><span>AMP <b id="singleAmpValue">0</b></span><span>频率 <b id="singleFrequencyValue">— Hz</b></span></div>
+            </div>
+          </section>
+          <section class="tactile-card" aria-label="实机触觉采样区">
+            <div class="view-heading"><h3>采样区</h3><span>实机 12 × 6 矩阵</span></div>
+            <div id="tactilePad" role="img" aria-label="实机触觉采样区"><canvas draggable="false" id="tactileCanvas" role="img" aria-label="实机 12 行 6 列触觉矩阵"></canvas></div>
+            <p class="view-caption">实时显示实机接触中心与合力方向</p>
+            <div class="sampling-results">
+              <div class="total-direction"><span>合力</span><span class="direction-dial"><span id="totalDirectionArrow" hidden>→</span></span><strong id="totalDirectionText">未按压</strong><small>实机合力方向</small></div>
+              <div class="tactile-readings"><span>压力点 <b id="tactilePoint">—</b></span><span>方向 <b id="tactileDirection">—</b></span><span>振动映射 <b id="tactileVibration">—</b></span></div>
+            </div>
+          </section>
+          <section class="heat-card" aria-label="压力彩色图">
+            <div class="view-heading"><h3>压力</h3><span>0–15 N</span></div>
+            <div class="heat-frame"><canvas draggable="false" id="heatCanvas" role="img" aria-label="独立压力热力图，蓝色低压，4 N 黄色，15 N 红色"></canvas></div>
+            <div class="heat-legend"><span id="heatLegendMin">0</span><i></i><span id="heatLegendMax">约 140 点 / 15 N</span></div>
+            <div class="heat-ticks"><span>低压 · 蓝</span><span id="heatLegendMiddle">10 点 ≈ 0.5 N · 暂定标定</span><span id="heatLegendHigh">高压 · 黄</span></div>
+          </section>
+        </div>
+        <div class="sampling-footer"><p id="tactileMotorStatus" role="status">马达未连接 · 当前仅预览</p></div>
+        <details class="sampling-help"><summary>操作说明</summary><p>阵列固定为与指尖传感器一致的 12 行 × 6 列。箭头方向由压力中心计算，局部压力越大箭头越亮、越长。先在右侧选择模式，再按压采集区触发；灵敏度越低，需要越大的压力才启振。默认、摩擦和长振均按住多久振动多久，松开即停；短振与碰撞松开后完成当前效果。</p></details>
+      </div>
+      <aside class="side-panel">
+        <section class="info-card status-card">
+      <button id="connectButton" class="connect-button" type="button">
+        <span class="status-dot"></span>
+        <span id="connectLabel">连接设备</span>
+      </button>
+          <label class="device-protocol-control">设备类型
+            <select id="deviceProtocol" aria-label="设备通信协议">
+              <option value="telex-v1">ESP32-S3 Mini · TELEX v1</option>
+              <option value="legacy">旧版 ASCII 振动板</option>
+            </select>
+          </label>
+          <button id="enableTelexHaptics" type="button" hidden>启用此板振动</button>
+          <p class="section-label">设备状态</p>
+          <div class="device-state">
+            <div id="deviceOrb" class="device-orb"></div>
+            <div>
+              <strong id="deviceState">未连接</strong>
+              <span id="deviceDetail">请选择设备串口</span>
+            </div>
+          </div>
+          <div class="range-block">
+            <div><span>安全范围</span><strong>1.83—3.26 Vpp</strong></div>
+            <div class="range-track"><i id="rangeFill"></i></div>
+          </div>
+        </section>
+
+        <section class="info-card action-card">
+          <p class="section-label">选择振动模式</p>
+          <div class="button-stack">
+            <button id="defaultButton" type="button" class="secondary-button" data-effect="DEFAULT">
+              <span class="effect-copy"><strong>默认 · 持续按压</strong><small id="defaultParameters">170 Hz · AMP 47 · 高灵敏</small></span><i class="effect-led"></i>
+            </button>
+            <button id="shortButton" type="button" class="secondary-button" data-effect="SHORT">
+              <span class="effect-copy"><strong>短振 · 单次触力</strong><small id="shortParameters">150 Hz · AMP 47 · 100 ms · 横向</small></span><i class="effect-led"></i>
+            </button>
+            <button id="longButton" type="button" class="secondary-button" data-effect="LONG">
+              <span class="effect-copy"><strong>长振 · 按压 ≥ 0.5 秒</strong><small id="longParameters">130 Hz · AMP 35 · 按多久振多久</small></span><i class="effect-led"></i>
+            </button>
+            <button id="frictionButton" type="button" class="secondary-button" data-effect="FRICTION">
+              <span class="effect-copy"><strong>摩擦 · 方向移动</strong><small id="frictionParameters">170 Hz · AMP 47 · 按多久振多久</small></span><i class="effect-led"></i>
+            </button>
+            <button id="collisionButton" type="button" class="secondary-button" data-effect="COLLISION">
+              <span class="effect-copy"><strong>碰撞 · 初始力 &gt; 10 N</strong><small id="collisionParameters">≥6 N · 170 Hz · AMP 43 · 横向</small></span><i class="effect-led"></i>
+            </button>
+            <button type="button" class="secondary-button custom-effect-placeholder" disabled>
+              <span class="effect-copy"><strong>自定义 1</strong><small>暂未定义</small></span><i class="effect-led"></i>
+            </button>
+            <button type="button" class="secondary-button custom-effect-placeholder" disabled>
+              <span class="effect-copy"><strong>自定义 2</strong><small>暂未定义</small></span><i class="effect-led"></i>
+            </button>
+            <button type="button" class="secondary-button custom-effect-placeholder" disabled>
+              <span class="effect-copy"><strong>自定义 3</strong><small>暂未定义</small></span><i class="effect-led"></i>
+            </button>
+            <button id="stopButton" type="button" class="stop-button">立即停止</button>
+          </div>
+        </section>
+
+        <section class="info-card log-card">
+          <div class="log-heading">
+            <p class="section-label">串口日志</p>
+            <button id="clearLogButton" type="button">清空</button>
+          </div>
+          <pre id="serialLog">等待连接…</pre>
+        </section>
+      </aside>
+    </section>
+
+    <section class="hand-control-panel info-card" aria-labelledby="handControlTitle">
+      <div class="hand-control-heading">
+        <div><p class="section-label">LINKERHAND · L25 运动控制</p><h2 id="handControlTitle">关节姿态与预设</h2></div>
+        <div class="hand-control-actions">
+          <button id="readHandPose" type="button">读取当前位置</button>
+          <button id="sendHandPose" type="button" class="primary">发送姿态</button>
+        </div>
+      </div>
+      <div class="hand-preset-bar">
+        <div id="handBuiltinPresets" class="hand-preset-buttons"></div>
+        <div class="hand-custom-preset">
+          <input id="handPresetName" type="text" maxlength="20" placeholder="预设名称">
+          <button id="saveHandPreset" type="button">保存当前目标</button>
+          <select id="handPresetSelect" aria-label="自定义预设"><option value="">自定义预设</option></select>
+          <button id="loadHandPreset" type="button">载入</button>
+          <button id="deleteHandPreset" type="button">删除</button>
+        </div>
+      </div>
+      <div class="hand-settings-row">
+      <div class="hand-motion-bar" aria-label="机械手运动参数">
+        <label class="hand-motion-control" for="handSpeedRange">
+          <span>运动速度 <output id="handSpeedValue">正常</output></span>
+          <input id="handSpeedRange" type="range" min="0" max="2" step="1" value="0" list="handSpeedMarks">
+          <datalist id="handSpeedMarks"><option value="0" label="慢"></option><option value="1" label="正常"></option><option value="2" label="快"></option></datalist>
+        </label>
+      </div>
+      <div class="hand-calibration-bar">
+        <div><strong>软件基准标定</strong><span>让手自然静止后，读取 ROS2 实际位置并保存为启动基准。L25 SDK 没有硬件零位标定命令。</span></div>
+        <button id="calibrateHandPose" type="button">用当前位置标定</button>
+        <button id="restoreCalibration" type="button">载入标定基准</button>
+      </div>
+      </div>
+      <div id="handControlStatus" class="hand-control-status" role="status">等待 ROS2 关节状态</div>
+      <div id="handJointGroups" class="hand-joint-groups"></div>
+    </section>
+
+    <footer>
+      <span>USB Serial 115200</span>
+      <span>TELEX v1 · ESP32-S3 Mini</span>
+      <span>五路：小指 → 拇指</span>
+    </footer>
+  </main>
+
+  <dialog id="tactileDialog" aria-label="放大采集测试区"></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="telex-device.js?v=20261026-1"></script>
+  <script src="app.js?v=20261026-1"></script>
+</body>
+</html>
