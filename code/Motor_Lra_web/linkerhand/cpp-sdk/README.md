@@ -1,0 +1,458 @@
+# LinkerHand-CPP-SDK
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-blue.svg)]()
+[![Architecture](https://img.shields.io/badge/Arch-x86__64%20%7C%20aarch64-lightgrey.svg)]()
+[![CI/CD](https://github.com/linker-bot/linkerhand-cpp-sdk/workflows/CI/CD/badge.svg)](https://github.com/linker-bot/linkerhand-cpp-sdk/actions)
+
+> 专注于人工智能和机器人解决方案，帮助开发者、企业、科研机构快速实现真实场景落地
+
+灵心巧手（北京）科技有限公司提供的一套 C++ API，用于控制（L6、L7、L20_Lite、L20、L20_10/11、L21、L25、L30v6、O6、O20）灵巧手设备，支持 CAN / CAN-FD / Modbus 多种总线。
+
+
+---
+
+## 📋 目录
+
+- [特性](#-特性)
+- [系统要求](#-系统要求)
+- [快速开始](#-快速开始)
+- [API 文档](#-api-文档)
+- [通信协议](#-通信协议)
+- [支持的协议](#-支持的协议)
+- [网页示教器](#-网页示教器)
+- [项目结构](#-项目结构)
+- [示例程序列表](#-示例程序列表)
+- [关节映射表](#-关节映射表)
+- [故障排查与常见问题](#-故障排查与常见问题)
+- [许可证](#-许可证)
+- [联系我们](#-联系我们)
+
+---
+
+## ✨ 特性
+
+- 🎯 **多型号支持** — L6、L7、L20_Lite、L20、L20_10/11、L21、L25、L30v6、O6、O20
+- 🔌 **多总线** — CAN、CAN-FD、Modbus
+- 🚀 **易用** — 简洁的 C++ API，回调注入式通信层，便于嵌入到自有应用
+- 📊 **传感数据** — 实时获取压力、温度、电流等传感器读数
+- 🎮 **精确控制** — 支持关节位置（原始值 / 弧度）、速度、扭矩控制
+- 🔄 **实时反馈** — 关节状态、电机故障码等实时上报
+- 🛠️ **跨平台** — Linux (x86_64 / aarch64)、Windows (MinGW)
+- 📚 **完整文档** — 附 API 参考、FAQ 与排障文档
+
+## 💻 系统要求
+
+**Linux**
+- 操作系统：Ubuntu 18.04 及以上
+- 架构：x86_64 或 aarch64
+- 编译器：GCC 7.0+ 或 Clang 6.0+（C++17）
+- CMake：3.15+
+- 依赖：pthread
+
+**Windows**
+- 操作系统：Windows 10 / 11 (x64)
+- 编译器：MinGW-w64 GCC 13+，线程模型需为 `win32`（`g++ -v` 查看 `Thread model`），或 MSVC（VS2017 / VS2019 / VS2022 任一，已实测 VS2017 消费 CI artifact 通过）
+- CMake：建议 4.0+（已实测 4.0.3）
+- 依赖：`PCAN-Basic` 与 mingw 运行时 DLL 已随 SDK 附带
+
+
+## 🚀 快速开始
+
+### 1. 克隆仓库
+
+```bash
+git clone https://github.com/linker-bot/linkerhand-cpp-sdk.git
+cd linkerhand-cpp-sdk
+```
+
+### 2. 使用脚本构建
+
+SDK 目录内附 `build.sh`（Linux）与 `build.bat`（Windows）。
+
+| 选项 | 说明 |
+|------|------|
+| `-h`, `--help` | 显示帮助信息 |
+| `-b`, `--build` | 构建示例程序 |
+| `-i`, `--install` | 安装 SDK 到系统（需 sudo） |
+| `-u`, `--uninstall` | 从系统卸载 SDK（需 sudo） |
+| `-c`, `--clean` | 清理 `build/` 目录 |
+| `--prefix PATH` | 指定安装前缀（默认 `/usr/local`） |
+
+```bash
+# Linux
+./build.sh -b                       # 编译
+sudo ./build.sh -i                  # 编译并安装到 /usr/local
+sudo ./build.sh -u                  # 卸载
+
+# Windows（cmd / PowerShell）
+build.bat                           # 编译
+```
+
+
+### 3. 启动CAN设备
+
+```bash
+# Linux
+
+请手动启动CAN接口(需要sudo):
+  sudo ip link set canX up type can bitrate 1000000
+
+或使用批量启动脚本:
+  for i in 0 1 2 3 4; do sudo ip link set can$i up type can bitrate 1000000; sudo ip link set can$i txqueuelen 1024; done
+
+# Windows （无需操作）
+```
+
+**不想每次手动敲命令？** 用 `can-autocfg.sh` 一次性安装自动配置（systemd 模板服务 + udev 规则）：接口**插入 / 开机时自动 up，关机 / 重启时自动干净 down**，并按设备能力自动识别经典 CAN 或 CAN-FD（FD 自动加 `dbitrate 5000000 fd on`）、设 `txqueuelen`、开 bus-off 自动恢复。
+
+```bash
+sudo ./can-autocfg.sh                                   # 经典 1000000；FD 设备自动 dbitrate 5000000
+sudo BITRATE=500000 ./can-autocfg.sh                    # 改经典 / 仲裁段波特率
+sudo BITRATE=1000000 DBITRATE=2000000 ./can-autocfg.sh  # 改 FD 数据段波特率
+```
+
+安装后无需再手动 `ip link set canX up`，开机 / 插入即自动配置。适用于 PEAK PCAN-USB / candleLight(gs_usb) 等 SocketCAN 适配器。
+
+### 4. 运行示例程序
+
+构建完成后，可执行文件位于 `build/bin/`：
+
+```bash
+# Linux
+cd build/bin
+./linker_hand_example          # CLI 工具
+./test_o6_can_0
+./test_l20_lite_can_0
+./test_o20_canfd_0
+
+# Windows
+build\bin\linker_hand_example.exe
+build\bin\test_l20_lite_can_0.exe
+```
+
+更多示例见 [`examples/`](examples/) 目录。
+
+### 5. 快速集成
+
+新建工程目录：
+
+```bash
+mkdir demo && cd demo
+touch main.cpp CMakeLists.txt
+```
+
+两种集成方式的目录布局：
+
+```
+# 解压即用（未安装 SDK，把 SDK 目录整个拷到工程内）
+demo/
+├── CMakeLists.txt
+├── linkerhand-cpp-sdk/      # 即本 SDK 目录
+└── main.cpp
+
+# 已安装 SDK（系统级，find_package 即可找到）
+demo/
+├── CMakeLists.txt
+└── main.cpp
+```
+
+`demo/main.cpp`：
+
+```cpp
+#include <cstring>
+#include <iostream>
+#include <memory>
+#include <vector>
+
+#include "LinkerHandApi.h"
+#include "CommFactory.h"
+
+int main() {
+    constexpr LINKER_HAND model = LINKER_HAND::O6;
+    constexpr HAND_TYPE  side   = HAND_TYPE::LEFT;
+
+    auto hand = std::make_shared<LinkerHandApi>(model, side, COMM_TYPE::CAN);
+    auto bus  = std::shared_ptr<Communication::ICanBus>(Communication::CommFactory::createCanBus(side));
+
+    hand->setCanTxCallback([bus](uint32_t can_id, const uint8_t *data, uintptr_t len) -> int32_t {
+        std::vector<uint8_t> buf(data, data + len);
+        bus->send(buf, can_id);
+        return 0;
+    });
+
+    hand->setCanRxCallback([bus](uint32_t *id_out, uint8_t *data_out, uint8_t *len_out) -> int32_t {
+        auto frame = bus->recv();
+        if (frame.can_id == 0 && frame.can_dlc == 0) return -1;
+        *id_out  = frame.can_id;
+        *len_out = frame.can_dlc;
+        std::memcpy(data_out, frame.data, frame.can_dlc);
+        return 0;
+    });
+
+    std::cout << "-----------------------------------" << std::endl;
+    std::cout << "version: " << hand->getVersion() << '\n';
+    std::cout << "-----------------------------------" << std::endl;
+    return 0;
+}
+```
+
+`demo/CMakeLists.txt`：
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(my_app LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 解压即用：把 SDK 目录加进 CMake 搜索路径，无需安装。
+# 等价命令行：cmake -S . -B build -DCMAKE_PREFIX_PATH=${CMAKE_SOURCE_DIR}/linkerhand-cpp-sdk
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/linkerhand-cpp-sdk")
+
+find_package(linkerhand-cpp-sdk 2.0 CONFIG REQUIRED)
+
+add_executable(demo main.cpp)
+target_link_libraries(demo PRIVATE LinkerHand::linkerhand_cpp_sdk)
+
+# 运行时定位 .so：把 SDK lib 目录写进 RPATH，免去 LD_LIBRARY_PATH。
+# linkerhand-cpp-sdk_LIBRARY_DIR 由 cmake/linkerhand-cpp-sdk-config.cmake 设置。
+set_target_properties(demo PROPERTIES
+    BUILD_RPATH   "${linkerhand-cpp-sdk_LIBRARY_DIR}"
+    INSTALL_RPATH "${linkerhand-cpp-sdk_LIBRARY_DIR}"
+)
+```
+
+编译运行：
+
+```bash
+mkdir build && cd build
+cmake ..
+cmake --build . -j
+./demo
+```
+
+## 📚 API 文档
+
+完整的 API 参考见 [`docs/API-Reference.md`](docs/API-Reference.md)，内容涵盖：
+
+- 完整的 API 函数说明
+- 参数与返回值详解
+- 使用示例与注意事项
+- 版本兼容性说明
+
+### 主要 API 接口
+
+**控制接口**
+- `setPosition()` — 设置关节位置
+- `setSpeed()` — 设置运动速度
+- `setTorque()` — 设置扭矩限制
+
+**状态查询**
+- `getPosition()` — 获取关节状态
+- `getSpeed()` — 获取当前速度
+- `getTorque()` — 获取当前扭矩
+
+**传感器**
+- `getForce()` — 获取传感器数据
+- `getTemperature()` — 获取电机温度
+- `getFaultCode()` — 获取电机故障码
+
+## 🔌 通信协议
+
+| 协议 | 枚举值 | 适用范围 |
+|------|--------|---------|
+| CAN | `COMM_TYPE::CAN` | 全系列 |
+| CAN-FD | `COMM_TYPE::CAN`（搭配 `CanFD` 实现） | O20（不支持Linux aarch64） |
+| Modbus | `COMM_TYPE::MODBUS` | L7 / L20_Lite / O6 |
+
+
+通信层通过 `Communication::CommFactory` 构造（旧名 `CanBusFactory` 保留为兼容别名），调用方通过 `LinkerHandApi::setCanTxCallback` / `setCanRxCallback`（或 Modbus 等价回调）注入收发逻辑，SDK 本身不持有任何 socket。
+
+## 🤖 支持的协议
+
+| 机械手型号 | CAN 协议 | Modbus 协议 | CAN-FD 协议 |
+| :--- | :---: | :---: | :---: |
+| LinkerHand O6 | ✅ | ✅ |  |
+| LinkerHand L6 / L6S | ✅ |  |  |
+| LinkerHand O7 | ✅ | ✅ |  |
+| LinkerHand L20 Lite | ✅ | ✅ |  |
+| LinkerHand L20 | ✅ |  |  |
+| LinkerHand L20 V10+ | ✅ |  |  |
+| LinkerHand L21 | ✅ |  |  |
+| LinkerHand L25 | ✅ |  |  |
+| LinkerHand O20 |  |  | ✅ |
+| LinkerHand L30 V6 |  |  | ✅ |
+
+## 🌐 网页示教器
+
+`webui/` 是一套开箱即用的网页控制界面，全型号（L6 / L7 / L20_Lite / L20 / L20_10/11 / L21 / L25 / L30v6 / O6 / O20）通用，O20 走 CAN-FD。
+
+> **一条命令即用**：`./start-webui.sh` 会自动检测 `web_bridge` 是否已编译，未编译则先跑 `./build.sh -b`，随后拉起服务；也可 `./build.sh -b` 后直接 `python3 webui/run.py`。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/webui-overview-dark.png">
+  <img alt="webui 主界面" src="docs/images/webui-overview-light.png">
+</picture>
+
+### 功能
+
+- 按型号动态渲染**关节滑块**，实时位置回读
+- **速度 / 力矩**设置与回读
+- **触觉压感热力图**（含掌心，O6 / L20_10/11），维度按型号自适应
+- **温度 / 故障**监控表（温度 >50 黄、>60 红，故障码非 0 红）
+- 版本信息展示、明暗主题切换
+- 在线连接：前端「设置」面板选择型号 / 侧别 / 通信方式，支持热重连与主动断开
+
+### 运行
+
+拉起对应总线、给手上电，启动服务即可。推荐用 `start-webui.sh`，它在启动前自动确保 `web_bridge` 已编译（缺失则先构建）：
+
+```bash
+sudo ip link set can0 up type can bitrate 1000000   # CAN 型号；Modbus 见下
+./start-webui.sh                                    # 未编译则自动构建再起服务，参数透传给 run.py
+```
+
+或手动分步（已编译时）：
+
+```bash
+./build.sh -b                                       # 一次编译，webui 随之就绪
+python3 webui/run.py                                # 起服务，型号/通信在前端「设置」里选
+```
+
+浏览器打开 `http://<本机IP>:8080/`。也可命令行直连指定型号（`start-webui.sh` 与 `run.py` 参数一致，可直接透传）：
+
+```bash
+./start-webui.sh --model O6  --side left
+python3 webui/run.py --model O6  --side left
+python3 webui/run.py --model L20_LITE --side left  --channel can0
+python3 webui/run.py --model O20 --side right                 # 厂商 CAN-FD 设备
+python3 webui/run.py --model O20 --side right --channel socketcan:can0
+python3 webui/run.py --model L20_LITE --comm modbus --channel /dev/ttyUSB0
+```
+
+主要参数：`--model`（不填则在前端在线连接）、`--side left|right`、`--comm can|canfd|modbus`（缺省按型号自动）、`--channel`（CAN 接口名 / Modbus 串口）、`--host`（默认 `0.0.0.0`）、`--port`（默认 `8080`）。更多用法见 [`webui/README.md`](webui/README.md)。
+
+> Modbus 型号需串口读写权限：`sudo chmod 0777 /dev/ttyUSB0` 或把用户加入 `dialout` 组。
+
+## 📁 项目结构
+
+```
+linkerhand-cpp-sdk/
+├── include/                          # 公共头文件
+│   ├── api/
+│   │   └── LinkerHandApi.h           # 唯一公共入口
+│   ├── core/
+│   │   ├── Common.h                  # 枚举：LINKER_HAND / HAND_TYPE / COMM_TYPE
+│   │   ├── ErrorCode.h
+│   │   └── LinkerHandExport.h        # 跨平台符号导出宏
+│   └── communication/
+│       ├── CommFactory.h             # 通信层工厂（推荐）
+│       ├── CanBusFactory.h           # 兼容别名（旧名，将逐步废弃）
+│       ├── CommunicationCallbacks.h  # 回调签名
+│       ├── CanBus.h / CanFD.h / Modbus.h / PCANBus.h
+│       ├── CanFrame.h
+│       └── ICanBus.h / ICanFD.h / ICommunication.h / IModbus.h
+├── lib/
+│   ├── linux/
+│   │   ├── x86_64/                   # Linux x86_64 共享库（.so）
+│   │   └── arm64/                    # Linux aarch64 共享库（.so）
+│   └── win64/
+│       ├── mingw/                    # Windows MinGW（.dll）
+│       └── msvc/                     # Windows MSVC（.dll / .lib）
+├── examples/                         # 示例源码（CAN / CAN-FD / Modbus）
+├── webui/                            # 网页示教器（浏览器控制界面）
+├── docs/                             # API-Reference / FAQ / TROUBLESHOOTING
+│   └── images/                       # 文档配图
+├── cmake/                            # find_package 用的 *-config.cmake
+├── third_party/
+│   ├── libcanbus/                    # CAN / CAN-FD 驱动
+│   └── PCAN_Basic/                   # Windows PCAN 驱动
+├── build.sh                          # 构建脚本（Linux）
+├── build.bat                         # 构建脚本（Windows）
+├── can-autocfg.sh                    # CAN/CAN-FD 自动激活/关闭（可选）
+└── CMakeLists.txt                    # 顶层 CMake：聚合 examples + 安装规则
+```
+
+> `include/` 与 `lib/` 是对外契约；`examples/` 与 `cmake/` 是配套消费样例与集成胶水。
+
+## 📜 示例程序列表
+
+| 示例文件 | 说明 |
+|----------|------|
+| `linker_hand_example.cpp` | 多型号 / 多协议巡检 |
+| `test_l20_10_can_0.cpp` | L20_10/11 CAN 基础示例 |
+| `test_l20_10_can_1.cpp` | L20_10/11 CAN 进阶示例（直连具体类） |
+| `test_l7_can_0.cpp` | L7 CAN 基础示例 |
+| `test_l7_can_1.cpp` | L7 CAN 进阶示例 |
+| `test_l7_modbus_0.cpp` | L7 Modbus 基础示例 |
+| `test_l7_modbus_1.cpp` | L7 Modbus 进阶示例 |
+| `test_l20_lite_can_0.cpp` | L20_Lite CAN 基础示例 |
+| `test_l20_lite_can_1.cpp` | L20_Lite CAN 进阶示例 |
+| `test_l20_lite_modbus.cpp` | L20_Lite Modbus 示例 |
+| `test_l20_can_0.cpp` | L20 CAN 示例 |
+| `test_l21_can_0.cpp` | L21 CAN 示例 |
+| `test_o6_can_0.cpp` | O6 CAN 基础示例 |
+| `test_o6_can_1.cpp` | O6 CAN 进阶示例 |
+| `test_o6_can_3.cpp` | O6 CAN 高级示例 |
+| `test_o6_modbus_0.cpp` | O6 Modbus 基础示例 |
+| `test_o6_modbus_1.cpp` | O6 Modbus 进阶示例 |
+| `test_o6_modbus_2.cpp` | O6 Modbus 高级示例 |
+| `test_o20_canfd_0.cpp` | O20 CAN-FD 基础示例（不支持Linux aarch64） |
+| `test_o20_canfd_1.cpp` | O20 CAN-FD 进阶示例（不支持Linux aarch64） |
+| `L20_Lite/action_group_show.cpp` | L20_Lite 动作组演示 |
+
+## 📖 关节映射表
+
+- L6 / O6
+```
+["大拇指弯曲", "大拇指横摆", "食指弯曲", "中指弯曲", "无名指弯曲", "小拇指弯曲"]
+```
+
+- L7
+```
+["大拇指弯曲", "大拇指横摆", "食指弯曲", "中指弯曲", "无名指弯曲", "小拇指弯曲", "拇指旋转"]
+```
+
+- L20_Lite
+```
+["拇指根部", "拇指侧摆", "食指根部", "中指根部", "无名指根部", "小指根部",
+ "食指侧摆", "无名指侧摆", "小指侧摆", "拇指旋转"]
+```
+
+- L20_10/11
+```
+["大拇指根部", "食指根部", "中指根部","无名指根部","小拇指根部",
+  "大拇指侧摆","食指侧摆","中指侧摆","无名指侧摆","小拇指侧摆",
+  "大拇指横滚","大拇指指尖","食指指尖","中指指尖","无名指指尖","小拇指指尖"]
+```
+
+- L21 / L25
+详细映射见 [`docs/API-Reference.md`](docs/API-Reference.md)。
+
+## 🔧 故障排查与常见问题
+
+- [故障排查指南](docs/TROUBLESHOOTING.md) — 编译 / 运行时 / 通信 / API 使用 / 性能
+- [常见问题解答](docs/FAQ.md) — 安装、使用、接口选择、各型号关节数、性能等
+
+如文档无法解决：
+
+1. 在 [GitHub Issues](https://github.com/linker-bot/linkerhand-cpp-sdk/issues) 搜索同类问题
+2. 提交新 Issue，附错误信息与复现步骤
+3. 联系技术支持：<https://linkerbot.cn/aboutUs>
+
+## 📄 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。
+
+Copyright (c) 2026 灵心巧手（北京）科技有限公司
+
+## 📞 联系我们
+
+- 官方网站：<https://linkerbot.cn>
+- 关于我们：<https://linkerbot.cn/aboutUs>
+- GitHub：<https://github.com/linker-bot/linkerhand-cpp-sdk>
+
+---
+
+**注意**：使用前请确保设备已正确连接并配置好通信接口。
